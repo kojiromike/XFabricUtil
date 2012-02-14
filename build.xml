@@ -1,0 +1,58 @@
+<project name="XFabricUtil" default="dist" basedir=".">
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+	<property name="version" value="0.8.1"/>
+	<property name="javadocs" location="javadocs" />
+	<property name="packages" value="com.x.xfabric.helper.*"/>
+	<property name="lib.name"    value="XFabricUtil" />
+	<property name="lib.package" value="com/x/xfabric/helper" />
+	<property name="lib.year"    value="2012" />
+	
+
+	<target name="init">
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath>
+				<pathelement path="${classpath}" />
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist}" />
+		<jar jarfile="${dist}/${ant.project.name}-${version}.jar" basedir="${build}" />
+	</target>
+
+	<target name="javadocs" depends="compile">
+   		<mkdir dir="${javadocs}"/>
+		<javadoc packagenames="${packages}"
+            	sourcepath="${src}"
+            	destdir="${javadocs}"
+            	author="true"
+            	version="true"
+            	use="true"
+            	windowtitle="${lib.name} API">
+			<classpath>
+					<pathelement path="${classpath}" />
+					<fileset dir="lib">
+						<include name="**/*.jar" />
+					</fileset>
+			</classpath>
+            <doctitle><![CDATA[<h1>XFabricUtil Library</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &#169; 2012 X.commerce.</i>]]></bottom>
+   		</javadoc>
+    </target>
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete dir="${javadocs}" />
+	</target>
+</project>
