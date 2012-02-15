@@ -1,0 +1,9 @@
+Modified Avro gem to parse X.commerce schemas.
+
+==
+
+gem install avro-1.6.1.gem
+
+This gem adds namespace support.
+Originally hosted at https://github.com/xcommerce/avro-ruby
+
