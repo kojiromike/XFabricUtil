@@ -65,20 +65,20 @@ if ARGV.size != 1
   exit
 end
 
-if !File.exist?("Tools/avro-tools-1.6.1.jar")
+if !File.exist?("lib/avro-tools-1.6.1.jar")
   puts "Cannot find the avro-tools-1.6.1.jar file in the application root directory."
   exit
 end
 
 idl_file = File.open(ARGV[0])
-jar_path = File.join(Dir.pwd, 'Tools', 'avro-tools-1.6.1.jar')
+jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
 puts "Compiling #{ARGV[0]}"
 f = ARGV[0].split('.')[0]
-`java -jar #{jar_path} idl #{f}.avdl > #{f}.avpr`
+`java -jar #{jar_path} idl #{f}.avdl > out/#{f}.avpr`
 puts "Processing #{f}.avpr"
 
 
-protocol_file = File.open("#{f}.avpr")
+protocol_file = File.open("out/#{f}.avpr")
 protocol_text = protocol_file.read
 protocol = Avro::Protocol.parse(protocol_text)
 protocol.types.each do |type|
@@ -103,7 +103,7 @@ protocol.types.each do |type|
     out.close
   end
 end
-jar_path = File.join(Dir.pwd, 'Tools', 'avro-tools-1.6.1.jar')
-
+jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
+`mv *.avsc out`
 
 
