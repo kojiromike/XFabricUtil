@@ -13,5 +13,6 @@ Download the entire contents of this directory and run it using
 
 This will generate a bunch of schema files with an extension (avsc) for each
 topic defined in the AVDL.
+This will be generated in 'out' directory, which will be created if needed.
 
 

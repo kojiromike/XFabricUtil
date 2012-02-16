@@ -104,6 +104,9 @@ protocol.types.each do |type|
   end
 end
 jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
+if !File.directory?('out')
+  `mkdir out`
+end
 `mv *.avsc out`
 
 
