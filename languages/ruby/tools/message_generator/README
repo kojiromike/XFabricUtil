@@ -12,6 +12,6 @@ Some schemas are nested deep and it is quite hard and error prone to come up wit
 	* ruby generate_message.rb https://ocl.xcommercecloud.com/inventory/stockItem/updateQuantityFailed/1.0.0
 
 ==About the code
-* Basically, this code is written by patching the ruby avro parser written for X.commerce.
-If you think of a better implementation, please feel free to submit a pull request. You can send feedback to @X_commerce or @saranyan
+This code was written by extending the avro parser written for X.commerce.
+Any enhancements and improvements are welcome. Feel free to submit a  pull request.
 
