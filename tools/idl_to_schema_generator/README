@@ -1,0 +1,17 @@
+==What?
+X.commerce message contracts are described in Avro IDL format. You can find the
+list of contracts https://github.com/xcommerce/X.commerce-Contracts
+
+Typically, the schema generated from these contracts are hosted on the X.commerce cloud server.
+However, for a developer either wanting to generate a schema for an experimental
+contract or generate a schema for a contract that has not yet been hosted on the OCL cloud,
+this script will let them generate schemas for all the topics described by the AVDL file.
+
+==How?
+Download the entire contents of this directory and run it using
+./generate_schema_from_idl <filename.avdl>
+
+This will generate a bunch of schema files with an extension (avsc) for each
+topic defined in the AVDL.
+
+
