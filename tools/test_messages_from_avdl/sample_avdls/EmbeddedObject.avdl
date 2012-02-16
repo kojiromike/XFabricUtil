@@ -1,0 +1,12 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+
+	/** This record is used to embed specific types inside another type. */
+	record EmbeddedObject {
+		string schemaVersion;
+		union{null, string} schemaUri = null;
+		bytes payload;
+	}
+
+}

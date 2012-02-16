@@ -1,0 +1,11 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+
+	record CurrencyAmount {
+		string amount;
+		
+		/**  Three letter currency code/ISO 4217 */
+		string code;
+	}
+}

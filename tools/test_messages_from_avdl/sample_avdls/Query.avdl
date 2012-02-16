@@ -1,0 +1,99 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+
+	/**
+	 * Operator
+	 */
+	enum Operator
+	{
+		EQUALS,
+		NOT_EQUALS,
+		GREATER_THAN,
+		GREATER_THAN_EQUALS,
+		LESS_THAN,
+		LESS_THAN_EQUALS
+	}
+	
+	/**
+	 * Predicate
+	 */
+	record Predicate
+	{
+		string field;
+
+		Operator operator;
+
+		array<string> values;
+	}
+
+	/**
+	 * Sort order
+	 */
+	enum SortOrder
+	{
+		ASCENDING,
+		DESCENDING
+	}
+
+	/**
+	 * Order by
+	 */
+	record OrderBy
+	{
+		string field;
+
+		SortOrder sortOrder;
+	}
+
+	/**
+	 * Query that corresponds to the report
+	 */
+	record Query
+	{
+		/**
+		 * Fields to be selected. These will be 'columns' in the report.
+		 * When not specified, the entire object should be returned. 
+		 */
+		union{null,array<string>} fields = null;
+		
+		/**
+		 * Specifies how an entity should be filtered. Essentially, the WHERE
+		 * clause.  Don't specify any predicate if the query is for all.
+		 */
+		union{null,array<Predicate>} predicates = null;
+
+		/**
+		 * Fields on which the report should be sorted. The order is significant -
+		 * first field determines primary sort order, the next determines
+		 * secondary sort order, etc.
+		 */
+		union{null,array<OrderBy>} ordering = null;
+	}
+
+	record GenericItem {
+		//Fixed is not supported. Use bytes instead.
+		//For union, the actual type should be use instead of the union type.
+		union {null,boolean,int,long,float,double,string,bytes,array<GenericItem>,map<GenericItem>} value;
+	}
+
+	record QueryResultItem {
+		array<GenericItem> fields;
+	}
+
+	/**
+	 * Query Result
+	 * The result of a query can be null, in which case the Error structure
+	 * will indicate the error.
+	 * In the successful case, the result is zero or more rows, each containing
+	 * one or more columns. The order of the columns would correspond to the
+	 * order of the fields in the Query record.
+	 * While the type of column supported is a string now, this can be enhanced
+	 * by adding additional types to the inner union.
+	 */
+	record QueryResult
+	{
+		union {null, array<QueryResultItem>} data = null;
+	}
+
+}

@@ -1,0 +1,15 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+
+	record Locale {
+
+		/* ISO 639-2 Two-letter lower-cased language code */
+		string language;
+		
+		/* ISO 3166 Two-letter UPPER-CASED country code */
+		string country;
+		
+        union {null, string} variant = null;		
+	}
+}

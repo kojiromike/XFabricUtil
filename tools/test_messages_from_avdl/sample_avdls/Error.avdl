@@ -1,0 +1,20 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+	/** This record is used to return error information */
+	record Error
+	{
+		/** Numeric value that indicates the type of error */
+		string code;
+ 
+		/**  Key whose value is a human displayable version of this error */
+		union {null, string} message = null;
+ 
+		/** 
+		 * Parameters for the message. Parameter place holders identified 
+		 * using the format in java.text.MessageFormat. The key of the map is
+		 * the placeholder string, and the value is the string that replaces it. 
+		 */
+		union {null, map<string>} parameters = null;
+	}
+}
