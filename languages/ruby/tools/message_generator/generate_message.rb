@@ -141,6 +141,7 @@ begin
   message = (msg_arr.find_all{|item| !item.include?("Schema")}).join('').gsub(', }','}').gsub(', ]',']').gsub('"boolean"',"false").gsub('"double"',"0.0").gsub('"int"',"0").gsub(']"','],"').gsub('}"','},"')
 rescue
   puts "Error parsing schema.\n\n"
+  exit
 end
 if Avro::Schema::MSG_ERROR_FLAG.size > 0
   
