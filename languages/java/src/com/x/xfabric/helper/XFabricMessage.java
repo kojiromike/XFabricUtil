@@ -77,6 +77,10 @@ public class XFabricMessage {
 	 * Name of the schema version header sent by the fabric
 	 */
 	private static String SCHEMAVERSION_HDR = "X-XC-SCHEMA-VERSION";
+	/**
+	 * Name of the correlation id sent by the fabric
+	 */
+	private static String CORRELATIONID_HDR = "X-XC-RESULT-CORRELATION-ID";
 
 	/**
 	 * Bearer Token of the message publisher
@@ -102,6 +106,10 @@ public class XFabricMessage {
 	 * message guid
 	 */
 	private String messageGuid;
+	/**
+	 *  Correlation identifier to relate messages as a group
+	 */
+	private String correlationId;
 	/**
 	 * raw message in bytes
 	 */
@@ -163,6 +171,7 @@ public class XFabricMessage {
 		this.messageGuid = this.getHeader(MESSAGEGUID_HDR);
 		this.schemaVersion = this.getHeader(SCHEMAVERSION_HDR);
 		this.schemaURI = this.getHeader(SCHEMAURI_HDR);
+		this.correlationId = this.getHeader(CORRELATIONID_HDR);
 
 		if ("/message/failed".equals(this.topicName)
 				|| "/xfabric/capability/endpoint/results"
@@ -269,7 +278,12 @@ public class XFabricMessage {
 	public String getSchemaVersion() {
 		return schemaVersion;
 	}
-
+	/**
+	 * @return the correlationId
+	 */
+	public String getCorrelationId() {
+		return correlationId;
+	}
 	/**
 	 * @return raw message in bytes
 	 */
@@ -340,28 +354,21 @@ public class XFabricMessage {
 	}
 
 	/**
-	 * @return message in Json String without conforming to any scheme
+	 * @return message in Json String without conforming to any reader scheme (uses writer schema)
 	 * @throws IOException
 	 */
 	public String getMessageAsJsonString() throws IOException {
-		StringBuilder messages = new StringBuilder();
 
 		if (this.contentType == AvroContentType.AVRO_BINARY) {
-			DatumReader<GenericRecord> reader = new GenericDatumReader<GenericRecord>();
-			ByteArrayInputStream is = new ByteArrayInputStream(this.rawMessage);
-			DataFileStream<GenericRecord> dataFileReader = new DataFileStream<GenericRecord>(
-					is, reader);
-			GenericRecord record = null;
-			while (dataFileReader.hasNext()) {
-				record = dataFileReader.next(record);
-				messages.append(record.getSchema().toString());
-				messages.append(record.toString());
-			}
+			Schema writerSchema = SchemaCache.getSchema(topicName, schemaVersion,
+					new URL(schemaURI));
+			IndexedRecord record = AvroEncDecoder.decode(this.rawMessage,
+					writerSchema, writerSchema, AvroContentType.AVRO_BINARY);
+			return new String(AvroEncDecoder.encode(record,
+					AvroContentType.AVRO_JSON));
 		} else {
-			messages.append(new String(this.rawMessage, "UTF-8"));
+			return new String(this.rawMessage, "UTF-8");
 		}
-
-		return messages.toString();
 	}
 
 	/**

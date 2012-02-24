@@ -56,6 +56,10 @@ public class XFabricBoundMessage {
 	 */
 	private String destinationId;
 	/**
+	 *  Correlation identifier to relate messages as a group
+	 */
+	private String correlationId;
+	/**
 	 * raw message in bytes
 	 */
 	private byte[] rawMessage;
@@ -165,6 +169,22 @@ public class XFabricBoundMessage {
 		this.schemaUri = schemaUri;
 	}
 
+
+	/**
+	 * @return the correlationId
+	 */
+	public String getCorrelationId() {
+		return correlationId;
+	}
+
+	/**
+	 * @param correlationId
+	 *            the correlationId to set
+	 */
+	public void setCorrelationId(String correlationId) {
+		this.correlationId = correlationId;
+	}
+	
 	/**
 	 * @param messageContinuationGuid
 	 *            the messageContinuationGuid to set

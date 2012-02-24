@@ -26,13 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.security.SecureRandom;
+import java.net.HttpURLConnection;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import org.apache.avro.Schema;
 
@@ -43,74 +38,28 @@ import org.apache.avro.Schema;
 
 public class URLSchemaResolver {
 	
-	/**
-	 * Default TrustManager to relax verification on server certificate.
-	 */
-	static class RelaxedX509TrustManager implements X509TrustManager {
-		public boolean checkClientTrusted(java.security.cert.X509Certificate[] chain) {
-			return true;
-		}
+	public static int HTTP_CONNECTION_TIMEOUT = 3000;
+	public static int HTTP_READ_TIMEOUT = 7000;
+	
+	public Schema resolve(URL schemaUrl) throws IOException{
+            try {
+                    HttpURLConnection connection = 
+						(HttpURLConnection) schemaUrl.openConnection();
+                    connection.setDoOutput(true);
+                    // set timeouts
+                    connection.setConnectTimeout(HTTP_CONNECTION_TIMEOUT);
+                    connection.setReadTimeout(HTTP_READ_TIMEOUT);
+                    connection.connect();
+                    InputStream is = connection.getInputStream();
+            		Schema.Parser parser = new Schema.Parser();
+            		Schema s = parser.parse(is);
+            		//TODO: Do we need to explicitly disconnect?
+            		connection.disconnect();
+            		return s;
+            }catch (Exception ex){
+            	ex.printStackTrace();
+            }
+            return null;
+    }
 
-		public boolean isServerTrusted(java.security.cert.X509Certificate[] chain) {
-			return true;
-		}
-
-		public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-			return null;
-		}
-
-		public void checkClientTrusted(java.security.cert.X509Certificate[] chain,
-				String authType) {
-		}
-
-		public void checkServerTrusted(java.security.cert.X509Certificate[] chain,
-				String authType) {
-		}
-	}	
-
-	private static SSLContext getDefaultSSLContext(boolean trustAll) {
-		SSLContext ctx = null;
-		try {
-			ctx = SSLContext.getInstance("SSL"); // TLS, SSLv3, SSL
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-			random.setSeed(System.currentTimeMillis());
-
-			if (trustAll) {
-				TrustManager[] tm = { new RelaxedX509TrustManager() };
-				ctx.init(null, tm, random);
-			} else {
-				ctx.init(null, null, random);
-			}
-
-		} catch (Exception e) {
-
-		}
-		return ctx;
-	}
-
-	private HttpsURLConnection connect(URL url) throws IOException {
-		HttpsURLConnection httpsConn = (HttpsURLConnection) url
-				.openConnection();
-		httpsConn.setSSLSocketFactory(getDefaultSSLContext(true)
-				.getSocketFactory());
-
-		// XXX: Temporary fix until we get a valid cert
-		httpsConn.setHostnameVerifier(new HostnameVerifier() {
-			public boolean verify(String hostname, SSLSession session) {
-				return true;
-			}
-		});
-		httpsConn.connect();
-		return httpsConn;
-	}
-
-	public Schema resolve(URL schemaUrl) throws IOException {
-		HttpsURLConnection httpsConn = connect(schemaUrl);
-		InputStream is = httpsConn.getInputStream();
-		Schema.Parser parser = new Schema.Parser();
-		Schema s = parser.parse(is);
-		//TODO: Do we need to explicitly disconnect?
-		httpsConn.disconnect();
-		return s;
-	}
 }

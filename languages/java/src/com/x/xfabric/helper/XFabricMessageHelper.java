@@ -78,6 +78,11 @@ public class XFabricMessageHelper {
 	 */
 	private static String SCHEMAURI_HDR = "X-XC-SCHEMA-URI";	
 	
+	/**
+	 * Name of the correlation id that can be sent to or received from the fabric
+	 */
+	private static String CORRELATIONID_HDR = "X-XC-RESULT-CORRELATION-ID";
+	
 	public static int postMessage(String topicUrl, String token, XFabricBoundMessage msg)
 	throws IOException, NoSuchAlgorithmException, KeyManagementException{
 		String responseString = "";
@@ -129,6 +134,9 @@ public class XFabricMessageHelper {
 			}
 			if(msg.getIdempotencyId() != null) {
 				connection.setRequestProperty(MESSAGE_IDEMPOTENCY_HDR, msg.getIdempotencyId());
+			}
+			if(msg.getCorrelationId() != null) {
+				connection.setRequestProperty(CORRELATIONID_HDR, msg.getCorrelationId());
 			}
 			
 			// write the binary data
