@@ -1,0 +1,1769 @@
+{
+    "filter": {"com.x.producttaxonomy.v1.Filter": {
+        "channelIds": {"array": [
+            "ebay_US",
+            "ebay_UK",
+            "ebay_DE",
+            "ebay_FR",
+            "ebay_AU",
+            "google_US"
+        ]},
+        "detailLevel": null
+    }},
+    "locale": {
+        "country": "US",
+        "language": "en",
+        "variant": null
+    },
+    "productTypes": [{
+        "attributes": {"array": [
+            {"com.x.producttaxonomy.v1.StringEnumerationAttribute": {
+                "allowMultipleValues": false,
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_FR",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": false}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "enumerators": [
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "\"Handmade\"",
+                        "name": "\"Handmade\""
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "id": "Abercrombie & Fitch",
+                        "name": "Abercrombie & Fitch"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Adidas",
+                        "name": "adidas"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Alpha",
+                        "name": "Alpha Industries"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "id": "Burton",
+                        "name": "Burton"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Calvin Klein",
+                        "name": "Calvin Klein"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Carhartt",
+                        "name": "Carhartt"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Columbia",
+                        "name": "Columbia"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Diamond Plate",
+                        "name": "Diamond Plate"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Dickies",
+                        "name": "Dickies"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Ecko",
+                        "name": "Ecko"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Gap",
+                        "name": "Gap"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Harley-Davidson",
+                        "name": "Harley-Davidson"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Hollister",
+                        "name": "Hollister"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "IZOD",
+                        "name": "IZOD"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "JH Design",
+                        "name": "JH Design"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Levi's",
+                        "name": "Levi's"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "London Fog",
+                        "name": "London Fog"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Nike",
+                        "name": "Nike"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Patagonia",
+                        "name": "Patagonia"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Polo Ralph Lauren",
+                        "name": "Polo Ralph Lauren"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Port Authority",
+                        "name": "Port Authority"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "id": "Ralph Lauren",
+                        "name": "Ralph Lauren"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "The North Face",
+                        "name": "The North Face"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Timberland",
+                        "name": "Timberland"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Alfani",
+                        "name": "Alfani"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Andrew Fezza",
+                        "name": "Andrew Fezza"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Banana Republic",
+                        "name": "Banana Republic"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Brioni",
+                        "name": "Brioni"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Brooks Brothers",
+                        "name": "Brooks Brothers"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Burberry",
+                        "name": "Burberry"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Canali",
+                        "name": "Canali"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Chaps",
+                        "name": "Chaps"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Claiborne",
+                        "name": "Claiborne"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Ermenegildo Zegna",
+                        "name": "Ermenegildo Zegna"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Giorgio Armani",
+                        "name": "Giorgio Armani"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Haggar",
+                        "name": "Haggar"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Harris Tweed",
+                        "name": "Harris Tweed"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Hart Schaffner Marx",
+                        "name": "Hart Schaffner Marx"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Hickey Freeman",
+                        "name": "Hickey Freeman"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Hugo Boss",
+                        "name": "HUGO BOSS"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Jos. A. Bank",
+                        "name": "Jos. A. Bank"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Joseph Abboud",
+                        "name": "Joseph Abboud"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Mani",
+                        "name": "Mani"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Nordstrom",
+                        "name": "Nordstrom"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Oscar de la Renta",
+                        "name": "Oscar de la Renta"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Stafford",
+                        "name": "Stafford"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "ARMANI",
+                        "name": "ARMANI"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Ben Sherman",
+                        "name": "Ben Sherman"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Cali Surf Co",
+                        "name": "Cali Surf Co"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Charles Tyrwhitt",
+                        "name": "Charles Tyrwhitt"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Combat",
+                        "name": "Combat"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Crosshatch",
+                        "name": "Crosshatch"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Diesel",
+                        "name": "Diesel"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"}
+                        ]},
+                        "id": "Fruit of the Loom",
+                        "name": "Fruit of the Loom"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "G-Star",
+                        "name": "G-Star"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Gildan",
+                        "name": "Gildan"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Juice Grafix Projekt",
+                        "name": "Juice Grafix Projekt"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Koolart",
+                        "name": "Koolart"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"}
+                        ]},
+                        "id": "Lee",
+                        "name": "Lee"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Marks & Spencer",
+                        "name": "Marks & Spencer"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Next",
+                        "name": "Next"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Nudie Jeans",
+                        "name": "Nudie Jeans"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Superdry",
+                        "name": "Superdry"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "id": "Topman",
+                        "name": "Topman"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Brice",
+                        "name": "Brice"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Celio",
+                        "name": "Celio"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Dolce&Gabbana",
+                        "name": "Dolce&Gabbana"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Eden Park",
+                        "name": "Eden Park"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Enzo",
+                        "name": "Enzo"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Fila",
+                        "name": "Fila"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Fred Perry",
+                        "name": "Fred Perry"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Guess",
+                        "name": "Guess"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "H&M",
+                        "name": "H&M"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "HOM",
+                        "name": "HOM"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Kaporal 5",
+                        "name": "Kaporal 5"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Kappa",
+                        "name": "Kappa"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Lacoste",
+                        "name": "Lacoste"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "La Martina",
+                        "name": "La Martina"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Marlboro Classics",
+                        "name": "Marlboro Classics"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "id": "Paul Smith",
+                        "name": "Paul Smith"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Puma",
+                        "name": "Puma"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Cipo Baxx",
+                        "name": "Cipo Baxx"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Erima",
+                        "name": "Erima"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Esprit",
+                        "name": "Esprit"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Eterna",
+                        "name": "Eterna"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Fun T-Shirt",
+                        "name": "Fun T-Shirt"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Jack & Jones",
+                        "name": "Jack & Jones"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Jet Lag",
+                        "name": "Jet Lag"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Joker",
+                        "name": "Joker"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Mustang",
+                        "name": "Mustang"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Nine Divine",
+                        "name": "Divine Nine"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Stussy",
+                        "name": "Stussy"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Surplus",
+                        "name": "Surplus"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Tommy Hilfiger",
+                        "name": "Tommy Hilfiger"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Umbro",
+                        "name": "Umbro"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Urban Classics",
+                        "name": "Urban Classics"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "id": "Wrangler",
+                        "name": "Wrangler"
+                    }
+                ],
+                "id": "Brand",
+                "name": "Brand"
+            }},
+            {"com.x.producttaxonomy.v1.StringEnumerationAttribute": {
+                "allowMultipleValues": false,
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_FR",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "enumerators": [
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Black",
+                        "name": "Black"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Blue",
+                        "name": "Blue"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Brown",
+                        "name": "Brown"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Gray",
+                        "name": "Gray"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Green",
+                        "name": "Green"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "id": "Ivory",
+                        "name": "Ivory"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "id": "Metallic",
+                        "name": "Metallics"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Multi-Color",
+                        "name": "Multi-Color"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Orange",
+                        "name": "Orange"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Pink",
+                        "name": "Pink"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Purple",
+                        "name": "Purple"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Red",
+                        "name": "Red"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "White",
+                        "name": "White"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Yellow",
+                        "name": "Yellow"
+                    }
+                ],
+                "id": "Color",
+                "name": "Color"
+            }},
+            {"com.x.producttaxonomy.v1.StringAttribute": {
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "id": "Shade",
+                "maxLength": null,
+                "minLength": null,
+                "name": "Shade",
+                "recommendedValues": {"array": []}
+            }},
+            {"com.x.producttaxonomy.v1.StringEnumerationAttribute": {
+                "allowMultipleValues": false,
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_FR",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "enumerators": [
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "google_US"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "New with tags",
+                        "name": "New with tags"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "google_US"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "New without tags",
+                        "name": "New without tags"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "google_US"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "New with defects",
+                        "name": "New with defects"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "google_US"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Used",
+                        "name": "Used"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "google_US"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Refurbished",
+                        "name": "Refurbished"
+                    }
+                ],
+                "id": "Condition",
+                "name": "Condition"
+            }},
+            {"com.x.producttaxonomy.v1.StringAttribute": {
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_FR",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "id": "Material",
+                "maxLength": null,
+                "minLength": null,
+                "name": "Material",
+                "recommendedValues": {"array": [
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Acetate",
+                        "valueId": "Acetate"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "100% Cashmere",
+                        "valueId": "100% Cashmere"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Cashmere Blends",
+                        "valueId": "Cashmere Blends"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Corduroy",
+                        "valueId": "Corduroy"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "100% Cotton",
+                        "valueId": "100% Cotton"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Cotton Blends",
+                        "valueId": "Cotton Blends"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Organic Cotton",
+                        "valueId": "Organic Cotton"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Denim",
+                        "valueId": "Denim"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Down",
+                        "valueId": "Down"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Faux Fur",
+                        "valueId": "Faux Fur"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Fur",
+                        "valueId": "Fur"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Flannel",
+                        "valueId": "Flannel"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Fleece",
+                        "valueId": "Fleece"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Gore-tex, Water Resistant",
+                        "valueId": "Gore-tex, Water Resistant"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Leather",
+                        "valueId": "Leather"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "localizedValue": "Faux leather",
+                        "valueId": "Faux Leather"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Linen",
+                        "valueId": "Linen"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Linen Blends",
+                        "valueId": "Linen Blends"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Microfiber",
+                        "valueId": "Microfiber"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Nylon",
+                        "valueId": "Nylon"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Poly-fill",
+                        "valueId": "Poly-fill"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Polyester",
+                        "valueId": "Polyester"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Rayon",
+                        "valueId": "Rayon"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Rubber",
+                        "valueId": "Rubber"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Satin",
+                        "valueId": "Satin"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Silk",
+                        "valueId": "Silk"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "Suede",
+                        "valueId": "Suede"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Tweed",
+                        "valueId": "Tweed"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Twill",
+                        "valueId": "Twill"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Velvet",
+                        "valueId": "Velvet"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "100% Wool",
+                        "valueId": "100% Wool"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"}
+                        ]},
+                        "localizedValue": "Wool Blends",
+                        "valueId": "Wool Blends"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"}
+                        ]},
+                        "localizedValue": "Faux suede",
+                        "valueId": "Faux Suede"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "Jersey",
+                        "valueId": "Jersey"
+                    }
+                ]}
+            }},
+            {"com.x.producttaxonomy.v1.StringAttribute": {
+                "channelAttributeDecorations": {"array": [{
+                    "channelId": "ebay_US",
+                    "required": {"boolean": false},
+                    "supportsVariation": {"boolean": true}
+                }]},
+                "defaultValue": null,
+                "description": null,
+                "id": "Pattern",
+                "maxLength": null,
+                "minLength": null,
+                "name": "Pattern",
+                "recommendedValues": {"array": []}
+            }},
+            {"com.x.producttaxonomy.v1.StringEnumerationAttribute": {
+                "allowMultipleValues": false,
+                "channelAttributeDecorations": {"array": [{
+                    "channelId": "ebay_US",
+                    "required": {"boolean": true},
+                    "supportsVariation": {"boolean": true}
+                }]},
+                "defaultValue": null,
+                "description": null,
+                "enumerators": [
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Regular",
+                        "name": "Regular"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Big & Tall",
+                        "name": "Big & Tall"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Short",
+                        "name": "Short"
+                    }
+                ],
+                "id": "Size Type",
+                "name": "Size Type"
+            }},
+            {"com.x.producttaxonomy.v1.StringEnumerationAttribute": {
+                "allowMultipleValues": false,
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": false}
+                    },
+                    {
+                        "channelId": "ebay_FR",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": false}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "enumerators": [
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Basic Coat",
+                        "name": "Basic Coat"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Basic Jacket",
+                        "name": "Basic Jacket"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Fleece Jacket",
+                        "name": "Fleece Jacket"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Jean Jacket",
+                        "name": "Jean Jacket"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Military",
+                        "name": "Military"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Motorcycle",
+                        "name": "Motorcycle"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Parka",
+                        "name": "Parka"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Peacoat",
+                        "name": "Peacoat"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Poncho",
+                        "name": "Poncho"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "id": "Puffer",
+                        "name": "Puffer"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Rainwear",
+                        "name": "Rainwear"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Trench",
+                        "name": "Trench"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Vest",
+                        "name": "Vest"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_US"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Windbreaker",
+                        "name": "Windbreaker"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Bomber, Harrington",
+                        "name": "Bomber, Harrington"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Cape",
+                        "name": "Cape"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "id": "Blazer",
+                        "name": "Blazer"
+                    }
+                ],
+                "id": "Style",
+                "name": "Style"
+            }},
+            {"com.x.producttaxonomy.v1.StringAttribute": {
+                "channelAttributeDecorations": {"array": [
+                    {
+                        "channelId": "ebay_UK",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_US",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_DE",
+                        "required": {"boolean": true},
+                        "supportsVariation": {"boolean": true}
+                    },
+                    {
+                        "channelId": "ebay_FR",
+                        "required": {"boolean": false},
+                        "supportsVariation": {"boolean": true}
+                    }
+                ]},
+                "defaultValue": null,
+                "description": null,
+                "id": "Size",
+                "maxLength": null,
+                "minLength": null,
+                "name": "Size",
+                "recommendedValues": {"array": [
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "XS",
+                        "valueId": "XS"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "S",
+                        "valueId": "S"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "M",
+                        "valueId": "M"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "L",
+                        "valueId": "L"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "XL",
+                        "valueId": "XL"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "2XL",
+                        "valueId": "XXL"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "3XL",
+                        "valueId": "3XL"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "MT",
+                        "valueId": "MT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "LT",
+                        "valueId": "LT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "XLT",
+                        "valueId": "XLT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "2XLT",
+                        "valueId": "2XLT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "3XLT",
+                        "valueId": "3XLT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "4XLT",
+                        "valueId": "4XLT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "5XLT",
+                        "valueId": "5XLT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "6XLT",
+                        "valueId": "6XLT"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 1X",
+                        "valueId": "Big 1X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 2X",
+                        "valueId": "Big 2X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 3X",
+                        "valueId": "Big 3X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 4X",
+                        "valueId": "Big 4X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 5X",
+                        "valueId": "Big 5X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 6X",
+                        "valueId": "Big 6X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 7X",
+                        "valueId": "Big 7X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 8X",
+                        "valueId": "Big 8X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 9X",
+                        "valueId": "Big 9X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_US"}]},
+                        "localizedValue": "Big 10X",
+                        "valueId": "Big 10X"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 34",
+                        "valueId": "UK 34"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 36",
+                        "valueId": "UK 36"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 38",
+                        "valueId": "UK 38"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 40",
+                        "valueId": "UK 40"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 42",
+                        "valueId": "UK 42"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 44",
+                        "valueId": "UK 44"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 46",
+                        "valueId": "UK 46"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 48",
+                        "valueId": "UK 48"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 50",
+                        "valueId": "UK 50"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 52",
+                        "valueId": "UK 52"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 54",
+                        "valueId": "UK 54"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 56",
+                        "valueId": "UK 56"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 58",
+                        "valueId": "UK 58"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 60",
+                        "valueId": "UK 60"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_UK"}]},
+                        "localizedValue": "UK 62",
+                        "valueId": "UK 62"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "localizedValue": "EUR 23",
+                        "valueId": "23"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "localizedValue": "EUR 24",
+                        "valueId": "24"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "localizedValue": "EUR 25",
+                        "valueId": "25"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "EUR 34",
+                        "valueId": "EUR 34"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "EUR 36",
+                        "valueId": "EUR 36"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "EUR 38",
+                        "valueId": "EUR 38"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 40",
+                        "valueId": "EUR 40"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 42",
+                        "valueId": "EUR 42"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 44",
+                        "valueId": "EUR 44"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 46",
+                        "valueId": "EUR 46"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 48",
+                        "valueId": "EUR 48"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 50",
+                        "valueId": "EUR 50"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 52",
+                        "valueId": "EUR 52"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 54",
+                        "valueId": "EUR 54"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 56",
+                        "valueId": "EUR 56"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 58",
+                        "valueId": "EUR 58"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 60",
+                        "valueId": "EUR 60"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_DE"},
+                            {"channelId": "ebay_FR"}
+                        ]},
+                        "localizedValue": "EUR 62",
+                        "valueId": "EUR 62"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "EUR 64",
+                        "valueId": "EUR 64"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "EUR 66",
+                        "valueId": "EUR 66"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_FR"}]},
+                        "localizedValue": "EUR 68",
+                        "valueId": "EUR 68"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "localizedValue": "XXS",
+                        "valueId": "XXS"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [{"channelId": "ebay_DE"}]},
+                        "localizedValue": "4XL",
+                        "valueId": "4XL"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"}
+                        ]},
+                        "localizedValue": "One Size: Regular",
+                        "valueId": "One Size: Regular"
+                    },
+                    {
+                        "channelValueDecorations": {"array": [
+                            {"channelId": "ebay_UK"},
+                            {"channelId": "ebay_DE"}
+                        ]},
+                        "localizedValue": "One Size: Plus",
+                        "valueId": "One Size: Plus"
+                    }
+                ]}
+            }}
+        ]},
+        "description": null,
+        "id": "514",
+        "name": {"string": "Men's Coats & Jackets"},
+        "productClassIds": {"array": ["165"]},
+        "version": {"string": "2"}
+    }]
+}
