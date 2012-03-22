@@ -13,7 +13,7 @@ Currently this is a two step process.
 
 For the sake of demo, nothing needs to be done from the user's end.
 
-1. Clone the repo and open index.html file in the browser and you should be good to go.
+1. Clone the repo and put it in the webroot (apache root or whereever your web server root is) and you should be good to go. Open index.html.
 2. If the ProductTaxonomy JSON file changes, capture those updates in pt.json and rerun the parsing script.
 3. The changes will be reflected when you open/refresh the browser.
 
