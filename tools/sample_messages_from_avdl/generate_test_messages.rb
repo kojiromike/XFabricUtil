@@ -30,6 +30,10 @@ end
 require './lib/schema_avro_1.6.1_patch.rb'
 require './lib/io_avro.rb'
 
+def copy_contracts_sample_folder
+  
+end
+
 def generate_json_test_message(schema_str)
  
     #file = File.open(schema_file, "rb")
@@ -202,9 +206,13 @@ def write_type(buf, schema, delim, written, namespace = nil)
 end
 
 if ARGV.size != 1
-  puts "Error. Expecting the AVDL file as an input (<excutable> <filename.avdl>)"
+  #puts "Error. Expecting the AVDL file as an input (<excutable> <filename.avdl> <X.commerce contracts_path>)"
+  puts "Error. Expecting the AVDL file as an input (<excutable> <filename.avdl> )"
   exit
 end
+
+#copy all the contracts to sample folder
+#copy_contracts_sample_folder()
 
 if !File.exist?("lib/avro-tools-1.6.1.jar")
   puts "Cannot find the avro-tools-1.6.1.jar file in the application root directory."
@@ -218,13 +226,16 @@ end
 idl_file = File.open(ARGV[0])
 jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
 puts "Compiling #{ARGV[0]}"
-f = ARGV[0].split('.')[0]
-out = `java -jar #{jar_path} idl #{f}.avdl 2>&1`
+
+last_index = ARGV[0].gsub("\\",'/').rindex('/')
+f = ARGV[0][last_index+1..ARGV[0].length-1].split('.')[0]
+out = `java -jar #{jar_path} idl #{idl_file.path} 2>&1`
+
+`java -jar #{jar_path} idl #{idl_file.path} > ./out/#{f}.avpr`
 if !File.exist?("./out/#{f}.avpr")
   puts "Could not generate avpr files. Dying with the following error\n#{out}\n"
   raise "quitting! Try putting all the necessary avdl files in the root folder and rerun the script."
 end
-`java -jar #{jar_path} idl #{f}.avdl > ./out/#{f}.avpr`
 
 puts "Processing #{f}.avpr"
 
