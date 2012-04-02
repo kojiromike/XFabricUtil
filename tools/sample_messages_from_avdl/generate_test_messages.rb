@@ -219,7 +219,11 @@ idl_file = File.open(ARGV[0])
 jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
 puts "Compiling #{ARGV[0]}"
 f = ARGV[0].split('.')[0]
-p `java -jar #{jar_path} idl #{f}.avdl 2>&1`
+out = `java -jar #{jar_path} idl #{f}.avdl 2>&1`
+if !File.exist?("./out/#{f}.avpr")
+  puts "Could not generate avpr files. Dying with the following error\n#{out}\n"
+  raise "quitting! Try putting all the necessary avdl files in the root folder and rerun the script."
+end
 `java -jar #{jar_path} idl #{f}.avdl > ./out/#{f}.avpr`
 
 puts "Processing #{f}.avpr"
