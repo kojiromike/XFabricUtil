@@ -211,11 +211,17 @@ if !File.exist?("lib/avro-tools-1.6.1.jar")
   exit
 end
 
+if !File.directory?('out')
+  `mkdir out`
+end
+
 idl_file = File.open(ARGV[0])
 jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
 puts "Compiling #{ARGV[0]}"
 f = ARGV[0].split('.')[0]
-`java -jar #{jar_path} idl #{f}.avdl > out/#{f}.avpr`
+p `java -jar #{jar_path} idl #{f}.avdl 2>&1`
+`java -jar #{jar_path} idl #{f}.avdl > ./out/#{f}.avpr`
+
 puts "Processing #{f}.avpr"
 
 
@@ -249,9 +255,7 @@ protocol.types.each do |type|
   
 end
 jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
-if !File.directory?('out')
-  `mkdir out`
-end
+
 `mv *.avsc *.json out`
 
 

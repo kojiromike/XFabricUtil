@@ -8,19 +8,21 @@ Use this ruby script to generate test messages from an AVDL file. This script do
 Running the script
 -------
 	./generate_test_messages <filename.avdl>
+	
+Important
+-------
+Right now, to get this script working, you need to copy all the dependent contracts (@import some.avdl) to the root folder where you are running the script. In a future release, I will include a flag to search the Contracts folder, if the script fails to find the avdl file in the home/root folder.
 
 Output
 ------------
 
-The files are stored in a directory called 'out'
+The files are stored in a directory called 'out'. The script creates a directory called out if it does not exist. You
+can also create it yourself.
 You can access the X.commerce message contracts from https://github.com/xcommerce/X.commerce-Contracts
 
-Contributing
-------------
-
-1. Fork it.
-2. Commit your changes (`git commit -am "Added Snarkdown"`)
-4. Submit pull request
+Broken?
+--------
+if something is broken please contact the author (saranyan@x.com)
 
 
 
