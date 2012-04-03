@@ -7,7 +7,7 @@ Use this ruby script to generate test messages from an AVDL file. This script do
 
 Important
 -------
-Right now, to get this script working, you need to copy all the dependent contracts (@import some.avdl) to the root folder where you are running the script. In a future release, I will include a flag to search the Contracts folder, if the script fails to find the avdl file in the home/root folder.
+Right now, to get this script working, you need to copy all the dependent contracts (@import some.avdl) to the root folder or another single folder. In a future release, I will include a flag to search the Contracts folder, if the script fails to find the avdl file in the home/root/current folder. For instance, if you are decide to put the AVDL in a folder called "foo", make sure all the necessary contracts are there.
 
 Running the script
 -------
