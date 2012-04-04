@@ -258,8 +258,8 @@ protocol.types.each do |type|
           json_message.gsub!(/\"#{k}\"/,"\"#{vdash}\"")
           json_message.gsub!(/\.#{k}\"/,".#{vdash}\"")
         else
-          json_message.gsub!(/\"#{k}\"/,"{}")
-          json_message.gsub!(/\.#{k}\"/,".{}")
+          json_message.gsub!(/\"#{k}\"/,"null")
+          json_message.gsub!(/\.#{k}\"/,".null")
         end
         
       else
@@ -268,12 +268,12 @@ protocol.types.each do |type|
           json_message.gsub!(/\.#{k}\"/,".#{v}")
         else
           #json_message.gsub!(/\"#{k}\"/,"{}")
-          json_message.gsub!(/#{k}\"/,"{}")
+          json_message.gsub!(/#{k}\"/,"null")
         end
         #json_message.gsub!(/\.#{k}\"/,".#{v}\"")
       end
     }
-   
+    
      # 
     
     #pp HASH
@@ -284,7 +284,14 @@ protocol.types.each do |type|
     generated_message = json_message.gsub("\"com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
                         gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
                         gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0").\
-                        gsub('"long"',"0").gsub('{"type":"map"}','null').gsub('{"type":"map","values":{}}','{}')
+                        gsub('"long"',"0").gsub('{"type":"map","values":"string"}','null').\
+                        gsub('{"type":"map","values":null}','null').gsub('[null]','null')
+    # _test_message = json_message.gsub('null','{}').gsub("\"com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
+    #                        gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
+    #                        gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0").\
+    #                        gsub('"long"',"0").gsub('{"type":"map","values":"string"}','null').\
+    #                        gsub('{"type":"map","values":{}}','null').gsub('[null]','null')
+    
                         #.gsub('"bytes"','"00101010"')
     
     
@@ -293,10 +300,10 @@ protocol.types.each do |type|
     out.close
     out = File.open(namespace + '.' + type.name + '.avsc', 'rb')
     msg_file = File.open(namespace + '.' + type.name + '.json', 'w')
-    
-    puts generated_message
-    puts "\n\n"
     msg = generated_message
+    
+     puts generated_message
+     puts "\n\n" 
      
     if !msg.nil?
       puts "Generated a test message for #{type.name}\n"
@@ -306,14 +313,14 @@ protocol.types.each do |type|
         schema_parsed = Avro::Schema.parse(schema)
         datumwriter = Avro::IO::DatumWriter.new(schema_parsed)
         encoder = Avro::IO::BinaryEncoder.new(stringwriter)
-      
          datumwriter.write(JSON.parse(msg),encoder)
+        
          puts "Successfully validated the message against the schema. This is a valid test message."     
          msg_file.print(msg)
        rescue Avro::IO::AvroTypeError => e
          puts "Error, could not generate a valid message for #{type.name}!!\n"
        rescue
-         puts "Error, could not generate a valid message for #{type.name}!!\n"
+          puts "Error, could not generate a valid message for #{type.name}!!\n"
        end
     else
       puts "Could not generate a test message for #{type.name}\n"
