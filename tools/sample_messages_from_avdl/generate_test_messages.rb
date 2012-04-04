@@ -71,9 +71,16 @@ def write_type_msg(buf, schema, delim, written, namespace = nil)
     buf.print "["
     write_type_msg(buf, schema.items, '', written)
     buf.print "]"
+  elsif schema.class == Avro::Schema::EnumSchema
+    
+    #json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
+    #puts "schema is #{schema}, name is #{schema.name}, enum is #{schema.symbols.first}"
+    buf.print "\"#{schema.symbols.first}\""
   else
     #puts "schema is #{schema}"
+    
     json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
+    #puts "json is #{json}"
     buf.print json
   end
 end
@@ -226,7 +233,8 @@ protocol.types.each do |type|
     #puts "\n\n"
     generated_message = json_message.gsub("com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
                         gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
-                        gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0")
+                        gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0").\
+                        gsub('"long"',"0")
     
     
     out = File.open(namespace + '.' + type.name + '.avsc', 'w')
