@@ -1,0 +1,161 @@
+@namespace("com.x.ordermanagement.v1")
+
+/**
+ * The order management protocol defines the schema for all
+ * the messages that are part of the order management domain.
+ */
+protocol OrderManagement {
+	import idl "CurrencyAmount.avdl";
+	import idl "DateRange.avdl";
+	import idl "Order.avdl";
+	import idl "Query.avdl";
+	import idl "Error.avdl";
+	
+	enum TaxabilityType {
+		TAXABLE,
+		NONTAXABLE,
+		EXEMPT,
+		DEFERRED
+	}
+
+	record Tax {
+		TaxabilityType taxability;
+		string taxType;
+		com.x.ocl.CurrencyAmount taxableAmount;
+		com.x.ocl.CurrencyAmount calculatedTax;
+		double effectiveRate;
+	}
+
+	/**
+	 * Not required to be implemented if the capability only allow order creation
+	 * through a UI channel.
+	 */
+	@topic("/order/create")
+	@version("3.0.0")
+	record CreateOrder {
+		com.x.ocl.Order order;
+		union{null,string} accountId = null;
+	}
+	
+	@topic("/order/created")
+	@version("3.0.0")
+	record OrderCreated {
+		com.x.ocl.Order order;
+		union{null,string} accountId = null;
+        union{null,string} siteCode = null;
+	}
+	
+	@topic("/order/createFailed")
+	@version("3.0.0")
+	record CreateOrderFailed {
+		com.x.ocl.Order order;
+		union{null,string} accountId = null;
+		array<com.x.ocl.Error> errors;
+	}
+			
+	@topic("/order/update")
+	@version("3.0.0")
+	record UpdateOrder {
+		com.x.ocl.Order order;
+	}
+	
+	@topic("/order/updated")
+	@version("3.0.0")
+	record OrderUpdated {
+		com.x.ocl.Order order;
+        union{null,string} accountId = null;
+        union{null,string} siteCode = null;
+	}
+	
+	@topic("/order/updateFailed")
+	@version("3.0.0")
+	record UpdateOrderFailed {
+		com.x.ocl.Order order;
+		array<com.x.ocl.Error> errors;
+	}
+	
+	@topic("/order/cancel")
+	@version("1.0.0")
+	record CancelOrder {
+		array<string> orderNumbers;
+	}
+	
+	@topic("/order/cancelled")
+	@version("3.0.0")
+	record OrderCancelled {
+		com.x.ocl.Order order;
+	}
+	
+	@topic("/order/cancelFailed")
+	@version("1.0.0")
+	record CancelOrderFailed {
+		array<string> orderNumbers;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/order/search")
+	@version("1.0.1")
+	record SearchOrders {
+		union{null,com.x.ocl.Query} @queryType("com.x.ocl.Order") query = null;
+	}
+
+	@topic("/order/searchSucceeded")
+	@version("3.0.0")
+	record SearchOrdersSucceeded {
+		array<com.x.ocl.Order> @paginated("true") orders;
+		union{null,com.x.ocl.Query} query = null;
+	}
+
+	@topic("/order/searchFailed")
+	@version("1.0.1")
+	record SearchOrdersFailed {
+		union{null,com.x.ocl.Query} query = null;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/order/shipment/shipped")
+	@version("3.0.0")
+	record OrderShipmentShipped {
+		union{null,string} accountId = null;
+		string orderNumber;
+		string shipmentId;
+		union{null, array<com.x.ocl.TrackingDetail>} trackingDetails;
+		union{null,string} siteCode = null;
+		string sourceId;
+	}
+
+	/** An Order Management capability will be listening for this event. */
+	@topic("/order/payment/captured")
+	@version("2.0.0")
+	record OrderPaymentCaptured {
+		string orderNumber;
+		com.x.ocl.OrderPaymentInfo paymentInfo;	
+	}
+
+	/** 
+	 * OPTIONAL: For external tax calculation, an OrderMgmt cap. will request a
+	 * 3rd party capability to calculate the tax on an order. 
+	 */
+	@topic("order/tax/calculate")
+	@version("2.0.0")
+	record CalculateOrderTax {
+		com.x.ocl.Order order;
+	}
+	
+	@topic("order/tax/calculated")
+	@version("1.0.0")
+	record OrderTaxCalculated {
+		string orderNumber;
+		Tax tax;
+	}
+	
+	@topic("order/tax/calculateFailed")
+	@version("2.0.0")
+	record CalculateOrderTaxFailed {
+		com.x.ocl.Order order;
+		array<com.x.ocl.Error> errors;
+	}
+}
+
+
+

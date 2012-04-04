@@ -1,0 +1,95 @@
+
+// Contract for general-use system level messages.
+
+// Note: The use of MAY, MUST, OPTIONAL, etc, in all caps are used to indicate
+// implementation expectations.  This is similar to standard RFC word usage.
+
+// All capabilities MUST implement both Ping and Pong messages
+// (that is, accept Ping as an incoming message, and respond with a Pong).
+//
+// Capabilities SHOULD also accept MessageDeliveryFailed messages.  A capability
+// which does not accept the message MUST drop it.  A capability which does
+// accept the message MUST NOT respond with another MessageDeliveryFailed
+// message.
+
+@namespace("com.x.system")
+protocol GeneralSystemMessages {
+
+	// Ping message for testing a capability's ability to receive messages.
+	// To use this message the sender MUST share a tenant with the recipient
+	// (as for any message) and MUST also specify a Destination ID header to
+	// avoid sending to every capability (versus the one intended).
+	//
+	// The payload is OPTIONAL for the sender.  If the recipient gets a Ping
+	// with a payload, then the corresponding Pong MUST contain that same
+	// payload.
+	//
+	@topic("/message/ping")
+	@version("1.0.0")
+	record Ping {
+		union{null,string} payload = null;  // Optional, copied to pong, if present
+	}
+
+	// Pong message for responding to pings.  All capabilities MUST respond to
+	// a Ping message with a Pong message, and MUST copy any payload present
+	// from the Ping to the Pong.  The responding capability MUST not alter the
+	// payload in this process.
+	//
+	@topic("/message/pong")
+	@version("1.0.0")
+	record Pong {
+		union{null,string} payload = null;  // Must be copied from ping (verbatim), if present
+	}
+
+	// Message Delivery Failure notification.  This message indicates that a
+	// message was not delivered to one or more listening capabilities.  A
+	// Capability MAY also choose to send this notification if it cannot parse
+	// a message or cannot execute any business logic to do issues with a
+	// message.  Business level errors MUST NOT use this message and MUST use
+	// the appropriate business-level error instead.  For example, an UpdateFoo
+	// message which cannot be updated would send UpdateFooFailed.
+	//
+	// Error Ids:
+	// 100-199 Range: Did not attempt to deliver message (no httpStatus)
+	// - 100: No Recipients - No capabilities are subscribed to topic
+	// - 101: Recipient Not Enabled - The Recipient's endpoint url has not
+	//        been specified
+	//
+	// 200-299 Range: Connection error during delivery (no httpStatus)
+	// - 200: General delivery exception - Delivery failed for reasons other
+	//        than one of the other reasons in this range
+	// - 201: Connection refused
+	// - 202: Connection timed out
+	// - 203: Message timeout - Message timed out during read or write
+	//
+	// 300-399 Range: Message delivery rejected by receiver (httpStatus provided)
+	// - 300: Message Rejected - httpStatus contains status code, and errorCause
+	//        contains the status line.
+	//
+	// 400-499 Range: Message delivered but failed in process (no httpStatus)
+	// Messages TBD
+	//
+	//
+	// Note to app developers, do not respond to a /message/failed message
+	// with another /message/failed message.
+	@topic("/message/failed")
+	@version("1.0.2")
+	@namespace("com.x.error")
+	record MessageDeliveryFailed {
+		string topicName;            // topic of the problem message
+		int errorId;                 // Error id, as described above
+		union{null,int} httpStatus;  // Http Status if available or null if another type of error
+		string errorCause;           // Http Status line message or cause of delivery failure
+		string messageGuid;          // GUID, as above
+		union{null,bytes} message = null; // Original message body
+	}
+
+	// Capability configuration message.  The payload and semantics of this message are
+	// implementation-specific.  A destination ID is required for the delivery of this message.
+	@topic("/capability/configure")
+	@version("1.0.0")
+	record Configure {
+		string identifier;
+		union{null,bytes} payload = null;
+	}
+}

@@ -1,0 +1,176 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	import idl "Name.avdl";
+	import idl "Email.avdl";
+	import idl "Phone.avdl";
+	import idl "Address.avdl";
+	import idl "PaymentMethod.avdl";
+	import idl "CurrencyAmount.avdl";
+	import idl "DateRange.avdl";
+	import idl "EmbeddedObject.avdl";
+	
+	enum OrderStatus {
+		NEW,
+		ON_HOLD,
+		BACKORDERED,
+		PENDING_PAYMENT,
+		READYTOSHIP,
+		PARTIALLY_SHIPPED,
+		SHIPPED,
+		PROCESSING_RETURN,
+		EXCHANGED,
+		CANCELLED,
+		COMPLETED,
+		PAID
+	}
+
+	record GiftTag {
+		union{null,string} from = null;
+		union{null,string} to = null;
+		string message;
+	}
+
+	record OrderCustomerInfo {
+		string channelAssignedCustomerId;
+		union{null,com.x.ocl.Email} email = null;
+		union{null,com.x.ocl.Name} name = null;
+		union{null,com.x.ocl.Phone} phone = null;
+	}
+
+    enum OrderPaymentStatus {
+        NONE,
+        AUTHORIZED,
+        PAID
+    }
+
+	record OrderPaymentInfo {
+		PaymentMethod method;
+
+		/** Date Time Format: ISO 8601 */
+		string datePaid;
+
+		union{null,string} transactionId = null;
+		union{null,string} transactionStatus = null;
+		union{null, OrderPaymentStatus} paymentStatus = null;
+		union{null, com.x.ocl.CurrencyAmount} processingFee = null;
+	}
+	
+	record PromotionalDiscount {
+		string code;
+		string description;
+		com.x.ocl.CurrencyAmount amount;
+	}
+
+	record OrderItemPriceInfo {
+		/** The price the customer is paying for this item (without taxes, fees, etc.) */
+		com.x.ocl.CurrencyAmount price; 
+
+		union{null,com.x.ocl.CurrencyAmount} insuranceCost = null;
+		union{null,com.x.ocl.CurrencyAmount} taxAmount = null;
+		
+		/** Total discount amount summarized from all PromotionalDiscount. */
+		union{null,com.x.ocl.CurrencyAmount} discountAmount = null;
+		union{null,array<PromotionalDiscount>} discounts = null;
+	}
+	
+	record ShipTo {
+		com.x.ocl.Name name;
+		com.x.ocl.Address address;
+		union{null,GiftTag} giftTag = null;
+	}
+
+	enum ShippingServiceType {
+		MerchantShipped,
+		DropShipped,
+		ShippingService
+	}
+	
+	record TrackingDetail {
+		union{null, array<string>} trackingNumbers;
+		union{null,string} carrier = null;
+		union{null,string} service = null;
+		union{null,ShippingServiceType} serviceType = null;
+	}
+
+	record Shipment {
+		/** only need to be unique to the order like 1, 2, 3, etc...*/
+		string shipmentId;
+				
+		/** The fees paid by the customer for this shipment */
+		com.x.ocl.CurrencyAmount shippingFees;
+		
+		/** Total discount amount summarized from all PromotionalDiscount. */
+		union{null,com.x.ocl.CurrencyAmount} discountAmount = null;
+		union{null,array<PromotionalDiscount>} discounts = null;
+		union{null,com.x.ocl.CurrencyAmount} additionalCost = null;
+		union{null,com.x.ocl.CurrencyAmount} packagingHandlingCost = null;
+		union{null,com.x.ocl.CurrencyAmount} surcharge = null;  // UPS or FedEx to Alaska, Hawaii or Puerto Rico only.
+
+		union{null,array<TrackingDetail>} trackingDetails = null;
+		union{null,string} recipientName = null;
+	}
+
+	record OrderItem {
+		/** Unique identifier that is assigned by the originator of this order once created. */
+		union{null,string} itemId = null;
+
+		string productSku;
+		int quantity;
+
+		string status;
+
+		/** The id of the offered item on the sales channel where this order originated */		
+		union{null,string} offerId = null;
+		union{null,string} offerUrl = null;
+
+		OrderItemPriceInfo price;
+		
+		/** If specified, override the destination defined on the Order header */
+		union{null,ShipTo} destination = null;
+		
+		/** Defined once the item is shipped. */		
+		union{null,string} shipmentId = null; 
+
+		union{null,com.x.ocl.EmbeddedObject} extension = null;
+	}
+
+	record Order {
+		/** Unique identifier that is assigned by the originator of this order once created.*/
+		union{null,string} orderNumber = null;
+   		
+		union{null,string} purchaseOrder = null;
+  		
+		/** Date Time Format: ISO 8601 */
+		string @query("true") dateOrdered;
+
+		/** The channel where this order originated. */
+		string source;
+		string @query("true") sourceId;
+		OrderStatus @query("true") status;
+		
+		OrderCustomerInfo customer;
+		union{null,Address} billingAddress = null;
+
+		/** The total paid by the customer (total of items, fees, taxes, etc.) */ 
+		com.x.ocl.CurrencyAmount grandTotal;
+	
+		/** Total of all the items -- without taxes, fees, etc. */
+		com.x.ocl.CurrencyAmount itemPriceTotal;
+
+		/** Breakdown of the total of all related fees that influence the price */		
+		union{null,com.x.ocl.CurrencyAmount} totalInsuranceCost = null;
+		union{null,com.x.ocl.CurrencyAmount} totalTaxAmount = null;
+		union{null,com.x.ocl.CurrencyAmount} totalDiscountAmount = null;
+		union{null,com.x.ocl.CurrencyAmount} totalShippingFees = null;
+		union{null,array<OrderPaymentInfo>} paymentMethods = null;
+		
+		array<OrderItem> orderItems;
+		
+		/** if not provided, use ShipTo info on OrderItem */
+		union{null,ShipTo} destination = null;
+		union{null,array<Shipment>} shipments = null;
+		
+		union{null,com.x.ocl.EmbeddedObject} extension = null;
+	}
+}

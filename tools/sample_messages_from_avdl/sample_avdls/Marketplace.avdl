@@ -1,0 +1,1028 @@
+@namespace("com.x.marketplace.v1")
+
+/*
+	The Marketplace protocol defines the schema that is common across
+	all marketplace.  All marketplace adapters must implement the
+	appropriate behavior for the interfaces defined here for its
+	marketplace.
+
+	Market specific behaviors should be defined in its own protocol.
+	The extension point in this schema is defined in a "marketSpecific"
+	element of certain types.
+*/
+protocol Marketplace {
+	/*
+		This record is used to return market specific data using the schema specified.
+	*/
+	record EmbeddedMessage {
+		string schemaVersion;
+		union{null, string} schemaUri = null;
+		bytes payload;
+	}
+
+	/*
+		This record is used to return error information.
+	 */
+	record Error {
+		string code;
+		string message;
+	}
+
+	/*
+		A marketplace site represents a sub-section of the marketplace.
+		The site often defines the country specific behavior of the market.
+	*/
+	record Site {
+		string siteCode;
+		string name;
+	}
+
+	/*
+		An environment represents a sub-section of the marketplace/site.
+		The environment often defines the destination urls, credentails, etc for
+		communicating with a given marketplace (ie 'production', 'sandbox', etc)
+	*/
+	record Environment {
+		string name;
+	}
+
+	/*
+		Each marketplace adapter will requires a different set of
+		credential keys with its own name/value. Please
+		check the marketplace adapter documentation for specific
+		requirements.
+	*/
+	record Credential {
+		map<string> properties;
+	}
+
+	record CurrencyAmount {
+		double amount;
+		string code;
+	}
+
+	enum ShippingLocaleType {
+		DOMESTIC,
+		INTERNATIONAL
+	}
+
+	enum ShippingRateType {
+		FLAT,
+		CALCULATED,
+		FREIGHT
+	}
+
+	/*
+		This is the shipping related metadata that each marketplace uses
+		to define the types of shipping options available.
+	*/
+	record SupportedShippingService {
+		string description;
+		union{null, string} carrier = null; //USPS
+		string serviceName; //i.e. USPSPriorityFlatRateBox
+		int shippingTimeMax; //in days
+		int shippingTimeMin;
+		union{null, ShippingRateType} rateType = null;
+		ShippingLocaleType localeType;  // Domestic or international
+
+		boolean dimensionsRequired;
+		boolean weightRequired;
+		boolean surchargeApplicable;
+	}
+
+	record ShippingServiceOption {
+		int sellerPriority;
+		string serviceName;
+		CurrencyAmount cost;
+		union{null, CurrencyAmount} discountAmount = null;
+		union{null, CurrencyAmount} additionalCost = null;
+		union{null, CurrencyAmount} packagingHandlingCost = null;
+		union{null, CurrencyAmount} surcharge = null;  // UPS or FedEx to Alaska, Hawaii or Puerto Rico only.
+		union{null, array<string>} shipToLocations = null;  // International shipping only
+		union{null, array<string>} excludeShipToLocations = null;
+	}
+
+	record ShippingLocaleService {
+		ShippingRateType rateType;  // Flat, calculated, etc
+		ShippingLocaleType localeType;  // Domestic or international
+		boolean applyPromotionalShippingRule;
+		array<ShippingServiceOption> shippingServiceOptions;
+	}
+
+	/*
+		Use this during profile creation or listing to indicate the type of shipping
+		available for your listing.
+	*/
+	record Shipping {
+		//FUTURE: add shipping elements that are common to domestic/international, flat/calculated.
+		array<ShippingLocaleService> shippingLocaleServices;  // Domestic and/or international shipping
+	}
+
+	enum PaymentMethod {
+		AMEX,
+		CASH_ON_DELIVERY,
+		CHECK,
+		CREDIT_CARD,
+		DINERS,
+		DISCOVER,
+		ESCROW,
+		INTEGRATED_MERCHANT_CREDIT_CARD,
+		MASTERCARD,
+		MONEY_ORDER,
+		MONEY_TRANSFER,
+		MONEY_TRANSFER_IN_CHECKOUT,
+		MONEYBOOKERS,
+		PAYMATE,
+		PAYMENT_ON_PICKUP,
+		PAYMENT_SEE_DESCRIPTION,
+		PAYPAL,
+		PROPAY,
+		VISA
+	}
+
+	record Payment {
+		union{null, array<PaymentMethod>} acceptedPaymentTypes = null;
+		union{null, boolean} immediatePaymentRequired = null;
+		union{null, string} paymentInstructions = null;
+	}
+
+	enum RefundMethod {
+		MONEY_BACK,
+		EXCHANGE_ONLY,
+		STORE_CREDIT
+	}
+
+	record SupportedReturnPolicy {
+		boolean returnsAccepted;
+		array<RefundMethod> method;
+		int maxReturnByDays;
+	}
+
+	record ReturnPolicy {
+		union{null, string} description = null;
+		union{null, boolean} returnAccepted = null;
+		union{null, boolean} buyerPaysReturnShipping = null;
+		union{null, int} returnByDays = null;
+		union{null, RefundMethod} refundMethod = null;
+	}
+
+	record SupportedCountry {
+		string countryCode;
+		string description;
+	}
+
+	record SupportedHandlingTime {
+		int maxHandlingTime;  // in days
+		string description;
+	}
+
+	/*
+		A marketplace profile defines the default policies that a merchant
+		will use for listings on that marketplace.
+	*/
+	record MarketplaceProfile {
+		union{null, string} xId = null; //ID provided by X.commerce
+		string name;  // unique name given to this profile
+
+		/*
+		Site the item should be listed to.  In most cases, this will be the ISO country code.
+		Can be null when specified on the MarketplaceAccount.
+		*/
+		union{null, string} siteCode = null;
+
+		string xAccountId;
+
+		union{null, Payment} payment = null;
+		union{null, Shipping} shipping = null;
+		union{null, ReturnPolicy} returnPolicy = null;
+
+		/*
+		The following is an embedded message that contains a market specific data "blob"
+		that is encoded using the avro schema of the specific marketplace profile data.
+		ie, payPalEmailAddress for eBay
+		*/
+		union{null, EmbeddedMessage} embeddedMessage = null;
+	}
+
+	record ProductCategory {
+		Site site;
+		string id;
+		string name;
+		string parentCatId;
+		boolean isLeaf;
+	}
+
+	record Category {
+		string id;
+		string name;
+		union{null, string} parentId = null;
+		union{null, boolean} catalogEnabled = null;
+		union{null, int} categoryLevel = null;
+		union{null, boolean} leafCategory = null;
+	}
+
+	record CustomCategory {
+		long id;
+		string name;
+		int order;
+		array<CustomCategory> childCategories;
+	}
+
+	record AttributeRecommendations {
+		string categoryId;
+		map<array<string>> nameValues;
+	}
+
+	enum ImagePurpose {
+		FEATURED,
+		GALLERY,
+		THUMBNAIL
+	}
+
+	record ProductImage {
+		union{null, ImagePurpose} purpose = null;
+		string locationURL;
+	}
+
+	record ProductAttribute {
+		string name;
+		array<string> value;
+	}
+
+	record ProductDetails {
+		//ID as assigned by X catalog service or null if this is not a catalog product
+		union{null, string} xId = null;
+		union{null, string} xProductTypeId = null;  // Product type id as defined by the taxonomy manager.
+		string sku;//Only sku is required for a listing update.
+		union{null, string} manufacturer = null;
+		union{null, string} mpn = null;
+		union{null, string} brand = null;
+		union{null, CurrencyAmount} msrp = null;
+		union{null, CurrencyAmount} minimumAdvertisedPrice = null;
+		union{null, array<ProductImage>} imageURL = null;
+		union{null, string} description = null;
+		union{null, array<ProductAttribute>} attributes = null;
+	}
+
+	record Listing {
+		union{null, string} xId = null; //Identifier as known by the X.commerce adapter.
+		union{null, string} marketItemId = null; //Unique id as known by marketplace i.e. ASIN, etc..
+
+		ProductDetails product;
+		union{null, long} startTime = null; //a unix time stamp
+		union{null, CurrencyAmount} price = null;
+		union{null, int} quantity = null;
+		union{null, string} title = null;
+		union{null, string} listingURL = null;
+		union{null, string} status = null;
+
+		/*
+			Following are fields that are optionally supported
+			across marketplaces.  Will be ignored if market does
+			not support this.
+		*/
+		union{null, string} subTitle = null;
+		union{null, boolean} giftWrapAvailable = null;
+		//Indicates where in the marketplace category to list
+		union{null, array<string>} marketCategories = null;
+        //Indicates where in the seller custom categories to list
+		union{null, array<string>} customCategories = null;
+
+		//Following data can override data in a specified profile
+		union{null, Payment} payment = null;
+		union{null, Shipping} shipping = null;
+		union{null, ReturnPolicy} returnPolicy = null;
+
+		/*
+			The following is an embedded message that contains a market specific data "blob"
+			that is encoded	using the avro schema of the specific marketplace this listing is intended for.
+		*/
+		union{null, EmbeddedMessage} embeddedMessage = null;
+	}
+
+	record ListingFilter {
+		union{null, array<string>} skus = null;
+		union{null, long} startTime = null; //unix time
+		union{null, long} endTime = null;
+	}
+
+	record Address {
+		string street1;
+		union{null, string} street2 = null;
+		string city;
+		union{null, string} county = null;
+		string stateOrProvince;
+		string country;
+		string postalCode;
+	}
+
+	record TrackingDetail {
+		string trackingNumber;
+		union{null, string} carrier = null;
+		union{null, string} service = null;
+	}
+
+	record Shipment {
+		string shipmentId; //id unique to the order
+		Address address;
+		ShippingServiceOption shippingServiceOption;
+		union{null, array<TrackingDetail>} trackingDetails = null;
+		union{null, string} recipientName = null;
+		union{null, int} weight = null;
+		union{null, string} shippingDescription = null;
+	}
+
+	record CustomerInfo {
+		union{null, string} userMarketId = null;
+		union{null, string} email = null;
+		union{null, string} name = null;
+		union{null, string} phone = null;
+	}
+
+	record OrderItem {
+		string marketListingId;
+		union{null, string} listingTitle = null;
+		string listingURL;
+		string status;
+		string sku;
+		int quantity;
+		union{null, CurrencyAmount} cost = null;
+		union{null, CurrencyAmount} insuranceCost = null;
+		union{null, CurrencyAmount} taxAmount = null;
+		union{null, CurrencyAmount} discountAmount = null;
+		string shipmentId;  // Ties to the shipment.
+
+		union{null, boolean} giftWrap = null;
+		union{null, string} giftWrapText = null;
+
+		/*
+			The following is an embedded message that contains a market specific data "blob"
+			that is encoded using the avro schema of the specific marketplace this order is intended for.
+		*/
+		union{null, EmbeddedMessage} embeddedMessage = null;
+	}
+
+	record Order {
+		long orderTime;
+		string channel;
+		string marketOrderId;
+		CustomerInfo customer;
+		array<OrderItem> items;
+		union{null, CurrencyAmount} totalInsuranceCost = null;
+		union{null, CurrencyAmount} totalTaxAmount = null;
+		union{null, CurrencyAmount} totalDiscountAmount = null;
+		CurrencyAmount totalAmount;
+		string status;
+		union{null, PaymentMethod} paymentMethod = null;
+		array<Shipment> shipments;
+
+		/*
+			The following is an embedded message that contains a market specific data "blob"
+			that is encoded	using the avro schema of the specific marketplace this order is intended for.
+		*/
+		union{null, EmbeddedMessage} embeddedMessage = null;
+	}
+
+	record OrderShipmentUpdate {
+		string shipmentId;
+		array<TrackingDetail> trackingDetails;
+	}
+
+	record OrderUpdate {
+		string marketOrderId;
+		union{null, boolean} processed = null;
+		union{null, OrderShipmentUpdate} orderShipmentUpdate = null;
+	}
+
+	record OrderFilter {
+		long startTime;
+		union{null, long} endTime = null;
+		union{null, string} status = null;
+	}
+
+	record OrderUpdateError {
+		OrderUpdate orderUpdate;
+		array<Error> errors;
+	}
+
+	record ListingError {
+		union{null, Listing} listing = null;
+		array<Error> errors;
+	}
+
+	record ListingUpdateError {
+		Listing listing;
+		array<Error> errors;
+	}
+
+	record CancelListingError {
+		string sku;
+		array<Error> errors;
+	}
+
+	/*
+		Defines a marketplace account which is intended to be used for all supported marketplaces.
+	*/
+	record MarketplaceAccount {
+		union{null, string} xId = null;   // ID provided by X.commerce
+		union{null, string} userMarketplaceId = null;
+		union{null, string} siteCode = null;
+		union{null, string} environmentName = null;
+		union{null, long} authorizationExpiration = null;
+	}
+
+    /*
+        Defines a marketplace store.
+    */
+    record MarketplaceStore {
+        string name;
+        union{null, array<CustomCategory>} categories = null;
+    }
+
+
+	//###########################################################
+	//  THE SECTION BELOW ARE SUPPORTED TOPICS/MESSAGES
+	//###########################################################
+	@topic("/marketplace/site/search")
+	@version("1.0.0")
+	record SearchSite {
+	}
+
+	@topic("/marketplace/site/searchSucceeded")
+	@version("1.0.0")
+	record SearchSiteSucceeded {
+		array<Site> sites;
+		string marketplace;
+		string destinationId;
+	}
+
+	@topic("/marketplace/site/searchFailed")
+	@version("1.0.0")
+	record SearchSiteFailed {
+		string marketplace;
+		array<Error> errors;
+	}
+
+    @topic("/marketplace/store/get")
+    @version("1.0.0")
+    record GetStore {
+        union{null, string} xAccountId = null;
+        union{null, string} userMarketplaceId = null;
+		union{null, string} siteCode = null;
+		union{null, string} environmentName = null;
+    }
+
+    @topic("/marketplace/store/getSucceeded")
+    @version("1.0.0")
+    record GetStoreSucceeded {
+        MarketplaceStore store;
+        string userMarketplaceId;
+		string siteCode;
+		string environmentName;
+        string marketplace;
+    }
+
+    @topic("/marketplace/store/getFailed")
+    @version("1.0.0")
+    record GetStoreFailed {
+        union{null, string} xAccountId = null;
+        union{null, string} userMarketplaceId = null;
+		string siteCode;
+		string environmentName;
+        string marketplace;
+		array<Error> errors;
+    }
+
+	@topic("/marketplace/environment/search")
+	@version("1.0.0")
+	record SearchEnvironment {
+		string siteCode;
+	}
+
+	@topic("/marketplace/environment/searchSucceeded")
+	@version("1.0.0")
+	record SearchEnvironmentSucceeded {
+		array<Environment> environments;
+		string marketplace;
+		string siteCode;
+	}
+
+	@topic("/marketplace/environment/searchFailed")
+	@version("1.0.0")
+	record SearchEnvironmentFailed {
+		string marketplace;
+		string siteCode;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/returnPolicy/get")
+	@version("1.0.0")
+	record GetReturnPolicy {
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/returnPolicy/getSucceeded")
+	@version("1.0.0")
+	record GetReturnPolicySucceeded {
+		SupportedReturnPolicy policy;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/returnPolicy/getFailed")
+	@version("1.0.0")
+	record GetReturnPolicyFailed {
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/shippingService/search")
+	@version("1.0.0")
+	record SearchShippingService {
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/shippingService/searchSucceeded")
+	@version("1.0.1")
+	record SearchShippingServiceSucceeded {
+		array<SupportedShippingService> services;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/shippingService/searchFailed")
+	@version("1.0.0")
+	record SearchShippingServiceFailed {
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/country/search")
+	@version("1.0.0")
+	record SearchCountry {
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/country/searchSucceeded")
+	@version("1.0.0")
+	record SearchCountrySucceeded {
+		array<SupportedCountry> countries;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/country/searchFailed")
+	@version("1.0.0")
+	record SearchCountryFailed {
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/currency/search")
+	@version("1.0.0")
+	record SearchCurrency {
+		string siteCode;
+	}
+
+	@topic("/marketplace/currency/searchSucceeded")
+	@version("1.0.0")
+	record SearchCurrencySucceeded {
+		array<string> currencies;
+		string siteCode;
+		string marketplace;
+	}
+
+	@topic("/marketplace/currency/searchFailed")
+	@version("1.0.0")
+	record SearchCurrencyFailed {
+		string siteCode;
+		string marketplace;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/handlingTime/search")
+	@version("1.0.0")
+	record SearchHandlingTime {
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/handlingTime/searchSucceeded")
+	@version("1.0.0")
+	record SearchHandlingTimeSucceeded {
+		array<SupportedHandlingTime> handlingTimes;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/handlingTime/searchFailed")
+	@version("1.0.0")
+	record SearchHandlingTimeFailed {
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/paymentMethod/search")
+	@version("1.0.0")
+	record SearchPaymentMethod {
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/paymentMethod/searchSucceeded")
+	@version("1.0.0")
+	record SearchPaymentMethodSucceeded {
+		array<PaymentMethod> methods;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/paymentMethod/searchFailed")
+	@version("1.0.0")
+	record SearchPaymentMethodFailed {
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/category/search")
+	@version("1.0.0")
+	record SearchCategories {
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/category/searchSucceeded")
+	@version("2.0.0")
+	record SearchCategoriesSucceeded {
+		array<Category> categories;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/category/searchFailed")
+	@version("1.0.0")
+	record SearchCategoriesFailed {
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/categoryForProductType/search")
+	@version("1.0.0")
+	record SearchCategoriesForProductType {
+		string xProductTypeId;  // Taxonomy product type id
+		string siteCode;
+		union{null, string} environmentName = null;
+	}
+
+	@topic("/marketplace/categoryForProductType/searchSucceeded")
+	@version("2.0.0")
+	record SearchCategoriesForProductTypeSucceeded {
+		string xProductTypeId;
+		array<Category> categories;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+	}
+
+	@topic("/marketplace/categoryForProductType/searchFailed")
+	@version("1.0.0")
+	record SearchCategoriesForProductTypeFailed {
+		string xProductTypeId;
+		string marketplace;
+		string siteCode;
+		string environmentName;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/account/delete")
+	@version("1.0.0")
+	record DeleteAccount {
+		string xAccountId;
+	}
+
+	@topic("/marketplace/account/deleted")
+	@version("1.0.0")
+	record AccountDeleted {
+		string xAccountId;
+	}
+
+	@topic("/marketplace/account/deleteFailed")
+	@version("1.0.0")
+	record DeleteAccountFailed {
+		string xAccountId;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/account/search")
+	@version("1.0.0")
+	record SearchAccount {
+	}
+
+	@topic("/marketplace/account/searchSucceeded")
+	@version("1.0.0")
+	record SearchAccountSucceeded {
+		array<MarketplaceAccount> accounts;
+	}
+
+	@topic("/marketplace/account/searchFailed")
+	@version("1.0.0")
+	record SearchAccountFailed {
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/authorization/init")
+	@version("1.0.0")
+	record InitAuthorization {
+		//Only used if marketplace web-auth flow supports it
+		union{null, string} returnURL = null;
+		union{null, string} cancelURL = null;
+		union{null, string} environmentName = null;
+		union{null, string} userMarketplaceId = null;
+
+		/*
+		   This guid is use to correlate between this message and AuthorizationPending.
+		   This can be any string that is unique to the client. It will not be used by
+		   the adapter for any purpose except returned as part of the AuthorizationPending.
+		 */
+		string guid;
+	}
+
+	@topic("/marketplace/authorization/pending")
+	@version("1.0.0")
+	record AuthorizationPending {
+		//This guid is use to correlate between this message and InitAuthorization
+		string guid;
+
+		string redirectURL;
+		string authId; //A unique identifier for the authorization
+
+		/*
+		 * Any extra credentials needed to proceed with the auth
+		 */
+		union{null, Credential} cred = null;
+	}
+
+    @topic("/marketplace/authorization/initFailed")
+    @version("1.0.0")
+    record InitAuthorizationFailed {
+        //Only used if marketplace web-auth flow supports it
+        union{null, string} environmentName = null;
+        union{null, string} userMarketplaceId = null;
+
+        array<Error> errors;
+    }
+
+	@topic("/marketplace/authorization/userCompleted")
+	@version("1.0.0")
+	record AuthorizationUserCompleted {
+		string authId;
+		//any extra credentials needed to complete the process
+		union{null, Credential} cred = null;
+	}
+
+	@topic("/marketplace/authorization/completed")
+	@version("1.0.0")
+	record AuthorizationCompleted {
+		string authId;
+		string xAccountId;
+		union{null, string} userMarketplaceId = null;
+		union{null, long} authorizationExpiration = null;
+	}
+
+    @topic("/marketplace/authorization/failed")
+    @version("1.0.0")
+    record AuthorizationFailed {
+        union{null, string} authId = null;
+        //any extra credentials needed to complete the process
+        union{null, Credential} cred = null;
+
+        array<Error> errors;
+    }
+
+	@topic("/marketplace/profile/create")
+	@version("1.0.1")
+	record CreateProfile {
+		MarketplaceProfile p; //xId is empty
+	}
+
+	@topic("/marketplace/profile/created")
+	@version("1.0.1")
+	record ProfileCreated {
+		MarketplaceProfile p; //xId is filled in
+	}
+
+	@topic("/marketplace/profile/createFailed")
+	@version("1.0.1")
+	record CreateProfileFailed {
+		MarketplaceProfile p;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/profile/get")
+	@version("1.0.0")
+	record GetProfile {
+		string xProfileId;
+	}
+
+	@topic("/marketplace/profile/getSucceeded")
+	@version("1.0.1")
+	record GetProfileSucceeded {
+		MarketplaceProfile p;
+	}
+
+	@topic("/marketplace/profile/getFailed")
+	@version("1.0.0")
+	record GetProfileFailed {
+		string xProfileId;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/profile/update")
+	@version("1.0.1")
+	record UpdateProfile {
+		MarketplaceProfile p; //xId must be filled in
+	}
+
+	@topic("/marketplace/profile/updated")
+	@version("1.0.1")
+	record ProfileUpdated {
+		MarketplaceProfile p;
+	}
+
+	@topic("/marketplace/profile/updateFailed")
+	@version("1.0.1")
+	record UpdateProfileFailed {
+		MarketplaceProfile p;
+		array<Error> errors;
+	}
+
+	@topic("/marketplace/profile/delete")
+	@version("1.0.0")
+	record DeleteProfile {
+		string xProfileId;
+	}
+
+	@topic("/marketplace/profile/deleted")
+	@version("1.0.0")
+	record ProfileDeleted {
+		string xProfileId;
+	}
+
+	@topic("/marketplace/profile/deleteFailed")
+	@version("1.0.0")
+	record DeleteProfileFailed {
+		string xProfileId;
+		array<Error> errors;
+	}
+
+	@topic("/listing/create")
+	@version("1.0.1")
+	record CreateListing {
+		array<Listing> listings; //does not have marketListingId yet
+		string xProfileId;
+	}
+
+	@topic("/listing/created")
+	@version("1.0.1")
+	record ListingCreated { //Does not map 1:1 with request message
+		array<Listing> listings;
+		string xProfileId;
+	}
+
+	@topic("/listing/createFailed")
+	@version("1.0.1")
+	record CreateListingFailed {
+		array<ListingError> errors;
+		string xProfileId;
+	}
+
+	@topic("/listing/search")
+	@version("1.0.0")
+	record SearchListing {
+		string xProfileId;
+		ListingFilter filter;
+	}
+
+	@topic("/listing/searchSucceeded")
+	@version("1.0.1")
+	record SearchListingSucceeded {
+		array<Listing> listings;
+		string xProfileId;
+		ListingFilter filter;
+	}
+
+	@topic("/listing/searchFailed")
+	@version("1.0.0")
+	record SearchListingFailed {
+		string xProfileId;
+		ListingFilter filter;
+		array<Error> errors;
+	}
+
+	@topic("/listing/update")
+	@version("1.0.1")
+	record UpdateListing {
+		array<Listing> updates; //must have marketListingId
+		string xProfileId;
+	}
+
+	@topic("/listing/updated")
+	@version("1.0.1")
+	record ListingUpdated {
+		array<Listing> updates;
+		string xProfileId;
+	}
+
+	@topic("/listing/updateFailed")
+	@version("1.0.1")
+	record UpdateListingFailed {
+		array<ListingUpdateError> errors;
+		string xProfileId;
+	}
+
+	@topic("/listing/cancel")
+	@version("1.0.0")
+	record CancelListing {
+		array<string> skus;
+		string xProfileId;
+	}
+
+	@topic("/listing/cancelled")
+	@version("1.0.0")
+	record ListingCancelled {
+		array<string> skus;
+		string xProfileId;
+	}
+
+	@topic("/listing/cancelFailed")
+	@version("1.0.0")
+	record CancelListingFailed {
+    	array<CancelListingError> errors;
+		string xProfileId;
+  	}
+
+	@topic("/order/search")
+	@version("1.0.0")
+	record SearchOrder {
+		OrderFilter filter;
+		string xProfileId;
+	}
+
+	@topic("/order/searchSucceeded")
+	@version("1.0.1")
+	record SearchOrdersSucceeded {
+		array<Order> orders;
+		string xProfileId;
+		OrderFilter filter;
+	}
+
+	@topic("/order/searchFailed")
+	@version("1.0.0")
+	record SearchOrderFailed {
+		OrderFilter filter;
+		string xProfileId;
+		array<Error> errors;
+	}
+
+	@topic("/order/update")
+	@version("1.0.0")
+	record UpdateOrder {
+		array<OrderUpdate> updates;
+		string xProfileId;
+	}
+
+	@topic("/order/updated")
+	@version("1.0.0")
+	record OrderUpdated {
+		array<OrderUpdate> updates;
+		string xProfileId;
+	}
+
+	@topic("/order/updateFailed")
+	@version("1.0.0")
+	record UpdateOrderFailed {
+		array<OrderUpdateError> errors;
+		string xProfileId;
+	}
+}

@@ -1,0 +1,158 @@
+@namespace("com.x.offermanagement.v1")
+ 
+protocol OfferManagementCapability {
+	import idl "Error.avdl";
+	import idl "Query.avdl";
+	import idl "Offer.avdl";
+
+	record OfferError {
+		com.x.ocl.Offer offer;
+		array<com.x.ocl.Error> errors;
+	}
+ 
+	record OfferIdError {
+		string offerId;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/offer/create")
+	@version("1.0.0")
+	record CreateOffer
+	{
+		array<com.x.ocl.Offer> offers;
+		
+		/** Id of the Policy Group defined at the channel to use. */
+		union{null,string} defaultChannelPolicyGroupId;
+
+		/** Default offer management schedule. */
+		// each offer may contain an OfferSchedule as extension
+		//union{null,OfferSchedule} defaultOfferSchedule;
+	}
+ 
+	@topic("/offer/created")
+	@version("1.0.0")
+	record OfferCreated
+	{
+		array<com.x.ocl.Offer> offers;
+	}
+ 
+	@topic("/offer/createFailed")
+	@version("1.0.0")
+	record CreateOfferFailed
+	{
+		array<OfferError> errors;
+
+		/** Id of the Policy Group defined at the channel to use. */
+		union{null,string} channelPolicyGroupId;
+	}
+
+	@topic("/offer/publish")
+	@version("1.0.0")
+	record PublishOffer
+	{
+		array<string> offerIds;
+	}
+
+	@topic("/offer/published")
+	@version("1.0.0")
+	record PublishOfferSucceeded
+	{
+		array<com.x.ocl.Offer> offers;
+	}
+
+	@topic("/offer/publishFailed")
+	@version("1.0.0")
+	record PublishOfferFailed
+	{
+		array<string> offerIds;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/offer/suspend")
+	@version("1.0.0")
+	record SuspendOffer
+	{
+		array<string> offerIds;
+	}
+
+	@topic("/offer/suspended")
+	@version("1.0.0")
+	record SuspendOfferSucceeded
+	{
+		array<com.x.ocl.Offer> offers;
+	}
+
+	@topic("/offer/suspendFailed")
+	@version("1.0.0")
+	record SuspendOfferFailed
+	{
+		array<string> offerIds;
+		array<com.x.ocl.Error> errors;
+	}
+ 
+	@topic("/offer/search")
+	@version("1.0.1")
+	record SearchOffer
+	{
+		com.x.ocl.Query query;
+	}
+ 
+	@topic("/offer/searchSucceeded")
+	@version("1.0.1")
+	record SearchOfferSucceeded
+	{
+		com.x.ocl.Query query;
+		union {null, array<com.x.ocl.Offer>} offers = null;
+	}
+ 
+	@topic("/offer/searchFailed")
+	@version("1.0.1")
+	record SearchOfferFailed
+	{
+		com.x.ocl.Query query;
+		array<com.x.ocl.Error> errors;
+	}
+ 
+	@topic("/offer/update")
+	@version("1.0.0")
+	record UpdateOffer
+	{
+		array<com.x.ocl.Offer> offers;
+	}
+ 
+	@topic("/offer/updated")
+	@version("1.0.0")
+	record OfferUpdated
+	{
+		array<com.x.ocl.Offer> offers;
+	}
+ 
+	@topic("/offer/updateFailed")
+	@version("1.0.0")
+	record UpdateOfferFailed
+	{
+		array<OfferError> errors;
+	}
+ 
+	@topic("/offer/delete")
+	@version("1.0.0")
+	record DeleteOffer
+	{
+		array<string> offerIds;
+	}
+ 
+	@topic("/offer/deleted")
+	@version("1.0.0")
+	record OfferDeleted
+	{
+		array<com.x.ocl.Offer> offers;
+	}
+ 
+	@topic("/offer/deleteFailed")
+	@version("1.0.0")
+	record DeleteOfferFailed
+	{
+		array<string> offerIds;
+		array<OfferIdError> errors;
+	}
+}

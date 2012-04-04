@@ -1,0 +1,197 @@
+@namespace("com.x.customer.v0")
+
+/**
+		The customer protocol defines the schema for all messages that are part of the customer domain.
+*/
+protocol Customer {
+	import idl "Name.avdl";
+	import idl "Error.avdl";
+	import idl "Query.avdl";  
+	import idl "Phone.avdl";
+	import idl "Address.avdl";
+    import idl "Email.avdl";
+	
+	enum Gender {
+		MALE,
+		FEMALE,
+		UNKNOWN
+	}
+	
+	enum CustomerStatus {
+		NEW,
+		WARM,
+		ACTIVE,
+		COLD
+	}
+
+
+	record ShippingContact{
+		com.x.ocl.Name fullName;
+		com.x.ocl.Address address;
+		union {null, com.x.ocl.Phone} phone = null;
+	}
+	
+	
+	record Customer {
+	    
+	    /** null on create in the system of record, not null after created */
+		union{null, string} customerId = null; 
+	
+		com.x.ocl.Name fullName;	   
+	    
+	    union {null, com.x.ocl.Address} billingAddress = null;
+		
+		union {null, com.x.ocl.Phone} primaryPhone = null;
+	    
+	    array<com.x.ocl.Phone> additionalPhones = null;
+		
+		union {null, com.x.ocl.Email} emailAddress = null;   		
+		
+	    union {null, string} company;  
+		
+		boolean doNotCall;   
+		
+		boolean emailOptOut;
+		
+		Gender gender;
+		
+	    /** Date Time Format: ISO 8601 */
+		string dateCreated;
+		
+	    /** Date Time Format: ISO 8601 */
+		string dateUpdated;
+		
+	    /** Date Time Format: ISO 8601 */
+		union{null, string} lastActivityDate;
+			
+	    /** Date Time Format: ISO 8601 */
+		union{null, string} birthday = null;
+		
+		CustomerStatus status; 
+	    
+	    /** map of source system to source Id. This is used for audit purposes, to indicate where the customer came from in the flow */
+	    union{null, map<string>} sourceIds;
+
+		array<ShippingContact> shippingContacts;
+	}
+	
+	@topic("/customer/create")
+	@version("2.1.3")
+	record CreateCustomer {
+		Customer c;
+	}
+	
+	@topic("/customer/created")
+	@version("2.1.3")
+	@event("true")
+	record CustomerCreated {
+		Customer c;
+	}
+	
+	@topic("/customer/createFailed")
+    @version("2.1.3")
+	record CreateCustomerFailed {
+		Customer c;
+		array<com.x.ocl.Error> errors;
+	}
+	
+    @topic("/customer/update")
+	@version("2.1.3")
+	record UpdateCustomer {
+		Customer c;
+	}
+	
+	@topic("/customer/updated")
+	@version("2.1.3")
+	@event("true")
+	record CustomerUpdated {
+		Customer c;
+	}
+	
+	@topic("/customer/updateFailed")
+    @version("1.0.1")
+	record UpdateCustomerFailed {
+		string customerId;
+		array<com.x.ocl.Error> errors;
+	}
+	
+    @topic("/customer/delete")
+	@version("1.0.1")
+	record DeleteCustomer {
+		string customerId;
+	}
+	
+	@topic("/customer/deleted")
+	@version("1.0.1")
+	record CustomerDeleted {
+		string customerId;
+	}
+	
+	@topic("/customer/deleteFailed")
+    @version("1.0.1")
+	record DeleteCustomerFailed {
+		string customerId;
+		array<com.x.ocl.Error> errors;
+	}
+	
+	@topic("/customer/activate")
+	@version("1.0.1")
+	record ActivateCustomer {
+		string customerId;
+	}
+	
+	@topic("/customer/activated")
+	@version("1.0.2")
+	@event("true")
+	record CustomerActivated {
+		string customerId;
+	}
+	
+	@topic("/customer/activateFailed")
+    @version("1.0.1")
+	record ActivateCustomerFailed {
+		string customerId;
+		array<com.x.ocl.Error> errors;
+	}
+	
+    @topic("/customer/deactivate")
+	@version("1.0.1")
+	record DeactivateCustomer {
+		string customerId;
+	}
+	
+	@topic("/customer/deactivated")
+	@version("1.0.2")
+	@event("true")
+	record CustomerDeactivated {
+		string customerId;
+	}
+	
+	@topic("/customer/deactivateFailed")
+    @version("1.0.1")
+	record DeactivateCustomerFailed {
+		string customerId;
+		array<com.x.ocl.Error> errors;
+	}
+	
+    @topic("/customer/search")
+	@version("1.0.1")
+	record SearchCustomer {
+		com.x.ocl.Query query;
+	}
+
+	@topic("/customer/searchSucceeded")
+	@version("1.0.1")
+	record SearchCustomerSucceeded {
+		array<com.x.ocl.QueryResult> customers;
+		union{null,com.x.ocl.Query} query = null;
+	}
+
+	@topic("/customer/searchFailed")
+	@version("1.0.1")
+	record SearchCustomerFailed {
+		union{null,com.x.ocl.Query} query = null;
+		array<com.x.ocl.Error> errors;
+	}
+
+}

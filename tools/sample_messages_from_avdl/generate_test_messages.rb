@@ -13,7 +13,7 @@ HASH = {}
 
 def write_type_msg(buf, schema, delim, written, namespace = nil)
   buf.print delim if delim
- 
+  
   if schema.class == Avro::Schema::UnionSchema
  
     delim = ''
@@ -38,21 +38,28 @@ def write_type_msg(buf, schema, delim, written, namespace = nil)
           
             test_buf = StringIO.new
             test_written = Set.new
-            write_type_msg(test_buf, f.type.schemas.last, '', test_written, namespace)
+            write_type_msg(test_buf, f.type.schemas.last, delim, test_written, namespace)
             test_buf.rewind
             temp_hash[f.name] = test_buf.read
-            
+      elsif f.type.class == Avro::Schema::EnumSchema
+        
+        #temp_hash[f.name] = f.symbols.first
       else
+        #puts "f.name is #{f.name} and type is #{f.type}"
         temp_hash[f.name] = f.type
       end
         
       end
      # puts "#{temp_hash}"
+     # temp_hash.each  {|k,v|
+     #        puts "#{k}\t #{v}"
+     #        }
       HASH[schema.name] = temp_hash
       schema.fields.each do |field|
         
         buf.print delim
         buf.print "\"#{field.name}\":"
+        #puts "field is #{field}, type is #{field.type}"
         write_type_msg(buf, field.type, '', written)
         delim = ','
         
@@ -60,27 +67,29 @@ def write_type_msg(buf, schema, delim, written, namespace = nil)
       buf.print "}"
       
     else
+      #puts "schema is #{schema.name}"
       if schema.namespace
+        #puts "\"#{schema.namespace}.#{schema.name}\""
         buf.print "\"#{schema.namespace}.#{schema.name}\""
       else
+        #puts "\"#{schema.name}\""
         buf.print "\"#{schema.name}\""
       end
     end
   elsif schema.class == Avro::Schema::ArraySchema
     #puts "schema #{schema}"
     buf.print "["
+    
     write_type_msg(buf, schema.items, '', written)
     buf.print "]"
   elsif schema.class == Avro::Schema::EnumSchema
-    
+    #puts "schema is #{schema}"
     #json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
     #puts "schema is #{schema}, name is #{schema.name}, enum is #{schema.symbols.first}"
     buf.print "\"#{schema.symbols.first}\""
   else
-    #puts "schema is #{schema}"
     
     json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
-    #puts "json is #{json}"
     buf.print json
   end
 end
@@ -215,21 +224,29 @@ protocol.types.each do |type|
     msg_buf.rewind
     json_message = msg_buf.read
     schema = buf.read
+    #pp HASH
+    # puts "unprocessed0\n"
+    #     puts json_message
+    #     puts "\n\n"
+    #pp HASH
     HASH.each { |k,v|
       #puts "#{k}, #{v}"
       if v.is_a?(Hash)
+        #puts "key is #{k}\nvalue is #{v}"
         vdash = v.to_s.gsub("\\\"","\"")
-        json_message.gsub!(k,vdash)
+        json_message.gsub!(/\"#{k}\"/,"\"#{vdash}\"")
+        json_message.gsub!(/\.#{k}\"/,".#{vdash}\"")
       else
-        json_message.gsub!(k,v)
+        json_message.gsub!(/\"#{k}\"/,"\"#{v}\"")
+        json_message.gsub!(/\.#{k}\"/,".#{v}\"")
       end
     }
      # 
     
     #pp HASH
-    #puts "unprocessed\n"
-    #puts json_message
-    #puts "\n\n"
+    # puts "unprocessed\n"
+    #     puts json_message
+    #     puts "\n\n"
     #puts "\n\n"
     generated_message = json_message.gsub("com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
                         gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
@@ -249,7 +266,7 @@ protocol.types.each do |type|
      
     if !msg.nil?
       puts "Generated a test message for #{type.name}\n"
-      puts "attempting to verify the schema against the contract"
+      puts "attempting to verify the message against the message schema"
       stringwriter = StringIO.new
       begin
         schema_parsed = Avro::Schema.parse(schema)

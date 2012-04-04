@@ -1,0 +1,53 @@
+
+// This file contains definitions of messages which are only in-place as a
+// stop-gap measure until a more formal system is defined.  Instead of using the
+// interfaces below, applications are HIGHLY encouraged to provide their list of
+// subscriptions to the XFabric team for inclusion in the XFabric bootstrap files,
+// or to add the subscriptions via the XManager UI.
+
+// Each message contains these required annotations:
+// @topic to specify the message's topic name
+// @version specifies the version of the message
+
+@namespace("com.x.infra.xfabric.manager.message")
+protocol XManagerInternal {
+	// ------------
+	// Define Topic
+	// ------------
+
+	@topic("/xfabric/topic/define")
+	@version("1.0.1")
+	record DefineTopicMessage {
+		string topic;
+		union{null,boolean} tenantIdRequired = true;  // ignored.  Always assumed to be 'true'
+		union{null,boolean} revealPublisher = false;
+	}
+
+	@topic("/xfabric/topic/define/results")
+	@version("1.0.1")
+	record DefineTopicResults {
+		string topic;
+		boolean success;
+		union{null,string} message; // Null if success is 'true'
+	}
+
+
+	// --------------
+	// Register Topic
+	// --------------
+
+	@topic("/xfabric/topic/registration")
+	@version("1.0.1")
+	record RegisterTopicMessage {
+		string topicPattern;
+		union{null,boolean} unregister = false;
+	}
+
+	@topic("/xfabric/topic/registration/results")
+	@version("1.0.1")
+	record RegisterTopicResults {
+		string topicPattern;
+		boolean success;
+		union{null,string} message; // Null if success is 'true'
+	}
+}

@@ -1,0 +1,39 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	import idl "CurrencyAmount.avdl";
+	import idl "EmbeddedObject.avdl";
+
+	enum OfferState
+	{
+		NEW, //has not been published to the channel
+		PUBLISHED, //published to the channel
+		SUSPENDED //removed from the channel
+	}
+
+	record Offer 
+	{
+		/** Unique ID assigned by the originator of the offer. */
+		union{null, string} id = null;
+		/** State of the offer */
+		OfferState state;
+		
+		/** The channel this offer is for */
+		string channelId;
+		union{null,string} channelAssignedId = null; //To be provided by channel provider
+		union{null, string} offerChannelUrl = null; //To be provided by channel provider
+		union{null,string} channelStatus = null; //To be provided by channel provider		
+
+		/** Reference to an object of type com.x.ocl.SKU */
+		string sku;
+		
+		CurrencyAmount price;
+		int quantity;
+
+		/** Date Time Format: ISO 8601 */
+		union{null, string} startTime = null;
+		union{null, string} endTime = null;
+		
+		union{null,EmbeddedObject} extension = null;
+	}
+}

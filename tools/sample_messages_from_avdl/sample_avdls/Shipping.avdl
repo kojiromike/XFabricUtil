@@ -1,0 +1,196 @@
+@namespace("com.x.shipping.v0")
+
+/**
+	The shipping protocol defines the schema for all messages 
+	that are part of the shipping domain.
+*/
+protocol Shipping {
+	import idl "CurrencyAmount.avdl";
+	import idl "Name.avdl";
+	import idl "Address.avdl";
+	import idl "Contact.avdl";
+	
+	enum DimensionUnitType {
+	    Inches,
+   	 	Centimeters
+	}
+	
+	enum WeightUnitType {
+	    Pounds,
+    	Kilograms
+    }
+
+	enum PackagingMethodType {
+    	Together,
+    	Separately
+	}
+	
+	enum SignatureOptionType {
+    	SignatureRequired,
+    	NoSignatureRequired,
+    	Direct,
+    	Indirect
+	}
+	
+	enum PackageType {
+    	Box,
+    	Envelope,
+    	Tube,
+    	Other
+    }
+
+	enum PackageSizeType {
+    	Regular,
+    	Large,
+    	Oversize
+	}
+	
+	enum HandoffModeType {
+	    Pickup,
+   	 	DropOff
+	}
+	
+	enum ServiceClassType {
+	    NextDayAir,
+   		SecondaryDayAir,
+    	ThirdDay,
+    	StandardAir,
+    	Ground
+    }
+    
+    enum PrinterType {
+    	Thermal,
+    	InkJet,
+    	Laser
+    }
+
+	enum LabelImageType {
+		EncodedString,
+		Url
+	}
+	
+	record Package {
+		string description;
+		double weight;
+		WeightUnitType weightUnit;
+		double length;
+		double width;
+		double height;
+		DimensionUnitType dimensionUnit;
+		com.x.ocl.CurrencyAmount declaredValue;
+		PackageType type;
+		PackageSizeType sizeClassification;
+	}
+
+	record Recipient {
+		com.x.ocl.Name name;
+		string title;
+		com.x.ocl.Address address;
+		boolean isResidential;
+		string phoneNumber;
+		string phoneExtension;
+		string emailAddress;
+	}
+	
+	record CustomsItem {
+		string originCountry;
+		double weightMajor;
+		double weightMinor;
+		WeightUnitType weightUnit;
+		com.x.ocl.CurrencyAmount eachValue;
+		string tariffCode;
+		int quantity;
+		string description;
+	}
+	
+	record CustomsForm {
+		string licenseNumber;
+		string itemDetail;
+		string itemType;
+		string comments;
+		string orderNumber;
+		string certificateNumber;
+		string eelpfc;
+		array<CustomsItem> items;
+	}
+	
+	record ShippingService {
+		string name;
+		string code;
+		ServiceClassType serviceClass;
+		double maxPackageWeight;
+	}
+	
+	record ShippingServices {
+		array<ShippingService> services;
+	}
+	
+	record SpecialService {
+		string name;
+		string description;
+		com.x.ocl.CurrencyAmount fee;
+	}
+	
+	record SpecialServices {
+		array<SpecialService> services;
+	}
+	
+	record CarrierHandoffMode {
+		string Code;
+		string Description;
+		HandoffModeType handoffMode;
+	}
+	
+	record Carrier {
+		string name;
+		string code;
+		array<ShippingService> shippingServices;
+		array<CarrierHandoffMode> handoffModes;
+		array<SpecialService> specialServices;
+	}
+
+	record Shipment {
+		array<Package> packages;
+		com.x.ocl.Address address;
+		Recipient recipient;
+		int lotSize;
+		PackagingMethodType packagingMethod;
+		double totalWeight;
+		com.x.ocl.CurrencyAmount totalInsuredValue;
+		string shippingInstructions;
+		HandoffModeType carrierHandoffMode;
+		ShippingServices shippingServices;
+		array<SpecialService> specialServices;
+		string carrierCode;		
+	}
+	
+	record ShippingLabelParameters {
+		Shipment shipment;
+		long shipDate;
+		string referenceCode;
+		LabelImageType imageType;
+		PrinterType printer;
+		boolean showPostage;
+		boolean receipt;
+		CustomsForm customs;
+	}
+		
+	record TrackingNumber {
+		string trackingNumber;
+	}
+
+	record ShippingLabel {
+		TrackingNumber trackingNumber;
+		LabelImageType imageType;
+		string encodedImage;
+		string imageUrl;
+		com.x.ocl.CurrencyAmount cost;
+	}
+	
+	record ShippingLabels {
+		array<ShippingLabel> labels;
+	}	
+}
+
+
+

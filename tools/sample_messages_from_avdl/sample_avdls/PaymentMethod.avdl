@@ -1,0 +1,28 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	enum CommonPaymentMethod {
+		AMEX,
+		CASH_ON_DELIVERY,
+		CHECK,
+		CREDIT_CARD,
+		DINERS,
+		DISCOVER,
+		ESCROW,
+		INTEGRATED_MERCHANT_CREDIT_CARD,
+		MASTERCARD,
+		MONEY_ORDER,
+		MONEY_TRANSFER,
+		MONEYBOOKERS,
+		PAYMATE,
+		PAYMENT_ON_PICKUP,
+		PAYPAL,
+		PROPAY,
+		VISA
+	}
+	
+	record PaymentMethod {
+		//If the method is not a CommonPaymentMethod, use a string.
+		union{CommonPaymentMethod,string} method;
+	} 
+}

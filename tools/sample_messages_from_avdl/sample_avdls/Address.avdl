@@ -1,0 +1,16 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+
+	record Address {
+		string street1;
+		union{null,string} street2 = null;
+		union{null,string} street3 = null;
+		union{null,string} street4 = null;
+		string city;
+		union{null,string} county = null;
+		union{null,string} stateOrProvince = null;
+		string postalCode;
+		string country;
+	}
+}
