@@ -72,6 +72,7 @@ def write_type_msg(buf, schema, delim, written, namespace = nil)
     write_type_msg(buf, schema.items, '', written)
     buf.print "]"
   else
+    #puts "schema is #{schema}"
     json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
     buf.print json
   end
@@ -219,6 +220,9 @@ protocol.types.each do |type|
      # 
     
     #pp HASH
+    #puts "unprocessed\n"
+    #puts json_message
+    #puts "\n\n"
     #puts "\n\n"
     generated_message = json_message.gsub("com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
                         gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
@@ -234,22 +238,23 @@ protocol.types.each do |type|
     puts generated_message
     puts "\n\n"
     msg = generated_message
-    
-    
-    msg_file.print(msg)
-    
+     
     if !msg.nil?
       puts "successfully generated a test message for #{type.name}\n"
       puts "attempting to verify the schema against the contract"
       stringwriter = StringIO.new
-      schema_parsed = Avro::Schema.parse(schema)
-      datumwriter = Avro::IO::DatumWriter.new(schema_parsed)
-      encoder = Avro::IO::BinaryEncoder.new(stringwriter)
       begin
+        schema_parsed = Avro::Schema.parse(schema)
+        datumwriter = Avro::IO::DatumWriter.new(schema_parsed)
+        encoder = Avro::IO::BinaryEncoder.new(stringwriter)
+      
          datumwriter.write(JSON.parse(msg),encoder)
          puts "Successfully validated the message against the schema"     
+         msg_file.print(msg)
        rescue Avro::IO::AvroTypeError => e
          puts "Error, could not validate message!!"
+       rescue
+         puts "Could not generate a valid message for #{type.name}!!\n"
        end
     else
       puts "Could not generate a test message for #{type.name}\n"
@@ -257,6 +262,7 @@ protocol.types.each do |type|
     
     msg_file.close
     out.close
+    puts "\n\n------------\n\n"
   end
   
 end
