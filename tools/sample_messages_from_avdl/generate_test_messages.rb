@@ -222,7 +222,7 @@ protocol.types.each do |type|
     #puts "\n\n"
     generated_message = json_message.gsub("com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
                         gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
-                        gsub('"int"',"0")
+                        gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0")
     
     
     out = File.open(namespace + '.' + type.name + '.avsc', 'w')
