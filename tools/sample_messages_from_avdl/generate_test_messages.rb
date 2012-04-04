@@ -254,7 +254,7 @@ protocol.types.each do |type|
     else
       puts "Could not generate a test message for #{type.name}\n"
     end
-    break
+    
     msg_file.close
     out.close
   end

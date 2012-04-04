@@ -46,7 +46,7 @@ You can access the X.commerce message contracts from https://github.com/xcommerc
 
 Broken?
 --------
-if something is broken please contact (saranyan@x.com)
+if something is broken please contact (saranyan@x.com). First, please make sure you are using the latest code. (git pull)
 
 
 
