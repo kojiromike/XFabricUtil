@@ -38,12 +38,19 @@ def write_type_msg(buf, schema, delim, written, namespace = nil)
           
             test_buf = StringIO.new
             test_written = Set.new
-            write_type_msg(test_buf, f.type.schemas.last, delim, test_written, namespace)
+            write_type_msg(test_buf, f.type.schemas.last, '', test_written, namespace)
             test_buf.rewind
             temp_hash[f.name] = test_buf.read
+            #puts "schema name is #{schema.name}, #{temp_hash[f.name]}"
       elsif f.type.class == Avro::Schema::EnumSchema
-        
-        #temp_hash[f.name] = f.symbols.first
+           test_buf = StringIO.new
+           test_written = Set.new
+           write_type_msg(test_buf, f.type, '', test_written, namespace)
+           test_buf.rewind   
+           temp_hash[f.name] = test_buf.read
+           #puts "schema name is #{schema.name}, #{test_buf.read}"
+           #if temp_hash.has_key?(f.name)
+          # puts "f is #{f}, name is #{f.name} test_buf is #{test_buf.read}"
       else
         #puts "f.name is #{f.name} and type is #{f.type}"
         temp_hash[f.name] = f.type
@@ -54,6 +61,9 @@ def write_type_msg(buf, schema, delim, written, namespace = nil)
      # temp_hash.each  {|k,v|
      #        puts "#{k}\t #{v}"
      #        }
+      # if HASH.has_key?(schema.name)
+      #         puts "key exists for #{schema.name} #{HASH[schema.name]}, new value is #{temp_hash}"
+      #       end
       HASH[schema.name] = temp_hash
       schema.fields.each do |field|
         
@@ -224,23 +234,46 @@ protocol.types.each do |type|
     msg_buf.rewind
     json_message = msg_buf.read
     schema = buf.read
+    # pp HASH
+    #    puts "unprocessed0\n"
+    #            puts json_message
+    #            puts "\n\n"
     #pp HASH
-    # puts "unprocessed0\n"
-    #     puts json_message
-    #     puts "\n\n"
-    #pp HASH
+     # HASH.each { |k,v|
+     #       #if a value has a com attribute replace it with its true value
+     #       #json_message.gsub!(/\"com\.x\.ocl\.\w+\"/,'{}') 
+     #       msg_buf = StringIO.new
+     #       msg_written = Set.new
+     #       write_type_msg(msg_buf, v, '', msg_written, namespace)
+     #       msg_buf.rewind
+     #       HASH[k] = msg_buf.read
+     #      }
+    
     HASH.each { |k,v|
       #puts "#{k}, #{v}"
       if v.is_a?(Hash)
         #puts "key is #{k}\nvalue is #{v}"
-        vdash = v.to_s.gsub("\\\"","\"")
-        json_message.gsub!(/\"#{k}\"/,"\"#{vdash}\"")
-        json_message.gsub!(/\.#{k}\"/,".#{vdash}\"")
+        if !v.to_s.include?("com.x.ocl") 
+          vdash = v.to_s.gsub("\\\"","\"")
+          json_message.gsub!(/\"#{k}\"/,"\"#{vdash}\"")
+          json_message.gsub!(/\.#{k}\"/,".#{vdash}\"")
+        else
+          json_message.gsub!(/\"#{k}\"/,"{}")
+          json_message.gsub!(/\.#{k}\"/,".{}")
+        end
+        
       else
-        json_message.gsub!(/\"#{k}\"/,"\"#{v}\"")
-        json_message.gsub!(/\.#{k}\"/,".#{v}\"")
+        if !v.include?('com.x.ocl')
+          json_message.gsub!(/\"#{k}\"/,"\"#{v}\"")
+          json_message.gsub!(/\.#{k}\"/,".#{v}")
+        else
+          #json_message.gsub!(/\"#{k}\"/,"{}")
+          json_message.gsub!(/#{k}\"/,"{}")
+        end
+        #json_message.gsub!(/\.#{k}\"/,".#{v}\"")
       end
     }
+   
      # 
     
     #pp HASH
@@ -248,10 +281,11 @@ protocol.types.each do |type|
     #     puts json_message
     #     puts "\n\n"
     #puts "\n\n"
-    generated_message = json_message.gsub("com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
+    generated_message = json_message.gsub("\"com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
                         gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
                         gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0").\
-                        gsub('"long"',"0")
+                        gsub('"long"',"0").gsub('{"type":"map"}','null').gsub('{"type":"map","values":{}}','{}')
+                        #.gsub('"bytes"','"00101010"')
     
     
     out = File.open(namespace + '.' + type.name + '.avsc', 'w')
