@@ -240,7 +240,7 @@ protocol.types.each do |type|
     msg = generated_message
      
     if !msg.nil?
-      puts "successfully generated a test message for #{type.name}\n"
+      puts "Generated a test message for #{type.name}\n"
       puts "attempting to verify the schema against the contract"
       stringwriter = StringIO.new
       begin
@@ -249,12 +249,12 @@ protocol.types.each do |type|
         encoder = Avro::IO::BinaryEncoder.new(stringwriter)
       
          datumwriter.write(JSON.parse(msg),encoder)
-         puts "Successfully validated the message against the schema"     
+         puts "Successfully validated the message against the schema. This is a valid test message."     
          msg_file.print(msg)
        rescue Avro::IO::AvroTypeError => e
-         puts "Error, could not validate message!!"
+         puts "Error, could not generate a valid message for #{type.name}!!\n"
        rescue
-         puts "Could not generate a valid message for #{type.name}!!\n"
+         puts "Error, could not generate a valid message for #{type.name}!!\n"
        end
     else
       puts "Could not generate a test message for #{type.name}\n"

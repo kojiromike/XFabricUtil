@@ -107,6 +107,21 @@
       } ],
       "doc" : "* Fields on which the report should be sorted. The order is significant -\r\n\t\t * first field determines primary sort order, the next determines\r\n\t\t * secondary sort order, etc.",
       "default" : null
+    }, {
+      "name" : "numberItems",
+      "type" : [ "null", "long" ],
+      "doc" : "* Restrict the number of items return to this many or less.\r\n\t\t * When null, it is assumed there is no restriction",
+      "default" : null
+    }, {
+      "name" : "startItemIndex",
+      "type" : [ "null", "long" ],
+      "doc" : "* Return the results starting from this zero-based index.\r\n\t\t * When null, items will be returned started from the first item",
+      "default" : null
+    }, {
+      "name" : "numberItemsFound",
+      "type" : [ "null", "long" ],
+      "doc" : "* The total number of items found by the data provider.\r\n\t\t * This field will be filled in by the result provider when supported.\r\n\t\t * Requester should not fill this out.",
+      "default" : null
     } ]
   }, {
     "type" : "record",
