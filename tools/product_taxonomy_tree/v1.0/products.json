@@ -1,0 +1,9378 @@
+[
+{
+"data": "Sporting Goods",
+"metadata": {
+"id": "9"
+},
+"children": [
+{
+"data": "Fishing Reels",
+"metadata": {
+"id": "617"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Max. Line Weight"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Gear Ratio/Action"
+},
+{
+"data": "Number of Ball Bearings"
+},
+{
+"data": "Right/Left-Handed"
+},
+{
+"data": "Type"
+},
+{
+"data": "Fishing Type"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+}
+]
+},
+{
+"data": "Bicycles",
+"metadata": {
+"id": "618"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Complete Bike/Frame"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Frame Material"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Model Year"
+},
+{
+"data": "Suspension"
+},
+{
+"data": "Type"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "pattern"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "Frame/Wheel Size"
+},
+{
+"data": "Frame Size"
+}
+]
+},
+{
+"data": "Fishing Rods",
+"metadata": {
+"id": "616"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Rod Power"
+},
+{
+"data": "Max. Line Weight"
+},
+{
+"data": "Max. Rod Length"
+},
+{
+"data": "Rod Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "Fishing Type"
+}
+]
+},
+{
+"data": "Golf Balls",
+"metadata": {
+"id": "598"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Letter Grade"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Quantity"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Snowboards",
+"metadata": {
+"id": "597"
+},
+"children": [
+{
+"data": "Binding Size"
+},
+{
+"data": "Bindings Included"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Baseball Bats",
+"metadata": {
+"id": "524"
+},
+"children": [
+{
+"data": "BESR Certified"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Weight"
+},
+{
+"data": "Color"
+},
+{
+"data": "Type"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Sports Bags",
+"metadata": {
+"id": "527"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Rifle Scopes",
+"metadata": {
+"id": "569"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Reticle"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Wakeboards",
+"metadata": {
+"id": "498"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Golf Bag Carts",
+"metadata": {
+"id": "586"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Pattern"
+}
+]
+},
+{
+"data": "Skateboard Wheels",
+"metadata": {
+"id": "505"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Golf Bags",
+"metadata": {
+"id": "542"
+},
+"children": [
+{
+"data": "Type"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Skateboard Trucks",
+"metadata": {
+"id": "506"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Equestrian Saddles",
+"metadata": {
+"id": "557"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Size"
+},
+{
+"data": "Saddle Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Night Vision Optics",
+"metadata": {
+"id": "566"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Built-in IR"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Generation"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Baseballs",
+"metadata": {
+"id": "612"
+},
+"children": [
+{
+"data": "Size"
+},
+{
+"data": "Type"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Quantity"
+},
+{
+"data": "Use"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Recurve Bows",
+"metadata": {
+"id": "550"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Left/Right-Handed"
+},
+{
+"data": "Draw Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Overall Bow Length"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Soccer Goals & Nets",
+"metadata": {
+"id": "491"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Size"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Skateboard Bearings",
+"metadata": {
+"id": "507"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Home Gyms",
+"metadata": {
+"id": "600"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Grade"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Baseball & Softball Batting Helmets",
+"metadata": {
+"id": "525"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Camping Tents",
+"metadata": {
+"id": "609"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Capacity"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Season"
+},
+{
+"data": "Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Spotting Scopes",
+"metadata": {
+"id": "570"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Use"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Downhill Skis",
+"metadata": {
+"id": "614"
+},
+"children": [
+{
+"data": "Bindings Included"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Hunting Rangefinders",
+"metadata": {
+"id": "567"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Max Magnification"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Crossbows",
+"metadata": {
+"id": "549"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Left/Right-Handed"
+},
+{
+"data": "Draw Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Overall Bow Length"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Weight Training Benches",
+"metadata": {
+"id": "611"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Grade"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Football Helmets",
+"metadata": {
+"id": "526"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Team"
+},
+{
+"data": "Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Ellipticals",
+"metadata": {
+"id": "594"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Tennis Racquets",
+"metadata": {
+"id": "578"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Grip Size"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Sports Fan Jerseys",
+"metadata": {
+"id": "522"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Size"
+},
+{
+"data": "Team"
+},
+{
+"data": "Sport"
+},
+{
+"data": "Brand"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Cross-Country Ski Boots",
+"metadata": {
+"id": "580"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Size"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Style"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Softball Bats",
+"metadata": {
+"id": "593"
+},
+"children": [
+{
+"data": "ASA Approved"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Weight"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Compound Bows",
+"metadata": {
+"id": "548"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Left/Right-Handed"
+},
+{
+"data": "Draw Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Overall Bow Length"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Inline Skates",
+"metadata": {
+"id": "571"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Model"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Soccer Goalkeeper Gloves",
+"metadata": {
+"id": "509"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Skateboards",
+"metadata": {
+"id": "497"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "Length"
+},
+{
+"data": "Width"
+}
+]
+},
+{
+"data": "Soccer Shin Guards",
+"metadata": {
+"id": "510"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Size"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Skateboard Grip Tape",
+"metadata": {
+"id": "504"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Paintball Markers",
+"metadata": {
+"id": "572"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Firing Mode"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Powered Scooters",
+"metadata": {
+"id": "608"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Downhill Ski Boots",
+"metadata": {
+"id": "613"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Style"
+},
+{
+"data": "Material"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Snowboarding Boots",
+"metadata": {
+"id": "583"
+},
+"children": [
+{
+"data": "Binding System"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Dive Computers",
+"metadata": {
+"id": "579"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Size"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Airsoft Guns",
+"metadata": {
+"id": "602"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Model"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Golf Training Aids",
+"metadata": {
+"id": "587"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Soccer Balls",
+"metadata": {
+"id": "503"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Size"
+},
+{
+"data": "Suitable for"
+},
+{
+"data": "Color"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Skateboard Decks",
+"metadata": {
+"id": "508"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "Length"
+},
+{
+"data": "Width"
+}
+]
+},
+{
+"data": "Red Dot & Laser Scopes",
+"metadata": {
+"id": "568"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Reticle Color"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Kick Scooters",
+"metadata": {
+"id": "596"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Football Training Aids",
+"metadata": {
+"id": "590"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+}
+]
+},
+{
+"data": "Fishfinders",
+"metadata": {
+"id": "561"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Display Colors"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Treadmills",
+"metadata": {
+"id": "591"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Softballs",
+"metadata": {
+"id": "592"
+},
+"children": [
+{
+"data": "Size"
+},
+{
+"data": "Type"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Quantity"
+},
+{
+"data": "Use"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Heart Rate Monitors",
+"metadata": {
+"id": "540"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Measurement Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Billiard Cues",
+"metadata": {
+"id": "601"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Cue Construct"
+},
+{
+"data": "Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Weight"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Golf Gloves",
+"metadata": {
+"id": "545"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Material"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Bowling Balls",
+"metadata": {
+"id": "577"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Core Type"
+},
+{
+"data": "Material"
+},
+{
+"data": "Finish"
+},
+{
+"data": "Lane Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Weight"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+}
+]
+},
+{
+"data": "Hunting Game Cameras",
+"metadata": {
+"id": "565"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Megapixels"
+},
+{
+"data": "Model"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Soccer Training Aids",
+"metadata": {
+"id": "511"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Baseball & Softball Gloves & Mitts",
+"metadata": {
+"id": "523"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Left/Right-Handed"
+},
+{
+"data": "Game Position"
+},
+{
+"data": "Sport"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Size"
+},
+{
+"data": "Material"
+},
+{
+"data": "MPN"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Golf Clubs",
+"metadata": {
+"id": "610"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Type"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Right/Left-Handed"
+},
+{
+"data": "Flex"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Loft"
+},
+{
+"data": "Number of Clubs"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Shaft Material"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+}
+]
+},
+{
+"data": "Home & Garden",
+"metadata": {
+"id": "8"
+},
+"children": [
+{
+"data": "Band Saws",
+"metadata": {
+"id": "460"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Sheets",
+"metadata": {
+"id": "416"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Threadcount"
+},
+{
+"data": "Type"
+},
+{
+"data": "Size"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+},
+{
+"data": "Chandeliers",
+"metadata": {
+"id": "439"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Width"
+},
+{
+"data": "Style"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Max Power"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Refrigerators",
+"metadata": {
+"id": "443"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Installation"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Dryers",
+"metadata": {
+"id": "535"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Size"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Generators",
+"metadata": {
+"id": "451"
+},
+"children": [
+{
+"data": "AC Max Output"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Horsepower"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Vacuum Cleaners",
+"metadata": {
+"id": "427"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Dirt Capture"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Power Drills",
+"metadata": {
+"id": "453"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Chuck Size"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Voltage"
+},
+{
+"data": "Chuck Key"
+},
+{
+"data": "Corded/ Cordless"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Planers",
+"metadata": {
+"id": "457"
+},
+"children": [
+{
+"data": "Blade Material"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Max Planing Width"
+},
+{
+"data": "Model"
+},
+{
+"data": "Number of Blades"
+},
+{
+"data": "Type"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Router Accessories",
+"metadata": {
+"id": "459"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Food Mixers",
+"metadata": {
+"id": "436"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Type"
+},
+{
+"data": "Model"
+},
+{
+"data": "Speed Settings"
+},
+{
+"data": "Bowl Material"
+},
+{
+"data": "Power"
+},
+{
+"data": "Bowl Capacity"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Riding Mowers",
+"metadata": {
+"id": "470"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Engine Size"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Candle Holders & Accessories",
+"metadata": {
+"id": "513"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Nailers",
+"metadata": {
+"id": "450"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Power"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Voltage"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Reciprocating Saws",
+"metadata": {
+"id": "464"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Jig & Scroll Saws",
+"metadata": {
+"id": "462"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Air Purifiers",
+"metadata": {
+"id": "405"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Model"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Technology"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Grinder Parts & Accessories",
+"metadata": {
+"id": "456"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Curtains ",
+"metadata": {
+"id": "449"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Length"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+},
+{
+"data": "Miter Saws",
+"metadata": {
+"id": "463"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Throws",
+"metadata": {
+"id": "420"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+},
+{
+"data": "Ceiling Fans",
+"metadata": {
+"id": "438"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "Fan Width"
+},
+{
+"data": "Finish"
+},
+{
+"data": "Lighting"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+}
+]
+},
+{
+"data": "Dishwashers",
+"metadata": {
+"id": "441"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Model"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Type"
+},
+{
+"data": "Width"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Lamps",
+"metadata": {
+"id": "440"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Style"
+},
+{
+"data": "Height"
+},
+{
+"data": "Type"
+},
+{
+"data": "Max Power"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Sofas, Loveseats & Chaises",
+"metadata": {
+"id": "419"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Style"
+},
+{
+"data": "Type"
+},
+{
+"data": "Number of Seats"
+},
+{
+"data": "Convertible to Bed"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Mirrors",
+"metadata": {
+"id": "412"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Frame Material"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+},
+{
+"data": "Model"
+},
+{
+"data": "Shape"
+},
+{
+"data": "Type"
+},
+{
+"data": "Frame Color"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Washing Machines",
+"metadata": {
+"id": "534"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Load Type"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Size"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Saw Parts & Accessories",
+"metadata": {
+"id": "468"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Manufacturer"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Furnaces & Heating Systems",
+"metadata": {
+"id": "408"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Cabinets & Cupboards",
+"metadata": {
+"id": "532"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Color"
+},
+{
+"data": "Model"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Floral Decor",
+"metadata": {
+"id": "423"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Table Saws",
+"metadata": {
+"id": "465"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Water Heaters",
+"metadata": {
+"id": "410"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Juicers",
+"metadata": {
+"id": "435"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Pulp Ejection"
+},
+{
+"data": "Material"
+},
+{
+"data": "Type"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Indoor Grills",
+"metadata": {
+"id": "434"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Variable Heat"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Shower Curtains",
+"metadata": {
+"id": "413"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Type"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Hand Saws",
+"metadata": {
+"id": "467"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Power Tool Batteries & Chargers",
+"metadata": {
+"id": "452"
+},
+"children": [
+{
+"data": "Battery Voltage"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Tablecloths",
+"metadata": {
+"id": "432"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Shape"
+},
+{
+"data": "Size"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+},
+{
+"data": "Cushions",
+"metadata": {
+"id": "425"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Product Type"
+}
+]
+},
+{
+"data": "Chairs",
+"metadata": {
+"id": "417"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Room"
+},
+{
+"data": "Style"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Circular Saws",
+"metadata": {
+"id": "461"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Chainsaws",
+"metadata": {
+"id": "472"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Kitchen Knives",
+"metadata": {
+"id": "429"
+},
+"children": [
+{
+"data": "Blade Material"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Type"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Grinders",
+"metadata": {
+"id": "455"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Wheel Diameter"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Pool Pumps",
+"metadata": {
+"id": "478"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Horsepower"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Pool Type"
+},
+{
+"data": "Speed"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Pool Cleaners",
+"metadata": {
+"id": "477"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Pool Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Thermostats",
+"metadata": {
+"id": "409"
+},
+"children": [
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Model"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "User Interface"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Toasters",
+"metadata": {
+"id": "437"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Number of Slices"
+},
+{
+"data": "Material"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Drill Parts & Accessories",
+"metadata": {
+"id": "454"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Snow Blowers",
+"metadata": {
+"id": "474"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Clearing Width"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Bedspreads, Coverlets & Quilts",
+"metadata": {
+"id": "415"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Size"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+},
+{
+"data": "Candles",
+"metadata": {
+"id": "512"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Type"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Scent Type"
+},
+{
+"data": "Scent"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Tile Saws",
+"metadata": {
+"id": "466"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Faucets",
+"metadata": {
+"id": "411"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Finish"
+},
+{
+"data": "Installation"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "ProductType"
+},
+{
+"data": "Use"
+},
+{
+"data": "Material"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Air Conditioners",
+"metadata": {
+"id": "406"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Cooling BTU/Hr"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "SEER"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Clamps & Vises",
+"metadata": {
+"id": "528"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Rice Cookers",
+"metadata": {
+"id": "433"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "Capacity"
+}
+]
+},
+{
+"data": "Garment Steamers",
+"metadata": {
+"id": "426"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Type"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Photo & Picture Frames",
+"metadata": {
+"id": "424"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Number of Apertures"
+},
+{
+"data": "Photo Size"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Freezers",
+"metadata": {
+"id": "444"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Installation"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Dehumidifiers",
+"metadata": {
+"id": "407"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Control"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Tank Capacity"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Gender"
+}
+]
+},
+{
+"data": "Routers",
+"metadata": {
+"id": "458"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Corded/Cordless"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Color"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "size"
+}
+]
+},
+{
+"data": "Mattresses",
+"metadata": {
+"id": "418"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Comfort Level"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Type"
+},
+{
+"data": "Model"
+},
+{
+"data": "Color"
+},
+{
+"data": "Firmness"
+},
+{
+"data": "Seal"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Cooktops",
+"metadata": {
+"id": "529"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Type"
+},
+{
+"data": "Element Type"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Number of Cooking Elements"
+},
+{
+"data": "Power Source"
+},
+{
+"data": "Width"
+},
+{
+"data": "Energy Efficiency Rating"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Material"
+},
+{
+"data": "pattern"
+}
+]
+},
+{
+"data": "Towels & Washcloths",
+"metadata": {
+"id": "414"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Model"
+},
+{
+"data": "Type"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Quantity"
+},
+{
+"data": "Size"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+}
+]
+},
+{
+"data": "Cell Phones & PDAs",
+"metadata": {
+"id": "7"
+},
+"children": [
+{
+"data": "Cell Phone Batteries",
+"metadata": {
+"id": "42"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Compatible Brand"
+},
+{
+"data": "Capacity"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Compatible Model"
+},
+{
+"data": "Charger Included"
+},
+{
+"data": "Size"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+}
+]
+},
+{
+"data": "Cell Phones",
+"metadata": {
+"id": "43"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Model"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Carrier"
+},
+{
+"data": "Contract"
+},
+{
+"data": "Operating System"
+},
+{
+"data": "Style"
+},
+{
+"data": "Features"
+},
+{
+"data": "Camera"
+},
+{
+"data": "Bundled Items"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Color"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "Size"
+}
+]
+}
+]
+},
+{
+"data": "Clothing, Shoes & Accessories",
+"metadata": {
+"id": "165"
+},
+"children": [
+{
+"data": "Women's Pants",
+"metadata": {
+"id": "403"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Fit"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "mpn"
+},
+{
+"data": "pattern"
+},
+{
+"data": "product type"
+},
+{
+"data": "size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+},
+{
+"data": "Inseam"
+},
+{
+"data": "Leg Length"
+}
+]
+},
+{
+"data": "Women's Shorts",
+"metadata": {
+"id": "377"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Suits & Blazers",
+"metadata": {
+"id": "379"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Athletic Apparel",
+"metadata": {
+"id": "326"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Sleeve Length"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+}
+]
+},
+{
+"data": "Men's Shorts",
+"metadata": {
+"id": "357"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Wedding Dresses",
+"metadata": {
+"id": "530"
+},
+"children": [
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Material"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Shoes - Formal",
+"metadata": {
+"id": "536"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Bras & Bra Sets",
+"metadata": {
+"id": "325"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Cup Size"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Style"
+},
+{
+"data": "Band Size"
+},
+{
+"data": "Underwired?"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "mpn"
+}
+]
+},
+{
+"data": "Men's Sleepwear",
+"metadata": {
+"id": "198"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Sleeve Length"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Wallets",
+"metadata": {
+"id": "531"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Style"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Age Group"
+}
+]
+},
+{
+"data": "Women's Stockings & Thigh-Highs",
+"metadata": {
+"id": "329"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Size"
+},
+{
+"data": "Material"
+},
+{
+"data": "Style"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Thickness"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Women's Coats & Jackets",
+"metadata": {
+"id": "330"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+}
+]
+},
+{
+"data": "Women's Sweaters",
+"metadata": {
+"id": "380"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Boys' Shoes",
+"metadata": {
+"id": "349"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Style"
+},
+{
+"data": "Width"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "mpn"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Casual Shirts",
+"metadata": {
+"id": "395"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "mpn"
+}
+]
+},
+{
+"data": "Men's Coats & Jackets",
+"metadata": {
+"id": "514"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Sweats, Hoodies",
+"metadata": {
+"id": "404"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Socks",
+"metadata": {
+"id": "199"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Style"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "product type"
+}
+]
+},
+{
+"data": "Men's Sweats, Hoodies",
+"metadata": {
+"id": "202"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Women's Sleepwear & Robes",
+"metadata": {
+"id": "369"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "mpn"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Panties",
+"metadata": {
+"id": "367"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's T-Shirts",
+"metadata": {
+"id": "385"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Style"
+},
+{
+"data": "Neckline"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Type of Shirt/Blouse/Polo Shirt/T-shirt"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Pantyhose & Tights",
+"metadata": {
+"id": "327"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Size"
+},
+{
+"data": "Material"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Style"
+},
+{
+"data": "Footless"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Women's Jeans",
+"metadata": {
+"id": "374"
+},
+"children": [
+{
+"data": "Size"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Inseam"
+},
+{
+"data": "Material"
+},
+{
+"data": "Rise"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Wash, Treatment"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "If Maternity"
+}
+]
+},
+{
+"data": "Women's Shapewear",
+"metadata": {
+"id": "368"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "mpn"
+},
+{
+"data": "pattern"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Swimwear",
+"metadata": {
+"id": "358"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Material"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Jeans",
+"metadata": {
+"id": "355"
+},
+"children": [
+{
+"data": "Size Type"
+},
+{
+"data": "Inseam"
+},
+{
+"data": "Style"
+},
+{
+"data": "Rise"
+},
+{
+"data": "Material"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Wash"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Dress Shirts",
+"metadata": {
+"id": "398"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Fit"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Garment Care"
+},
+{
+"data": "Collar"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+},
+{
+"data": "Sleeve Length"
+}
+]
+},
+{
+"data": "Men's Pants",
+"metadata": {
+"id": "402"
+},
+"children": [
+{
+"data": "Size Type"
+},
+{
+"data": "Inseam"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Material"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Fit"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Shoes - Sandals & Flip Flops",
+"metadata": {
+"id": "392"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Heel Height"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Material"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Condition"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Shoes - Boots",
+"metadata": {
+"id": "388"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Heel Height"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Suits",
+"metadata": {
+"id": "533"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Inseam"
+},
+{
+"data": "Jacket Length"
+},
+{
+"data": "Jacket Size"
+},
+{
+"data": "Trouser Size"
+}
+]
+},
+{
+"data": "Women's Shoes - Sneakers",
+"metadata": {
+"id": "387"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Width"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Shoes - Boots",
+"metadata": {
+"id": "360"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Shoes - Heels",
+"metadata": {
+"id": "390"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Heel Height"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Leggings",
+"metadata": {
+"id": "375"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Length"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Dresses",
+"metadata": {
+"id": "366"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Length"
+},
+{
+"data": "Material"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Shoes - Casual",
+"metadata": {
+"id": "84"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Underwear",
+"metadata": {
+"id": "359"
+},
+"children": [
+{
+"data": "Size"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Number in Pack"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Women's Swimwear",
+"metadata": {
+"id": "382"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Material"
+},
+{
+"data": "Neckline"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Shoes - Slippers",
+"metadata": {
+"id": "101"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Socks",
+"metadata": {
+"id": "328"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Size"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Style"
+},
+{
+"data": "Material"
+},
+{
+"data": "Multipack"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Men's T-Shirts",
+"metadata": {
+"id": "204"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Neckline"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "If Maternity"
+}
+]
+},
+{
+"data": "Women's Handbags",
+"metadata": {
+"id": "365"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Style"
+},
+{
+"data": "Size"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Material"
+}
+]
+},
+{
+"data": "Men's Vests, Waistcoats",
+"metadata": {
+"id": "206"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Product Type"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Sweaters",
+"metadata": {
+"id": "201"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Sunglasses",
+"metadata": {
+"id": "393"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Lens Color"
+},
+{
+"data": "Made In"
+},
+{
+"data": "Protection"
+},
+{
+"data": "Style"
+},
+{
+"data": "Frame Material"
+},
+{
+"data": "Frame Color"
+},
+{
+"data": "Size"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "product type"
+}
+]
+},
+{
+"data": "Men's Belts",
+"metadata": {
+"id": "394"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Size"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+}
+]
+},
+{
+"data": "Women's Skirts",
+"metadata": {
+"id": "378"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Length"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Style"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Shoes - Flats",
+"metadata": {
+"id": "400"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Material"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Women's Tops & Blouses",
+"metadata": {
+"id": "383"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Occasion"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size Type"
+},
+{
+"data": "Sleeve Style"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "If Maternity"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Athletic Apparel",
+"metadata": {
+"id": "397"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Shade"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Sleeve Length"
+},
+{
+"data": "Style"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Size"
+},
+{
+"data": "Size Type"
+}
+]
+},
+{
+"data": "Men's Shoes - Sneakers",
+"metadata": {
+"id": "105"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Width"
+},
+{
+"data": "Size"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "Gender"
+},
+{
+"data": "gtin"
+},
+{
+"data": "item group id"
+},
+{
+"data": "MPN"
+}
+]
+},
+{
+"data": "Men's Shoes - Sandals & Flip Flops",
+"metadata": {
+"id": "362"
+},
+"children": [
+{
+"data": "Width"
+},
+{
+"data": "Brand"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "MPN"
+},
+{
+"data": "Size"
+}
+]
+},
+{
+"data": "Men's Shoes - Slippers",
+"metadata": {
+"id": "363"
+},
+"children": [
+{
+"data": "Brand"
+},
+{
+"data": "Color"
+},
+{
+"data": "Material"
+},
+{
+"data": "Pattern"
+},
+{
+"data": "Condition"
+},
+{
+"data": "Age Group"
+},
+{
+"data": "item group id"
+},
+{
+"data": "gtin"
+},
+{
+"data": "mpn"
+},
+{
+"data": "Gender"
+},
+{
+"data": "Size"
+},
+{
+"data": "Sub-Style"
+},
+{
+"data": "Width"
+}
+]
+}
+]
+}
+]
+
