@@ -23,7 +23,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.x.xfabric.helper;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
@@ -89,6 +88,11 @@ public class XFabricBoundMessage {
 		this.contentType = contentType;
 		this.rawMessage = AvroEncDecoder.encode(message, contentType);
 	}
+	
+	public XFabricBoundMessage(IndexedRecord message) throws IOException {
+		this.contentType = AvroContentType.AVRO_BINARY;
+		this.rawMessage = AvroEncDecoder.encode(message, contentType);
+	}	
 
 	public XFabricBoundMessage(String jsonMessage) throws IOException {
 		this.contentType = AvroContentType.AVRO_JSON;
@@ -209,14 +213,16 @@ public class XFabricBoundMessage {
 	 * @param fabricUrl
 	 * @param topic
 	 * @param token
-	 * @return HTTP Response Status Code
+	 * @return message GUID
 	 * @throws KeyManagementException
 	 * @throws NoSuchAlgorithmException
 	 * @throws IOException
+	 * @throws XFabricHttpException 
 	 */
-	public int post(String fabricUrl, String topic, String token)
+	@SuppressWarnings("deprecation")
+	public String post(String fabricUrl, String topic, String token)
 			throws KeyManagementException, NoSuchAlgorithmException,
-			IOException {
+			IOException, XFabricHttpException {
 		return XFabricMessageHelper.postMessage(fabricUrl + topic, token, this);
 	}
 

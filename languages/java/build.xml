@@ -3,7 +3,7 @@
 	<property name="build" location="build" />
 	<property name="dist" location="dist" />
 	<property name="lib" location="lib" />
-	<property name="version" value="0.8.1"/>
+	<property name="version" value="0.11.0"/>
 	<property name="javadocs" location="javadocs" />
 	<property name="packages" value="com.x.xfabric.helper.*"/>
 	<property name="lib.name"    value="XFabricUtil" />

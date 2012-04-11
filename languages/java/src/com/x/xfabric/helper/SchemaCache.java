@@ -24,7 +24,6 @@ package com.x.xfabric.helper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
@@ -40,8 +39,10 @@ import com.x.xfabric.helper.avro.URLSchemaResolver;
 /**
  * @author vichandrasekaran
  * 
- *         Container for avro schema. Provides utility methods for loading the
- *         cache from avpr files/schema Url and for fetching schema
+ * Container for caching avro schema definitions. 
+ * Provides utility methods for 
+ *    loading the cache from avpr files/schema URL and 
+ *    for retrieving schema objects from the local cache
  */
 public class SchemaCache {
 
@@ -82,6 +83,14 @@ public class SchemaCache {
 
 	private static Map<SchemaDescriptor, Schema> cache = new HashMap<SchemaDescriptor, Schema>();
 
+	/**
+	 * Add schema definitions from the passed in avpr files
+	 * to the local cache
+	 * 
+	 * @param avprFiles
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
 	public static void loadSchema(List<String> avprFiles) throws IOException,
 			URISyntaxException {
 		Iterator<String> iter = avprFiles.iterator();
@@ -91,6 +100,14 @@ public class SchemaCache {
 		}
 	}
 
+	/**
+	 * Add schema definitions from the passed in avpr file
+	 * to the local cache 
+	 * 
+	 * @param avprLocation
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
 	public static void loadSchema(String avprLocation) throws IOException,
 			URISyntaxException {
 		Protocol protocol = Protocol.parse(new File(avprLocation));
@@ -105,6 +122,17 @@ public class SchemaCache {
 		}
 	}
 
+	/**
+	 * Retrieve schema definition for the give topic and version
+	 * If a local definition is not available, fetches schema
+	 * from the schemaUrl and adds it to the local cache.
+	 * 
+	 * @param topic
+	 * @param version
+	 * @param schemaUrl
+	 * @return schema object for the given topic/version
+	 * @throws IOException
+	 */
 	public static Schema getSchema(String topic, String version, URL schemaUrl)
 			throws IOException {
 		SchemaDescriptor desc = new SchemaDescriptor(topic, version);
