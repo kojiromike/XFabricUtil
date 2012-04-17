@@ -7,115 +7,92 @@ Created by Michael Smith on 2012-03-29.
 Copyright (c) 2012 True Action Network. All rights reserved.
 """
 from __future__ import with_statement
-from avro import protocol, schema
-from StringIO import StringIO
-from json import dumps
-from os import mkdir
-from os.path import isdir
+from avro import protocol
 from glob import glob
-from shutil import move
+from json import dumps, loads
+from os import makedirs
+from os.path import isdir, isfile, join
 
-def generate_json_test_message(schema_str):
-	contents = schema_str
-	try:
-		sch = schema.parse(contents)
-	except schema.SchemaParseException:
-		import pdb; pdb.set_trace()
+primitive_type_map = {
+	'null': None,
+	'boolean': False,
+	'int': 0,
+	'long': 0,
+	'float': 0.0,
+	'double': 0.0,
+	'bytes': '\u00FF',
+	'string': 'string',
+}
 
-	if ('null' == sch.type):
-		return None
-	elif ('boolean' == sch.type):
-		return False
-	elif (sch.type in ('int', 'long',)):
-		return 0
-	elif (sch.type in ('float', 'double',)):
-		return 0.0
-	elif ('bytes' == sch.type):
-		return '\u00FF'
-	elif ('string' == sch.type):
-		return 'string'
-	elif ('record' == sch.type):
-		msg_hash = {}
-		for field in sch.fields:
-			msg_hash[field.name] = generate_json_test_message(str(field.type))
-		return msg_hash
+class RecursiveSchemaError(Exception):
+	"""Cannot interpret recursive schema '%s'"""
+	def __init__(self, val):
+		self.val = val
+	def __str__(self):
+		return self.__doc__ % self.val
+
+def generate_json_test_message(sch, parent_name=''):
+	if hasattr(sch, 'name') and sch.name == parent_name:
+		raise RecursiveSchemaError(parent_name)
+	if sch.type in primitive_type_map:
+		return primitive_type_map[sch.type]
 	elif ('enum' == sch.type):
 		return sch.symbols[0]
 	elif ('array' == sch.type):
-		return [generate_json_test_message(str(sch.items))]
+		return [generate_json_test_message(sch.items, parent_name)]
 	elif ('map' == sch.type):
-		raise Exception('not implemented')
+		raise NotImplementedError('Cannot interpret map schema yet.')
 	elif ('union' == sch.type):
-		return generate_json_test_message(str(sch.schemas[-1]))
+		return generate_json_test_message(sch.schemas[-1])
 	elif ('fixed' == sch.type):
 		return 'n' * sch.size
+	elif ('record' == sch.type):
+		msg_hash = {}
+		for field in sch.fields:
+			msg_hash[field.name] = generate_json_test_message(field.type, sch.name)
+		return msg_hash
 
-def write_type(buf, sch, delim, written, namespace=None):
-	if delim: buf.write(delim)
-	if 'union' == sch.type:
-		buf.write('[')
-		delim = ''
-		nullable = False
-		for subschema in sch.schemas:
-			nullable = nullable or ('null' == subschema.type)
-			write_type(buf, subschema, delim, written)
-			delim = ','
-		buf.write(']')
-		if nullable:
-			buf.write(',"default":null')
-	elif 'record' == sch.type:
-		if sch.name not in written:
-			written.add(sch.name)
-			buf.write('''{"type":"record","name":"%s"''' % sch.name)
-			if 'version' in sch.props: buf.write(''',"version":"%s"''' % sch.props['version'])
-			if sch.namespace: namespace = sch.namespace
-			if namespace: buf.write(''',"namespace":"%s"''' % namespace)
-			buf.write(''',"fields":[''')
-			delim = ''
-			for field in sch.fields:
-				buf.write(delim)
-				buf.write('''{"name":"%s","type":''' % field.name)
-				write_type(buf, field.type, '', written)
-				buf.write('}')
-				delim = ','
-			buf.write("]}")
-		else:
-			buf.write('''"''')
-			if sch.namespace: buf.write(sch.namespace + '.')
-			buf.write('''%s"''' % sch.name)
-	elif 'array' == sch.type:
-		buf.write('''{"type":"array","items":''')
-		write_type(buf, sch.items, '', written)
-		buf.write("}")
-	else:
-		json = str(sch)
-		buf.write(json)
+def get_name_to_topic_map(avpr_string):
+	"""Walk through the types in an avpr json file and create a map between names and topics"""
+	res = {}
+	for t in loads(avpr_string)['types']:
+		if 'topic' in t and 'name' in t:
+			res[t['name']] = t['topic']
+	return res
 
-def main():
-	x_proto = protocol.parse(open('Order.avpr', 'r').read())
+def process(a_file, output_dir='out'):
+	avpr_str = open(a_file, 'rb').read()
+	name_topic_map = get_name_to_topic_map(avpr_str)
+	x_proto = protocol.parse(avpr_str)
 	for the_type in x_proto.types:
-		if 'record' == the_type.type:
-			buf = StringIO()
-			written = set([])
-			namespace = the_type.namespace or x_proto.namespace
-			file_name = namespace + '.' + the_type.name + '.avsc'
-			write_type(buf, the_type, '', written, namespace)
-			buf.seek(0)
-			assert namespace + '.' + the_type.name + '.avsc' == file_name
-			with open(file_name, 'w') as out:
-				out.write(buf.read())
-			with open(file_name, 'rb') as out:
-				with open(namespace + '.' + the_type.name + '.json', 'w') as msg_file:
-					msg = generate_json_test_message(out.read())
-					msg_file.write(dumps(msg))
-					if msg:
-						print "Successfully generated a test message for %s." % the_type.name
-					else:
-						print "Could not generate a test message for %s." % the_type.name
-	if not isdir('out'): mkdir('out')
-	for filename in glob('*.avsc') + glob('*.json'):
-		print filename
-		move(filename, 'out/')
+		if the_type.name in name_topic_map:
+			topic = name_topic_map[the_type.name]
+			try:
+				msg = generate_json_test_message(the_type)
+				if msg:
+					print "Successfully generated a test message for %s." % topic
+					target = join(output_dir, topic.strip('/'))
+					try:
+						makedirs(target)
+					except OSError:
+						pass
+					filename = join(target, 'index.json')
+					open(filename, 'w').write(dumps(msg))
+				else:
+					raise NotImplementedError
+			except Exception, e:
+				print "Could not generate a test message for %s. (%s)" % (topic, e.message)
+
+def main(argv):
+	if len(argv) >= 1:
+		for arg in argv[1:]:
+			if isfile(arg) and arg.endswith('.avpr'):
+				process(arg)
+			elif isdir(arg):
+				main(glob(arg + '/*.avpr'))
+	else:
+		raise Exception("Please list an avpr file or directory of files with topics.")
 
 if '__main__' == __name__:
-	main()
+	from sys import argv
+	main(argv)
