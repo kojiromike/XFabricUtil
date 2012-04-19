@@ -1,0 +1,209 @@
+@namespace("com.x.ocl")
+protocol BusinessChoreography {
+	import idl "Requirements.avdl";
+	import idl "Xcommerce.avdl";
+	
+	@abstract("true")
+	record Role {
+		string name;
+		string description;
+	}
+	
+	@extends("com.x.ocl.Role")
+	record TransactionRole {
+		Role _base;
+	}
+	
+	@extends("com.x.ocl.Role")
+	record CollaborationRole {
+		Role _base;
+	}
+
+	record VariantMessageMap {
+		string variantName;
+		
+		/** 
+		 * If a default message is not specified in this map, it is assumed
+		 * that the original default message of the topic is used.
+		 * Key=original default message name, value=variant message name
+		 */
+		map<string> variantMessages; //Fully qualified message name		
+	}
+	
+	@abstract("true")
+	record Action {
+		Topic topic; //This action sends a message to this topic.
+		boolean isAuthorizationRequired = true;
+		boolean isNonRepudiationRequired = true;
+
+		/** Key = variantName */
+		union{null,map<VariantMessageMap>} variants = null;
+	}
+	
+	@extends("com.x.ocl.Action")
+	record NotifyAction {
+		Action _base;
+		long timeToAcknowledgeReceipt; //seconds
+		int retryCount;
+
+		//Recipient of message must be able to parse it
+		//boolean isIntelligibleCheckRequired = true;
+		//If timeToAcknowledgeProcessing is NULL, it is assumed that the message is intelligible when receipt is acknowledged.
+		union{null,long} timeToAcknowledgeProcessing; //seconds
+				
+	}
+	
+	@extends("com.x.ocl.NotifyAction")
+	record RequestAction {
+		NotifyAction _base;
+		
+		long timeToRespond; //second
+	}
+	
+	@extends("com.x.ocl.NotifyAction")
+	record ResponseAction {
+		NotifyAction _base;
+	}
+	
+	@extends("com.x.ocl.Action")
+	record InformAction {
+		Action _base;
+	}
+	
+	record RoleBinding {
+		string callingRoleName;
+		string calledRoleName;
+	}
+	
+	@extends("com.x.ocl.RoleBinding")
+	record TransactionRoleBinding {
+		RoleBinding _base;
+	}
+	
+	@extends("com.x.ocl.RoleBinding")
+	record CollaborationRoleBinding {
+		RoleBinding _base;
+	}
+
+	record FlowTransition {
+		union{null,string} condition = null; //ocl?
+		string nextFlowElementName;
+	}
+	
+	@abstract("true")
+	record FlowElement {
+		string name;
+		string description;
+		
+		union{null,array<FlowTransition>} next = null;
+	}
+	
+	@extends("com.x.ocl.FlowElement")
+	record SyncPoint {
+		FlowElement _base;
+	}
+	
+	@extends("com.x.ocl.FlowElement")
+	record StartPoint {
+		FlowElement _base;
+	}
+	
+	enum CollaborationState {
+		SUCCESS,
+		FAILURE
+	}
+	
+	@extends("com.x.ocl.FlowElement")
+	record EndPoint {
+		FlowElement _base;
+		CollaborationState state;
+	}
+	
+	@extends("com.x.ocl.FlowElement")
+	record CollaborationCall {
+		FlowElement _base;
+		
+		string collaborationName;
+
+		/** 
+		 * Key=calling Collaboration variantName, Value=called Collaboration variantName
+		 */
+		union{null,map<string>} variantMap = null;
+		
+		/**
+		 * Map of the calling collaboration's role name to the called collaboration role name.
+		 */
+		array<CollaborationRoleBinding> bindings;
+	}
+	
+	@extends("com.x.ocl.FlowElement")
+	record TransactionCall {
+		FlowElement _base;
+		string transactionName;
+		
+		/** 
+		 * Key=calling Collaboration.variantName, Value=txn variantName
+		 */
+		union{null,map<string>} variantMap = null;
+		
+		/**
+		 * BusinessProcess.name that is bound to a TransactionRole.name
+		 */ 
+		TransactionRoleBinding initiatorBinding;
+		TransactionRoleBinding recipientBinding;
+	}
+	
+	enum TransactionPattern {
+		INFORM,
+		NOTIFY,
+		QUERY_RESPONSE,
+		REQUEST_RESPONSE,
+		RESIDUAL_OBLIGATION
+	}
+	
+	record EntityStateChange {
+		string entityType;
+		string entityId;
+		string newState;
+	}
+
+	record Transaction {
+		string name;
+		/** 
+		 * A list of known variations of this collaboration. Each variation
+		 * impacts the type of message used. e.g. ConsumerGood, Chemical, Hospitality, 
+		 */
+		array<string> variantNames;
+		
+		TransactionPattern pattern;
+		
+		TransactionRole sender;
+		union{null,TransactionRole} receiver;
+		
+		union{InformAction,NotifyAction,RequestAction} senderAction;
+		union{null,ResponseAction} receiverAction = null;
+		union{null,ResponseAction} exceptionAction = null;
+		
+		array<EntityStateChange> successfulStateChange;
+		array<EntityStateChange> failureStateChange;
+	}
+	
+	record Collaboration {
+		//The name of the business process that this realizes
+		string businessProcessName;
+		
+		string name;
+		
+		/** 
+		 * A list of known variation of this collaboration. Each variant
+		 * impacts the type of message used. e.g. ConsumerGood, Chemical, Hospitality, 
+		 */
+		array<string> variantNames;
+		
+		array<CollaborationRole> participants; //min of 2
+
+		//Map of FlowElement.name to FlowElements
+		map<union{StartPoint,SyncPoint,EndPoint,TransactionCall,CollaborationCall}> flow;
+		string startPointName;
+	}
+}

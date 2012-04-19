@@ -1,0 +1,82 @@
+
+@namespace("com.x.infra.xfabric.manager.message")
+
+// Each message contains these annotations:
+// @topic to specify the message's topic name
+// @version specifies the version of the message
+
+protocol XManager {
+	// ---------------
+	// Update Endpoint - to be deprecated (replaced by the following)
+	// ---------------
+
+	@topic("/xfabric/capability/endpoint")
+	@version("1.0.0")
+	record UpdateEndpointMessage {
+		string endpoint;   // Send an empty string to disable capability
+	}
+
+	// NOTE: If the new endpoint is invalid and nothing is still listening at
+	// the old endpoint, then this message cannot be delivered.
+	@topic("/xfabric/capability/endpoint/results")
+	@version("1.0.1")
+	record UpdateEndpointResults {
+		string endpoint;
+		boolean success;
+		union{null,string} message; // Null if success is 'true'
+	}
+	
+	// --------------------------
+	// Update Capability Endpoint
+	// --------------------------
+	
+	@topic("/system/capability/endpoint/update")
+	@version("1.0.0")
+	record UpdateCapabilityEndpoint {
+		string endpoint;   // send an empty string to disable the capability
+	}
+	
+	// "success" (sent to the capability to the new endpoint, listed within the message)
+	@topic("/system/capability/endpoint/updated")
+	@version("1.0.0")
+	record CapabilityEndpointUpdated {
+		string endpoint;   // as was sent in the request
+	}
+	
+	// "failure" (sent to the capability using the endpoint before any changes were made)
+	@topic("/system/capability/endpoint/updateFailed")
+	@version("1.0.0")
+	record UpdateCapabilityEndpointFailed {
+		string endpoint;   // as was sent in the request
+		string message;    // reason
+	}
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	// ------------------------
+	// New Tenant Authorization - to be deprecated (replaced by the following)
+	// ------------------------
+
+	// Message sent from XManager to the capability that now has this tenant relationship
+	@topic("/xfabric/tenant/updated")
+	@version("1.0.0")
+	record NewTenantAuthorization {
+		string tenantId;    // value of what my future X-XC-TENANT-ID header will carry when I receive a message for this tenant
+		string bearerToken; // value I need to use in my auth header when sending a message on behalf of this tenant
+		string tenantName;  // friendly / pretty name
+	}
+	
+	// -----------------
+	// Tenant Onboarding
+	// -----------------
+	
+	// Message sent from XManager to the capability that now has this tenant relationship
+	@topic("/system/tenant/relationship/created") 
+	@version("1.0.0")
+	record TenantRelationshipCreated {
+		string tenantPseudonym; // value of what my future X-XC-TENANT-ID header will carry when I receive a message for this tenant
+		string bearerToken;     // value I need to use in my auth header when sending a message on behalf of this tenant
+		string tenantName;      // friendly / pretty name
+		map<string> onboarding; // additional key/value pairs that are needed to identify or complete the tenant relationship
+	}
+}

@@ -1,155 +1,114 @@
 #!/usr/bin/env ruby -W0
 
-require 'stringio'
 require 'rubygems'
+require 'stringio'
 require 'json'
 require 'rubygems'
-require 'httparty'
 require 'avro'
-
-#require './sch_val.rb'
+require 'pp'
 require 'yajl'
 require 'set'
-require 'digest/md5'
-require 'net/http'
-require 'stringio'
-require 'json'
-module Avro
-  VERSION = "FIXME"
 
-  class AvroError < StandardError; end
+HASH = {}
 
-  class AvroTypeError < Avro::AvroError
-    def initialize(schm=nil, datum=nil, msg=nil)
-      msg ||= "Not a #{schm.to_s}: #{datum}"
-      super(msg)
-    end
-  end
-end
-
-require './lib/schema_avro_1.6.1_patch.rb'
-require './lib/io_avro.rb'
-
-def generate_json_test_message(schema_str)
+def write_type_msg(buf, schema, delim, written, namespace = nil)
+  buf.print delim if delim
+  
+  if schema.class == Avro::Schema::UnionSchema
  
-    #file = File.open(schema_file, "rb")
-    #contents = file.read
-    #puts "contents\n\n"
-    #p contents
-    contents = schema_str
-   
-  begin
-    Avro::Schema.clear_message_structures(nil)
-    schema = Avro::Schema.parse(contents)
+    delim = ''
+    nullable = false
+    #pick the last
+    subschema = schema.schemas.last
+    #buf.print("\\")
+    write_type_msg(buf, subschema, delim, written)
+    #buf.print("\\")
+  elsif schema.class == Avro::Schema::RecordSchema
+    if !written.include?(schema.name)
+      written.add(schema.name)
+      namespace = schema.namespace if schema.namespace
+      buf.print "{"
     
-    test_arr = Avro::Schema::MSG_ARRAY.dup
-    msg_arr = Avro::Schema::MSG_ARRAY.dup
-    created_msg_arr = []
-    msg_hash = {}
-
-  #puts msg_arr 
-
-    test_arr.each_with_index do |t,i|
-      if t.include?("FIELD")
-        done_tag = "DONE.#{t.split('.')[1]}"
-        index = msg_arr.index(done_tag)
-        #check index + 1 to see if it is a schema
-        (index == msg_arr.size - 1) ? nxt = "" : nxt = test_arr[index+1]
-        #update the hash with the copy of a symbol message
-
-
-        if nxt.include?("Avro::Schema")
-
-          #arrayschema or recordschema
-          if nxt.include?("ArraySchema")
-            msg_arr[index] = "}], "
-            msg_arr[i] = "#{nxt.gsub("Avro::Schema::ArraySchema","[{")}"
-          elsif nxt.include?("RecordSchema")
-            msg_arr[index] = "}, "
-            msg_arr[i] = "#{nxt.gsub("Avro::Schema::RecordSchema","{")}"
-          end
-          #push the field name
-          created_msg_arr << nxt.split(':')[0].strip
-          val = t.split('.')[1]
-          msg_hash["#{val}"] = (msg_arr[i..index].find_all{|item| !item.include?("Schema") && !item.include?("FIELD") && !item.include?("DONE")}).join('').gsub(', }','}').gsub(', ]',']').gsub('"boolean"',"false").gsub('"double"',"0.0").gsub('"int"',"0").gsub(']"','],"').gsub('}"','},"')
-        else
-          #prev does not have any value, treat it as simple close
-          msg_arr[index] = "}"
-          msg_arr[i] = "{"
-        end
-
-      end
-    end
-    #one more pass on test_arr to collect missing fields due to sym type declaration
-    total_msg_arr = []
-    msg_arr.each_with_index do |t,i|
-      if t.include?("Avro::Schema")
-        #push the field name
-        total_msg_arr << t.split(':')[0].strip
-      end
-    end
-
-
-    left_vals = (total_msg_arr - (total_msg_arr & created_msg_arr))
-
-    #puts msg_arr
-    left_vals.each do |l|
-      #get the name of the field
-      key = l[1..l.length-2]
-
-      #get the replacement code
-      hash_val = msg_hash[Avro::Schema::MSG_HASH[key]]
-      if !hash_val.nil?
-        code = msg_hash[Avro::Schema::MSG_HASH[key]].split(':') 
-        code = code[1..code.length-1].join(':')
-        msg_arr.each do |msg|
-          if msg.include?(key)
-
-            msg.gsub!('Avro::Schema::ArraySchema',code)
-            msg.gsub!('Avro::Schema::RecordSchema',code)
-          end
-        end
+      delim = ''
+      #puts "Schema - #{schema.name}\n--------"
+      temp_hash = {}
+      schema.fields.each do |f|
+       
+      if f.type.class == Avro::Schema::UnionSchema
+          
+            test_buf = StringIO.new
+            test_written = Set.new
+            write_type_msg(test_buf, f.type.schemas.last, '', test_written, namespace)
+            test_buf.rewind
+            temp_hash[f.name] = test_buf.read
+            #puts "schema name is #{schema.name}, #{temp_hash[f.name]}"
+      elsif f.type.class == Avro::Schema::EnumSchema
+           test_buf = StringIO.new
+           test_written = Set.new
+           write_type_msg(test_buf, f.type, '', test_written, namespace)
+           test_buf.rewind   
+           temp_hash[f.name] = test_buf.read
+           #puts "schema name is #{schema.name}, #{test_buf.read}"
+           #if temp_hash.has_key?(f.name)
+          # puts "f is #{f}, name is #{f.name} test_buf is #{test_buf.read}"
       else
-        #it is nil. there is no code
-        #if it is an array schema, just replace it by [Avro::Schema::MSG_HASH[key]]
-        msg_arr.each do |msg|
-          if msg.include?(key)
-            if msg.include?("ArraySchema")
-              msg.gsub!('Avro::Schema::ArraySchema',"[\"#{Avro::Schema::MSG_HASH[key]}\"]")
-            else
-              msg.gsub!('Avro::Schema::RecordSchema',"{\"#{Avro::Schema::MSG_HASH[key]}\"}")
-            end
-          end
-        end
+        #puts "f.name is #{f.name} and type is #{f.type}"
+        temp_hash[f.name] = f.type
       end
-
+        
+      end
+     # puts "#{temp_hash}"
+     # temp_hash.each  {|k,v|
+     #        puts "#{k}\t #{v}"
+     #        }
+      # if HASH.has_key?(schema.name)
+      #         puts "key exists for #{schema.name} #{HASH[schema.name]}, new value is #{temp_hash}"
+      #       end
+      HASH[schema.name] = temp_hash
+      schema.fields.each do |field|
+        
+        buf.print delim
+        buf.print "\"#{field.name}\":"
+        #puts "field is #{field}, type is #{field.type}"
+        write_type_msg(buf, field.type, '', written)
+        delim = ','
+        
+      end
+      buf.print "}"
+      
+    else
+      #puts "schema is #{schema.name}"
+      if schema.namespace
+        #puts "\"#{schema.namespace}.#{schema.name}\""
+        buf.print "\"#{schema.namespace}.#{schema.name}\""
+      else
+        #puts "\"#{schema.name}\""
+        buf.print "\"#{schema.name}\""
+      end
     end
-    #cleanup
-    message = (msg_arr.find_all{|item| !item.include?("Schema")}).join('').gsub(', }','}').gsub(', ]',']').gsub('"boolean"',"false").gsub('"double"',"0.0").gsub('"int"',"0").gsub(']"','],"').gsub('}"','},"')
-  rescue
-    puts "Error parsing schema #{schema_str}.\n\n"
-    message = nil
+  elsif schema.class == Avro::Schema::ArraySchema
+    #puts "schema #{schema}"
+    buf.print "["
+    
+    write_type_msg(buf, schema.items, '', written)
+    buf.print "]"
+  elsif schema.class == Avro::Schema::EnumSchema
+    #puts "schema is #{schema}"
+    #json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
+    #puts "schema is #{schema}, name is #{schema.name}, enum is #{schema.symbols.first}"
+    buf.print "\"#{schema.symbols.first}\""
+  else
+    
+    json = schema.to_json()[1..-2].gsub('"\\"', '"').gsub('\\"', '"')
+    buf.print json
   end
-  if Avro::Schema::MSG_ERROR_FLAG.size > 0
-
-    #double check to make sure the message does not have an error
-    stringwriter = StringIO.new
-    datumwriter = Avro::IO::DatumWriter.new(schema)
-    encoder = Avro::IO::BinaryEncoder.new(stringwriter)
-    begin
-       datumwriter.write(JSON.parse(message),encoder)     
-     rescue Avro::IO::AvroTypeError
-       puts "Error, cannot generate message for #{schema_file}"
-       message = nil
-     end
-  end
-
-  return message
 end
+
+#########################################################
 
 def write_type(buf, schema, delim, written, namespace = nil)
   buf.print delim if delim
-
+  
   if schema.class == Avro::Schema::UnionSchema
     buf.print '['
     delim = ''
@@ -168,8 +127,15 @@ def write_type(buf, schema, delim, written, namespace = nil)
       written.add(schema.name)
 
       namespace = schema.namespace if schema.namespace
+      
+      buf.print "{\"type\":\"record\",\"name\":\"#{schema.name}\""
 
-      buf.print "{\"type\":\"record\",\"name\":\"#{schema.name}\", \"version\":\"#{schema.props['version']}\""
+      ['version', 'topic'].each do |prop|
+        if schema.props.has_key? prop
+          buf.print ", \"#{prop}\":\"#{schema.props[prop]}\""
+        end
+      end
+
       if namespace
         buf.print ",\"namespace\":\"#{namespace}\""
       end
@@ -181,13 +147,24 @@ def write_type(buf, schema, delim, written, namespace = nil)
         buf.print delim
         buf.print "{\"name\":\"#{field.name}\",\"type\":"
         write_type(buf, field.type, '', written)
+        begin
+          field.props.each do |k,v|
+            buf.print ", \"#{k}\": \"#{v}\""
+          end
+        rescue
+          nil
+        end
         buf.print '}'
         delim = ','
       end
 
       buf.print "]}"
     else
-      buf.print "\"#{schema.namespace}.#{schema.name}\""
+      if schema.namespace
+        buf.print "\"#{schema.namespace}.#{schema.name}\""
+      else
+        buf.print "\"#{schema.name}\""
+      end
     end
   elsif schema.class == Avro::Schema::ArraySchema
     buf.print "{\"type\":\"array\",\"items\":"
@@ -201,21 +178,40 @@ def write_type(buf, schema, delim, written, namespace = nil)
   end
 end
 
+
+
 if ARGV.size != 1
-  puts "Error. Expecting the AVDL file as an input (<excutable> <filename.avdl>)"
+  #puts "Error. Expecting the AVDL file as an input (<excutable> <filename.avdl> <X.commerce contracts_path>)"
+  puts "Error. Expecting the AVDL file as an input (<excutable> <filename.avdl> )"
   exit
 end
+
+#copy all the contracts to sample folder
+#copy_contracts_sample_folder()
 
 if !File.exist?("lib/avro-tools-1.6.1.jar")
   puts "Cannot find the avro-tools-1.6.1.jar file in the application root directory."
   exit
 end
 
+if !File.directory?('out')
+  `mkdir out`
+end
+
 idl_file = File.open(ARGV[0])
 jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
 puts "Compiling #{ARGV[0]}"
-f = ARGV[0].split('.')[0]
-`java -jar #{jar_path} idl #{f}.avdl > out/#{f}.avpr`
+
+last_index = ARGV[0].gsub("\\",'/').rindex('/')
+f = ARGV[0][last_index+1..ARGV[0].length-1].split('.')[0]
+out = `java -jar #{jar_path} idl #{idl_file.path} 2>&1`
+
+`java -jar #{jar_path} idl #{idl_file.path} > ./out/#{f}.avpr`
+if !File.exist?("./out/#{f}.avpr")
+  puts "Could not generate avpr files. Dying with the following error\n#{out}\n"
+  raise "quitting! Try putting all the necessary avdl files in the root folder and rerun the script."
+end
+
 puts "Processing #{f}.avpr"
 
 
@@ -226,32 +222,117 @@ protocol.types.each do |type|
   #puts type.class  
   if type.class == Avro::Schema::RecordSchema && type.props['version']  
     buf = StringIO.new
+    msg_buf = StringIO.new
     written = Set.new
-    
+    msg_written = Set.new
     namespace = type.namespace ? type.namespace : protocol.namespace
+    puts "attempting to generate message for #{type.name}\n\n"
+    write_type_msg(msg_buf, type, '', msg_written, namespace)
     write_type(buf, type, '', written, namespace)
     buf.rewind
+    #puts buf.read
+    msg_buf.rewind
+    json_message = msg_buf.read
+    schema = buf.read
+    # pp HASH
+    #    puts "unprocessed0\n"
+    #            puts json_message
+    #            puts "\n\n"
+    #pp HASH
+     # HASH.each { |k,v|
+     #       #if a value has a com attribute replace it with its true value
+     #       #json_message.gsub!(/\"com\.x\.ocl\.\w+\"/,'{}') 
+     #       msg_buf = StringIO.new
+     #       msg_written = Set.new
+     #       write_type_msg(msg_buf, v, '', msg_written, namespace)
+     #       msg_buf.rewind
+     #       HASH[k] = msg_buf.read
+     #      }
+    
+    HASH.each { |k,v|
+      #puts "#{k}, #{v}"
+      if v.is_a?(Hash)
+        #puts "key is #{k}\nvalue is #{v}"
+        if !v.to_s.include?("com.x.ocl") 
+          vdash = v.to_s.gsub("\\\"","\"")
+          json_message.gsub!(/\"#{k}\"/,"\"#{vdash}\"")
+          json_message.gsub!(/\.#{k}\"/,".#{vdash}\"")
+        else
+          json_message.gsub!(/\"#{k}\"/,"null")
+          json_message.gsub!(/\.#{k}\"/,".null")
+        end
+        
+      else
+        if !v.include?('com.x.ocl')
+          json_message.gsub!(/\"#{k}\"/,"\"#{v}\"")
+          json_message.gsub!(/\.#{k}\"/,".#{v}")
+        else
+          #json_message.gsub!(/\"#{k}\"/,"{}")
+          json_message.gsub!(/#{k}\"/,"null")
+        end
+        #json_message.gsub!(/\.#{k}\"/,".#{v}\"")
+      end
+    }
+    
+     # 
+    
+    #pp HASH
+    # puts "unprocessed\n"
+    #     puts json_message
+    #     puts "\n\n"
+    #puts "\n\n"
+    generated_message = json_message.gsub("\"com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
+                        gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
+                        gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0").\
+                        gsub('"long"',"0").gsub('{"type":"map","values":"string"}','null').\
+                        gsub('{"type":"map","values":null}','null').gsub('[null]','null')
+    # _test_message = json_message.gsub('null','{}').gsub("\"com.x.ocl.","").gsub('"{"','{"').gsub('}"','}').gsub("=>",":").\
+    #                        gsub('""','"').gsub('"null"','null').gsub("\\[","").gsub("]\\","").gsub("\\","").\
+    #                        gsub('"int"',"0").gsub('"float"',"0.0").gsub('"boolean"',"false").gsub('"double"',"0.0").\
+    #                        gsub('"long"',"0").gsub('{"type":"map","values":"string"}','null').\
+    #                        gsub('{"type":"map","values":{}}','null').gsub('[null]','null')
+    
+                        #.gsub('"bytes"','"00101010"')
+    
+    
     out = File.open(namespace + '.' + type.name + '.avsc', 'w')
-    out.print buf.read
+    out.print schema
     out.close
     out = File.open(namespace + '.' + type.name + '.avsc', 'rb')
     msg_file = File.open(namespace + '.' + type.name + '.json', 'w')
-    msg = generate_json_test_message(out.read)
-    msg_file.print(msg)
+    msg = generated_message
+    
+     puts generated_message
+     puts "\n\n" 
+     
     if !msg.nil?
-      puts "successfully generated a test message for #{type.name}\n"
+      puts "Generated a test message for #{type.name}\n"
+      puts "attempting to verify the message against the message schema"
+      stringwriter = StringIO.new
+      begin
+        schema_parsed = Avro::Schema.parse(schema)
+        datumwriter = Avro::IO::DatumWriter.new(schema_parsed)
+        encoder = Avro::IO::BinaryEncoder.new(stringwriter)
+         datumwriter.write(JSON.parse(msg),encoder)
+        
+         puts "Successfully validated the message against the schema. This is a valid test message."     
+         msg_file.print(msg)
+       rescue Avro::IO::AvroTypeError => e
+         puts "Error, could not generate a valid message for #{type.name}!!\n"
+       rescue
+          puts "Error, could not generate a valid message for #{type.name}!!\n"
+       end
     else
       puts "Could not generate a test message for #{type.name}\n"
     end
+    
     msg_file.close
     out.close
+    puts "\n\n------------\n\n"
   end
   
 end
-jar_path = File.join(Dir.pwd, 'lib', 'avro-tools-1.6.1.jar')
-if !File.directory?('out')
-  `mkdir out`
-end
+
 `mv *.avsc *.json out`
 
 

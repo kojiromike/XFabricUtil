@@ -1,0 +1,40 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+	import idl "Query.avdl";
+	import idl "Locale.avdl";
+
+	/**
+	 * A ReportDefinition defines a set of metrics (columns) for a set of
+	 * entities (rows) that the requester wants to obtain.
+	 */
+	record ReportDefinition {
+		/**
+		 * Locale in which the report should be returned. i.e. en_US
+		 */
+		union {null, com.x.ocl.Locale} locale = null;
+
+		/**
+		 * Query that describes the report. The Query.fields should be used
+		 * to define the particular metric being requested for. Please refer
+		 * to the provider documentation for the available metrics.
+		 */
+		com.x.ocl.Query query;
+	}
+
+	/**
+	 * A Report is a generic wrapper around a QueryResult that is based on
+	 * a ReportDefinition.
+	 */
+	record Report {
+		ReportDefinition reportDefinition;
+		
+		/**
+		 * Each of the QueryResult.QueryResultItem.fields should correspond
+		 * to the Query.fields in the ReportDefinition in the same order 
+		 * that they are specified.
+		 */
+		com.x.ocl.QueryResult result;
+	}
+
+}

@@ -69,6 +69,25 @@ protocol Core {
 		 * secondary sort order, etc.
 		 */
 		union{null,array<OrderBy>} ordering = null;
+		
+		/**
+		 * Restrict the number of items return to this many or less.
+		 * When null, it is assumed there is no restriction
+		 */
+		union{null,long} numberItems = null;
+		
+		/**
+		 * Return the results starting from this zero-based index.
+		 * When null, items will be returned started from the first item
+		 */
+		union{null,long} startItemIndex = null;
+		
+		/**
+		 * The total number of items found by the data provider.
+		 * This field will be filled in by the result provider when supported.
+		 * Requester should not fill this out.
+		 */
+		 union{null,long} numberItemsFound = null;
 	}
 
 	record GenericItem {

@@ -11,10 +11,15 @@
       </script>
     <![endif]-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+		<script type="text/javascript" src="http://static.jstree.com/v.1.0pre/jquery.js"></script>
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 		
-		<script src="jstree/jquery.jstree.js"></script>
+		<!--<script src="jstree/jquery.jstree.js"></script>-->
+		<script type="text/javascript" src="http://static.jstree.com/v.1.0pre/jquery.cookie.js"></script>
+		<script type="text/javascript" src="http://static.jstree.com/v.1.0pre/jquery.hotkeys.js"></script>
+		<script type="text/javascript" src="http://static.jstree.com/v.1.0pre/jquery.jstree.js"></script>
 		
     <style>
       body { margin:100px; }
@@ -25,25 +30,36 @@
 <link rel="stylesheet" type="text/css" href="./jstree/themes/default/style.css" />
   </head>
   <body>
+		<form id="searchform" action="#">
+		search: <input type="text" id="searchbox" />
+		<input type="button" class="button" value="Search" id="search" style="">
+		</form>
     <div id="tree1"></div>
 		
-		
+		<div id="demo1"></div>
   </body>	
 
 <script type="text/javascript">
+
+
 	$(function () {
-		$("#tree1").jstree({ 
-			"json_data" : {
-				"ajax" : {
-					"url" : "./temp.json",
-					"data" : function (n) { 
-						return { id : n.attr ? n.attr("id") : 0 }; 
-						
+			$("#search").click(function () {
+				var val = $("#searchbox").val();
+				
+					$("#tree1").jstree("search",val);
+				});
+			$("#tree1").jstree({ 
+				"json_data" : {
+					"ajax" : {
+						"url" : "./products.json",
+						"data" : function (n) { 
+							return { id : n.attr ? n.attr("id") : 0 }; 
+							
+						}
 					}
-				}
-			},
-			"plugins" : [ "themes", "json_data" ]
+				},
+				"plugins" : [ "themes", "json_data","ui", "search" ]
+			});
 		});
-	});
 </script>
 </html>

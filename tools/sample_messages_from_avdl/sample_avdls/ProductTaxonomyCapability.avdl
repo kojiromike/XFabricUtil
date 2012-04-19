@@ -1,0 +1,250 @@
+@namespace("com.x.producttaxonomy.v1")
+
+/**
+ * contracts for the product taxonomy service
+ * ================================
+ */
+protocol ProductTaxonomyCapability {
+
+	/**
+	 * Locale contains a combination of ISO language code, country code and optional variant
+	 */
+	record Locale {
+		string language;
+		string country;
+		union {null, string} variant = null;
+	}
+
+	record Error {
+		int code;
+		string message;
+		union {null, array<string>} parameters = null;
+	}
+
+	record Filter {
+		// we support two levels currently: 1 for summary and 2 for details
+		// the summary product type information contains id, version name, and productClassIds
+		union {null, int} detailLevel = null;
+		// To specify a list of channels this product type is intended for. This will filter
+		// attributes so that only attributes and recommended values of attribute that are relevant 
+		// to the list of channels will be returned.
+		union {null, array<string>} channelIds = null;
+	}
+	
+	record ChannelValueDecoration
+	{
+		// Serialized representation of Channel, e.g. ebay_US
+		string channelId;
+	}
+
+	record StringAttributeValue {
+		string valueId;
+		string localizedValue;
+		// some values may only apply to certain channels, if the channelValueDecorations array is null or empty, the value applies to all channels
+		union {null, array<ChannelValueDecoration>} channelValueDecorations = null;
+	}
+	
+	record SearchQuery
+	{
+		string productClassId;
+	}
+	
+	record ChannelAttributeDecoration {
+		string channelId;
+		union {null, boolean} required = null;
+		union {null, boolean} supportsVariation = null;
+	}
+	
+	record StringEnumerator {
+		string id;
+		// localized name
+		string name;
+		// some values may only apply to certain channels, if the channelValueDecorations array is null or empty, the value applies to all channels
+		union {null, array<ChannelValueDecoration>} channelValueDecorations = null;
+	}
+
+	record StringEnumerationAttribute {
+		// Attribute identifier, unique within a product type
+		string id;
+		// localized name
+		string name;
+		// channel specific decorations, e.g., required or optional, whether an attribute is enabled as variation variable
+		// if there is no decoration for a channel, the attribute is not applicable to that channel
+		union {null, array<ChannelAttributeDecoration>} channelAttributeDecorations = null;
+		union { null, string } description = null;
+
+		// id(s) of default value(s)
+		union {null, string, array<string>} defaultValue = null;
+		array<StringEnumerator> enumerators;
+		// Indicates if multiple values are allowed.
+		boolean allowMultipleValues;
+	}
+
+	record BooleanAttribute {
+		string id;
+		string name;
+		union {null, array<ChannelAttributeDecoration>} channelAttributeDecorations = null;
+		union { null, string } description = null;
+		
+		// default value
+		union {null, boolean} defaultValue = null;
+	}
+
+	record StringAttribute {
+		string id;
+		string name;
+		union {null, array<ChannelAttributeDecoration>} channelAttributeDecorations = null;
+		union { null, string } description = null;
+		
+		union { null, int } minLength = null;
+		union { null, int } maxLength = null;
+		union { null, string} defaultValue = null;
+		// recommended attribute values.
+		union {null, array<StringAttributeValue>} recommendedValues = null;
+	}
+	
+	record ProductTypeIdVersion {
+		string productTypeId;
+		// Format: <major>.<minor>
+		string version;
+	}
+
+	record ProductClass {
+		string id;
+		// localized name
+		string name;
+		// productClass may contain sub productClasses. 
+		// Leaf node will not contain sub classes and can be associated with product types
+		union {null, array<ProductClass>} subClasses = null;
+		union {null, array<ProductTypeIdVersion>} productTypeIdVersions = null;
+	}
+	
+	record ProductType{
+		string id;
+		union {null, string} version = null;
+
+		// localized product name.
+		union {null, string} name = null;
+		union {null, string} description = null;
+		// List of product category ids which the product type is associated with
+		union {null, array<string>} productClassIds = null;
+		// Attribute can be StringAttribute, StringEnumerationAttribute or BooleanAttribute
+		union {null, array<union {StringAttribute, StringEnumerationAttribute, BooleanAttribute}>} attributes = null;
+	}
+	
+	record ProductTaxonomy {
+		array<ProductClass> productClasses;
+		// Format (ISO 8601): YYYY-MM-DDTHH:MMZ
+		string version;
+	}
+
+	//-----------------------------------------------------------------------------------------------------
+	// Request & Response: search product types by product class 
+	// 	- SearchProductType: Request product types by product class.
+	// 	- SearchProductTypeSucceeded: Return a collection of product type (summary)
+	// 	- SearchProductTypeFailed: Error message
+	//-----------------------------------------------------------------------------------------------------
+	@topic("/productTaxonomy/productType/search") 
+	@version("1.0.0") 
+	record SearchProductType{
+		// search criteria
+		SearchQuery criteria;
+		// The locale en_US will be the default if no locale is supplied in the message.
+		union { null, Locale } locale = null;
+		// optional filter, by default, only product type summary will be returned
+		union {null, Filter} filter = null;		
+	}
+
+	@topic("/productTaxonomy/productType/searchSucceeded") 
+	@version("1.0.0") 
+	record SearchProductTypeSucceeded{
+		array<ProductType> productTypes;
+		// search criteria used
+		SearchQuery criteria;
+		// locale used for localized strings
+		Locale locale;
+		// filter used
+		union {null, Filter} filter = null;		
+	}
+
+	@topic("/productTaxonomy/productType/searchFailed") 
+	@version("1.0.0") 
+	record SearchProductTypeFailed{
+		array<Error> errors;
+	}
+
+	//-----------------------------------------------------------------------------------------------------
+	// Request & Response: Product Taxonomy Message
+	//-----------------------------------------------------------------------------------------------------
+	@topic("/productTaxonomy/get") 
+	@version("1.0.0") 
+	record GetProductTaxonomy{
+		//    - The locale en_US will be the default if no locale is supplied in the message.
+		union { null, Locale } locale = null;
+	}
+	
+	@topic("/productTaxonomy/getSucceeded") 
+	@version("1.0.0") 
+	record GetProductTaxonomySucceeded{
+		ProductTaxonomy productTaxonomy;
+		// locale for the localized string
+		Locale locale;
+	}
+
+	/*
+	  Error Message
+	      - error message for GetProductTaxonomy
+	*/
+	@topic("/productTaxonomy/getFailed") 
+	@version("1.0.0") 
+	record GetProductTaxonomyFailed{
+		array<Error> errors;
+	}	
+	
+	
+	//-----------------------------------------------------------------------------------------------------
+	// Topic: Updated taxonomy message
+	//-----------------------------------------------------------------------------------------------------
+	@topic("/productTaxonomy/updated")
+	@version("1.0.0") 
+	record ProductTaxonomyUpdated{
+		// Format (ISO 8601): YYYY-MM-DDTHH:MMZ
+		string version;
+	}
+
+	//-----------------------------------------------------------------------------------------------------
+	// Request & Response: Get product type by ids
+	//
+	// 	- GetProductType: Request a list of product types with given ids.
+	// 	- GetProductTypeSucceeded- Return a list of product types.
+	// 	- GetProductTypeFailed- error message
+	//-----------------------------------------------------------------------------------------------------
+
+	@topic("/productTaxonomy/productType/get") 
+	@version("1.0.0") 
+	record GetProductType{
+		// if the productTypeIds field is null, all productTypes will be returned
+		union {null, array<string>} productTypeIds = null;
+		// optional locale, default to en_US
+		union {null, Locale} locale = null;
+		// if filter is omitted, the default behavior is to return all detailed information
+		union {null, Filter} filter = null;
+	}
+
+	@topic("/productTaxonomy/productType/getSucceeded") 
+	@version("1.0.0") 
+	record GetProductTypeSucceeded {
+		// list of product types
+		array<ProductType> productTypes;
+		// locale for the localized string
+		Locale locale;
+		// filter applied
+		union {null, Filter} filter = null;		
+	}
+
+	@topic("/productTaxonomy/productType/getFailed") 
+	@version("1.0.0") 
+	record GetProductTypeFailed{
+		array<Error> errors;
+	}
+}

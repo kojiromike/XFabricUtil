@@ -1,0 +1,367 @@
+@namespace("com.x.pim.v1")
+ 
+protocol ProductInformationManagementCapability {
+    import idl "CurrencyAmount.avdl";
+    import idl "Error.avdl";
+    import idl "Query.avdl";
+    import idl "Locale.avdl";
+    
+    enum FilterType 
+    {
+        SUMMARY,
+        FULL_DETAILS
+    }
+ 
+    record LocalizedMeasurement {
+        union {null, com.x.ocl.Locale} locale = null;
+        string name;
+        string unit;
+        string value;
+    }
+    
+     record LocalizedNameValue {
+         union {null, com.x.ocl.Locale} locale = null;
+         string name;
+         string value;
+     }
+     
+     record LocalizedString {
+         union {null, com.x.ocl.Locale} locale = null;
+          string stringValue;
+     }
+     
+    record BooleanAttributeValue
+    {
+        boolean value;
+        union {null, array<LocalizedString>} attributeName = null;
+    }
+ 
+     record StringAttributeValue {
+         array<LocalizedNameValue> attributeNameValue;
+     }
+     
+     record MeasurementAttributeValue {
+         array<LocalizedMeasurement> localizedMeasurementValue;
+     }
+     
+    record StringEnumerationAttributeValue
+    {
+        // valueId is the id of the value defined in ProductTaxonomy StringEnumeration 
+        array<string> valueId;
+        // this localized value will be populated by capability 
+        union {null, map<StringAttributeValue>} attributeValues = null;
+    }
+ 
+    record ProductTypeStringAttributeValue
+    {
+        // a string attribute value can optionally refer to 
+        // a predefined value in ProductTaxonomy, or it can be localized name/value pair 
+        union {null, string} valueId = null;
+        // this localized value can be populated by capability if valueId is present 
+        // if valueId is not present, the localized values can be populated by requester 
+        union {null, StringAttributeValue} attributeValue = null;
+    }
+     
+    record CustomAttributeValue {
+         union {null, BooleanAttributeValue, StringAttributeValue, MeasurementAttributeValue} value = null;
+    }
+     
+    record ProductTypeAttributeValue
+    {
+        // an attribute of a product type defined by producttaxonomy
+        union {ProductTypeStringAttributeValue, StringEnumerationAttributeValue, BooleanAttributeValue} value;
+    }
+ 
+    record ProductAttributeValue
+    {
+        string attributeId;
+        union {ProductTypeAttributeValue, CustomAttributeValue} attributeValue;
+    }
+  
+    record Image
+    {
+        string url;
+    // height in pixel
+    union {null, int} height = null;
+    // width in pixel
+    union {null, int} width = null;
+    union {null, LocalizedString} label = null;
+    union {null, LocalizedString} altText = null;
+    }
+
+    //
+    // Stock Keeping Unit
+    //
+    record SKU
+    {
+        // unique identifier of the SKU
+        union {null, string} sku = null;
+        // ID of the product for this SKU 
+        union {null, string} productId = null;
+        // Manufacturer suggested retail price, override the field in Product
+        union {null, com.x.ocl.CurrencyAmount} MSRP = null;
+        // Minimal advertisement price, override the field in Product
+        union {null, com.x.ocl.CurrencyAmount} MAP = null;
+        // variation attributes, the list must match the variationAttributeIds in Product 
+        union {null, array<ProductAttributeValue>} variationAttributeValues = null;
+        // SKU specific images 
+        union {null, array<Image>} images = null;
+    }
+
+    //-------------------------------------------------------------------
+    // TODO: Set of ProductAttributeValues
+    record Product 
+    {
+        // product id 
+        union {null, string} id = null;
+        // ID of the product type 
+        union {null, string} productTypeId = null;
+        // descriptive name
+        union {null, array<LocalizedString>} name = null;
+        // short description
+        union {null, array<LocalizedString>} shortDescription = null;
+        // full description
+        union {null, array<LocalizedString>} description = null;
+        union {null, string} GTIN = null;
+        union {null, array<LocalizedString>} brand = null;
+        union {null, array<LocalizedString>} manufacturer = null;
+        union {null, string} MPN = null;
+        // Manufacturer suggested retail price
+        union {null, com.x.ocl.CurrencyAmount} MSRP = null;
+        // Minimal advertisement price
+        union {null, com.x.ocl.CurrencyAmount} MAP = null;
+        // product images 
+        union {null, array<Image>} images = null;
+        // product attributes 
+        union {null, array<ProductAttributeValue>} attributes = null;
+        // defines the ids of variation variables 
+        union {null, array<string>} variationFactors = null;
+        // list of associated SKUs
+        union {null, array<SKU>} skuList = null;
+    }
+
+    enum ProductIdType {
+        PRODUCT_ID,
+        SKU
+    }
+    
+    record ProductIdentifier {
+        string value;
+        ProductIdType type;
+    }
+    
+
+    // Message definitions
+    //-------------------------------------------------------------------
+    //
+    // Create products
+    //
+    @topic("/pim/product/create")
+    @version("2.0.0")
+    record CreateProduct
+    {
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/created")
+    @version("2.0.0")
+    record ProductCreated
+    {
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/createFailed")
+    @version("2.0.0")
+    record CreateProductFailed
+    {
+        array<Product> products;
+        array<com.x.ocl.Error> errors;
+    }
+ 
+    //
+    // Create SKUs
+    //
+    @topic("/pim/sku/create")
+    @version("2.0.0")
+    record CreateSKU
+    {
+        array<SKU> skus;
+    }
+ 
+    @topic("/pim/sku/created")
+    @version("2.0.0")
+    record SKUCreated
+    {
+        array<SKU> skus;
+    }
+ 
+    @topic("/pim/sku/createFailed")
+    @version("2.0.0")
+    record CreateSKUFailed
+    {
+        array<SKU> skus;
+        array<com.x.ocl.Error> errors;
+    }
+ 
+    //
+    // Get Products
+    //
+    @topic("/pim/product/get")
+    @version("1.0.0")
+    record GetProduct
+    {
+        array<ProductIdentifier> ids;
+        union {null, FilterType} filter = null; 
+        // The locale en_US will be the default if no locale is supplied in 
+        // the message.
+        union { null, array<com.x.ocl.Locale> } locales = null;
+    }
+ 
+    @topic("/pim/product/getSucceeded")
+    @version("2.0.0")
+    record GetProductSucceeded
+    {
+        array<Product> products;
+        union {null, FilterType} filter = null; 
+        // The locale en_US will be the default if no locale is supplied in 
+        // the message.
+        union { null, array<com.x.ocl.Locale> } locales = null;
+    }
+ 
+    @topic("/pim/product/getFailed")
+    @version("1.0.0")
+    record GetProductFailed
+    {
+        array<ProductIdentifier> ids;
+        union {null, FilterType} filter = null; 
+        // The locale en_US will be the default if no locale is supplied in 
+        // the message.
+        union { null, array<com.x.ocl.Locale> } locales = null;
+        array<com.x.ocl.Error> errors;
+    }
+ 
+    @topic("/pim/product/search")
+    @version("1.0.1")
+    record SearchProduct
+    {
+    
+        com.x.ocl.Query @queryType("com.x.pim.v1.Product") query;
+        // The locale en_US will be the default if no locale is supplied in 
+        // the message.
+        union { null, array<com.x.ocl.Locale> } locales = null;
+    }
+ 
+    @topic("/pim/product/searchSucceeded")
+    @version("2.0.0")
+    record SearchProductSucceeded
+    {
+        com.x.ocl.Query query;
+        // The locale en_US will be the default if no locale is supplied in 
+        // the message.
+        union { null, array<com.x.ocl.Locale> } locales = null;
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/searchFailed")
+    @version("1.0.1")
+    record SearchProductFailed
+    {
+        com.x.ocl.Query query;
+        // The locale en_US will be the default if no locale is supplied in 
+        // the message.
+        union { null, array<com.x.ocl.Locale> } locales = null;
+        array<com.x.ocl.Error> errors;
+    }
+ 
+    // Update Product //
+    @topic("/pim/product/update")
+    @version("2.0.0")
+    record UpdateProduct
+    {
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/updated")
+    @version("2.0.0")
+    record ProductUpdated
+    {
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/updateFailed")
+    @version("2.0.0")
+    record UpdateProductFailed
+    {
+        array<Product> products;
+        array<com.x.ocl.Error> errors;
+    }
+ 
+    // Update SKU 
+    @topic("/pim/sku/update")
+    @version("2.0.0")
+    record UpdateSKU
+    {
+        array<SKU> skus;
+    }
+ 
+    @topic("/pim/sku/updated")
+    @version("2.0.0")
+    record SKUUpdated
+    {
+        array<SKU> skus;
+    }
+ 
+    @topic("/pim/sku/updateFailed")
+    @version("2.0.0")
+    record UpdateSKUFailed
+    {
+        array<SKU> skus;
+        array<com.x.ocl.Error> errors;
+    }
+ 
+    // Delete Product 
+    @topic("/pim/product/delete")
+    @version("2.0.0")
+    record DeleteProduct
+    {
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/deleted")
+    @version("2.0.0")
+    record ProductDeleted
+    {
+        array<Product> products;
+    }
+ 
+    @topic("/pim/product/deleteFailed")
+    @version("2.0.0")
+    record DeleteProductFailed
+    {
+        array<Product> products;
+        array<com.x.ocl.Error> errors;
+    }
+
+    // Delete SKU 
+    @topic("/pim/sku/delete")
+    @version("2.0.0")
+    record DeleteSKU
+    {
+        array<SKU> skus;
+    }
+ 
+    @topic("/pim/sku/deleted")
+    @version("2.0.0")
+    record SKUDeleted
+    {
+        array<SKU> skus;
+    }
+ 
+    @topic("/pim/sku/deleteFailed")
+    @version("2.0.0")
+    record DeleteSKUFailed
+    {
+        array<SKU> skus;
+        array<com.x.ocl.Error> errors;
+    }
+}

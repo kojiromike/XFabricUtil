@@ -3,7 +3,7 @@ Copyright (c) 2011, X.Commerce
 
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
 following conditions are met:
 
 Redistributions of source code must retain the above copyright notice, this list of conditions and the following
@@ -41,33 +41,43 @@ import javax.net.ssl.X509TrustManager;
 
 public class XFabricMessageHelper {
 
-	private static int HTTP_CONNECTION_TIMEOUT = 3000;
-	private static int HTTP_READ_TIMEOUT = 7000;
-	private static boolean DISABLE_SSL_CERT_CHECK = true;
-	
+	private static final String USERAGENT_TEXT = "XFabricUtil-0.11.0";
+	private static final int HTTP_CONNECTION_TIMEOUT = 3000;
+	private static final int HTTP_READ_TIMEOUT = 7000;
+	//XXX: SSL check must be enabled for sandbox & production environments
+	private static final boolean DISABLE_SSL_CERT_CHECK = false;
+
+	/**
+	 * User agent header
+	 */
+	private static String USERAGENT_HDR = "User-Agent";
 	/**
 	 * Constant for the Authorization header name
 	 */
 	private static String AUTHORIZATION_HDR = "Authorization";
 	/**
-	 * Name of the content type header 
+	 * Name of the content type header
 	 */
 	private static String CONTENTTYPE_HDR = "Content-Type";
 	/**
-	 * Name of the optional destination header to limit the message 
+	 * Name of the optional destination header to limit the message
 	 * recipient to a specific capability.
 	 */
 	private static String DESTINATION_HDR = "X-XC-DESTINATION-ID";
 	/**
-	 * Name of the optional Message GUID continuation header sent 
+	 * The message guid that is sent as a response header by the fabric
+	 */
+	private static final String MESSAGE_GUID_HEADER = "X-XC-MESSAGE-GUID";
+	/**
+	 * Name of the optional Message GUID continuation header sent
 	 * to relate this message with a previously sent one
 	 */
 	private static String MESSAGEGUID_CONTINUATION_HDR = "X-XC-MESSAGE-GUID-CONTINUATION";
 	/**
 	 * Name of the optional idempotency header sent to the fabric to instruct
-	 * it to not process the message if this id has already been processed successfully 
+	 * it to not process the message if this id has already been processed successfully
 	 */
-	private static String MESSAGE_IDEMPOTENCY_HDR = "X-XC-IDEMPOTENCY-ID";	
+	private static String MESSAGE_IDEMPOTENCY_HDR = "X-XC-IDEMPOTENCY-ID";
 	/**
 	 * Name of the schema version header to be sent to the fabric
 	 */
@@ -76,30 +86,41 @@ public class XFabricMessageHelper {
 	 * Name of the schema URI header that can be sent to
 	 * or received from the fabric
 	 */
-	private static String SCHEMAURI_HDR = "X-XC-SCHEMA-URI";	
-	
+	private static String SCHEMAURI_HDR = "X-XC-SCHEMA-URI";
+
 	/**
 	 * Name of the correlation id that can be sent to or received from the fabric
 	 */
 	private static String CORRELATIONID_HDR = "X-XC-RESULT-CORRELATION-ID";
-	
-	public static int postMessage(String topicUrl, String token, XFabricBoundMessage msg)
-	throws IOException, NoSuchAlgorithmException, KeyManagementException{
+
+	/**
+	 * @deprecated To be given package visibility. Use XFabricBoundMessage.post() instead
+	 * @param topicUrl
+	 * @param token
+	 * @param msg
+	 * @return message GUID
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException
+	 * @throws KeyManagementException
+	 * @throws XFabricHttpException
+	 */
+	public static String postMessage(String topicUrl, String token, XFabricBoundMessage msg)
+	throws IOException, NoSuchAlgorithmException, KeyManagementException, XFabricHttpException {
 		String responseString = "";
 		try {
 			if(DISABLE_SSL_CERT_CHECK){
-				// Create a trust manager that does not validate certificate chains 
-				TrustManager[] trustAllCerts = new TrustManager[] { 
-						new X509TrustManager() { 
-							public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; } 
-							public void checkClientTrusted( java.security.cert.X509Certificate[] certs, String authType) { } 
-							public void checkServerTrusted( java.security.cert.X509Certificate[] certs, String authType) { } 
+				// Create a trust manager that does not validate certificate chains
+				TrustManager[] trustAllCerts = new TrustManager[] {
+						new X509TrustManager() {
+							public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
+							public void checkClientTrusted( java.security.cert.X509Certificate[] certs, String authType) { }
+							public void checkServerTrusted( java.security.cert.X509Certificate[] certs, String authType) { }
 						} };
-				// Install the all-trusting trust manager 
+				// Install the all-trusting trust manager
 				SSLContext sc = SSLContext.getInstance("TLS");
 
-				sc.init(null, trustAllCerts, new java.security.SecureRandom()); 
-				HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory()); 
+				sc.init(null, trustAllCerts, new java.security.SecureRandom());
+				HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 				HttpsURLConnection.setDefaultHostnameVerifier( new HostnameVerifier(){
 					public boolean verify(String string,SSLSession ssls) {
 						return true;
@@ -118,10 +139,11 @@ public class XFabricMessageHelper {
 			connection.setRequestProperty(AUTHORIZATION_HDR, token);
 			// set content type
 			connection.setRequestProperty(CONTENTTYPE_HDR, msg.getContentType());
-			
+			connection.setRequestProperty(USERAGENT_HDR, USERAGENT_TEXT);
+
 			// set other optional headers
 			if(msg.getMessageContinuationGuid() != null) {
-				connection.setRequestProperty(MESSAGEGUID_CONTINUATION_HDR, msg.getMessageContinuationGuid());				
+				connection.setRequestProperty(MESSAGEGUID_CONTINUATION_HDR, msg.getMessageContinuationGuid());
 			}
 			if(msg.getDestinationId() != null) {
 				connection.setRequestProperty(DESTINATION_HDR, msg.getDestinationId());
@@ -138,9 +160,9 @@ public class XFabricMessageHelper {
 			if(msg.getCorrelationId() != null) {
 				connection.setRequestProperty(CORRELATIONID_HDR, msg.getCorrelationId());
 			}
-			
+
 			// write the binary data
-			connection.getOutputStream().write(msg.getRawMessage());			
+			connection.getOutputStream().write(msg.getRawMessage());
 
 			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 				String inputLine;
@@ -149,8 +171,10 @@ public class XFabricMessageHelper {
 					responseString += inputLine;
 				}
 				reader.close();
-			} 
-			return connection.getResponseCode();
+				return connection.getHeaderField(MESSAGE_GUID_HEADER);
+			}
+			throw new XFabricHttpException(connection.getResponseMessage(), connection.getResponseCode());
+
 		} catch (MalformedURLException e) {
 			// ...
 			throw e;
@@ -158,10 +182,9 @@ public class XFabricMessageHelper {
 			// ...
 			throw e;
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw e;
-		} 
+		}
 
 	}
-}	
+}

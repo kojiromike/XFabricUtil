@@ -1,0 +1,11 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	record Name {
+		string firstName;
+		union {null, string} middleName = null;
+		string lastName;
+		union {null, string} prefix = null;
+		union {null, string} suffix = null;
+	}
+}

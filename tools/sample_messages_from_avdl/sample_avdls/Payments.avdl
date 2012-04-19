@@ -1,0 +1,446 @@
+
+/**
+ * Avro protocol definitions for Payments.  
+ *
+ * Used by both Payment adapters and clients.
+ *
+ */
+@namespace("com.x.payment.v0")
+protocol Payments {  
+
+  /**  interaction type - front end */
+  enum InteractionType {
+    REDIRECT,                //  Not supported yet  
+	REDIRECT_PLUS_EXECUTE,   //  Used for services such as PayPal 
+	CC_API,                  //  Used for CreditCard       
+	OUT_OF_BAND              //  Not supported yet          
+  }
+  
+  /**  Credit card types */
+  enum CardType {
+  	VISA,
+  	MASTER_CARD,
+  	DISCOVER,
+  	AMERICAN_EXPRESS,
+  	JAPAN_CREDIT_BUREAU, 
+  	CHINA_UNION_PAY,
+  	MAESTRO
+  }
+    
+  /**  Defines what the payment is for */
+  enum PaymentType {
+  	GOODS,
+  	SERVICE,
+  	PERSONAL,
+  	CASH_ADVANCE,
+  	DIGITAL_GOODS
+  }
+  
+  /**  State of the payment  */
+  enum State {
+  	BID,        //  Internal status (does not correspond to update message, has own topic)
+  	INITIATED,  //  Internal status 	
+  	PENDING,    //  Call to provider in progress   	
+  	FAILED,     //  Call to provider results (and below)   	
+  	AUTHORIZED, //  Payment is authorized     	
+  	CAPTURED,   //  Payment has been captured   	
+  	REVERSED,   //  Payment was reversed  	
+  	REFUNDED,   //  Payment was refunded 
+  	VOIDED,     //  Payment was voided prior to capture 
+  	EXPIRED     //  Payment authorization has expired 
+  }
+    
+  /**  Defines what type of transaction is being performed */
+  enum TransactionType {
+    AUTHORIZE_ONLY, 
+    AUTH_CAPTURE
+  }
+  
+  /** Generic record that can contain any kind of data */
+  record GenericItem { 
+  	  union {boolean, int, long, float, double, string, array<GenericItem>, map<GenericItem>} value; 		
+  }
+  
+  /**  render/information for bid response */
+  record RedirectRenderInfo {
+    /**  URL to an image which the UI can use as a logo.  Max height is 19 pixels. */
+    union {null, string} logoUrl = null;
+    
+    /**  Text for an optional help link */
+    union {null, string} helpTitle = null;
+    
+    /**  URL the UI should use when user presses on help link */
+    union {null, string} helpUrl = null;
+  }
+  
+  /**  Data used by UI to render one credit card type */
+  record CardRenderInfo {
+    /**  User friendly label for this card type */
+  	string label;
+  	
+  	/**  Indicates what type this card is */
+	union {null, CardType} type = null;
+	
+	/**  Indicates if UI can perform Luhn checksum on card number to help user */
+	boolean checksum;
+	
+    /**  URL to an image which the UI can use as a logo.  Max height is 19 pixels. */
+  	union {null, string} logoUrl = null;
+  	
+  	/**  Minimum length of card number */
+  	union {null, int} minLength = null;
+  	
+  	/**  Maximum length of card number */
+  	union {null, int} maxLength = null;
+  }
+  
+  /**  Rendering information for a collection of CreditCard types */
+  record CreditCardRenderInfoCollection {
+    array<CardRenderInfo> cardRenderInfo;
+  }
+
+  /**  A line item within a shopping cart. */
+  record LineItem {
+    /**  Name of the product */
+  	string name;
+  	
+  	/**  Unique identifier for the product such as a SKU */
+  	union {null, string} identifier = null;
+  	
+  	/**  Price of all items for this line (itemPrice * itemCount). No currency symbol. */
+  	union {null, string} totalPrice = null;  
+  	
+  	/**  Price for one unit of this item. No currency symbol. */
+  	union {null, string} itemPrice = null;
+  	
+  	/**  Number of units for this item being purchased. Do not include unit type. */
+  	union {null, string} itemCount = null;
+  	
+  	/**  the total tax for the line data. */
+  	union {null, string} itemTax = null;     
+  }
+  
+  /**  Pricing data for the shopping cart */
+  record Cart {
+    /**  Collection of line items for this shopping cart. */
+  	union {null, array<LineItem>} lineItems = null;
+  	
+  	/**  Total tax for all line items in this cart. No currency symbol. */
+  	union {null, string} totalTax = null;
+  	
+  	/**  Total shipping costs for this cart. */
+  	union {null, string} totalShipping = null;
+  	
+  	/**  The sum of the totalPrice from all LineData in this cart. No currency symbol. */
+  	union {null, string} totalPrice = null;  
+  	
+  	/**  Total handling costs for this cart. No currency symbol. */
+  	union {null, string} totalHandling = null;
+  }
+
+  /**  Information about the purchase being made */
+  record Payment {
+    /**  Initially null, payment provider work flow assigns value */
+  	union {null, string} paymentProviderAssignedUniqueId = null; 
+  	
+  	/**  Grand total of price, tax, shipping and handling for this payment. No currency symbol. */
+  	string grandTotalAmountOwed; 
+  	
+  	/**  Three letter currency code/ISO 4217 */
+  	string currency;  
+  	
+  	/**  General category for this payment */
+  	PaymentType type;
+  	
+  	/**  Current state of this payment */
+    State state;
+    
+    /**  Optional field with additional information regarding state */
+    union {null, string} stateReason = null;   
+    
+    /**  Shopping cart details for this payment if available */
+    union {null, Cart} cart = null;
+  }
+
+  /**  Meta-data for a provider's payment method */
+  record PaymentMethod {
+    /**  UI interaction category this payment method falls into */
+  	InteractionType interactionType;
+  	
+    /**  Label for this payment method which might be displayed by the paywall */
+	string productLabel;
+		
+	/**  unique name for payment method (unique for a provider) */
+  	string methodName; 
+  	
+  	/**  UI rendering meta-data for this payment method */
+  	union {RedirectRenderInfo, CreditCardRenderInfoCollection} renderInfo;
+  }
+
+  /**  An error */
+  record Error { 
+    /**  Error code.  This may become an enum in the future */
+    string code;
+  	
+  	/**  Debug message for this error.  Developers and Merchants might see this but customers won't. */  
+    union {null, string} message = null;
+  }
+ 
+ 
+  //---- Bid ----//    
+
+  /**  Bids for various payment methods */
+  record Bids {
+    /**  Available payment methods */
+    union {null, array<PaymentMethod>} paymentMethods = null;
+    
+    /**  XFabric destination ID for these paymentMethods. */
+    string destinationId;
+  }
+  
+  
+  //---- End Bid ----//
+  
+  
+  //---- Initiate ----//
+
+  /**  All these fields must be encrypted */
+  record CreditCard {
+    /**  What type of credit card this is */
+  	CardType cardType;
+  	
+  	/**  The credit card number */
+    @security("Restricted")
+  	string cardNumber;
+  	
+  	/**  Expiration year in YYYY format */
+  	@security("Restricted")
+    string expYear; 
+    
+    /**  Expiration month in MM format */
+    @security("Restricted")
+    string expMonth; 
+    
+    /**  Three or four digit card verification code.  Never store cardCode field on disk */
+    @security("DoNotStore")
+    string cardCode; // 3 or 4 digit
+
+	/**  Name of card holder as it appears on the card */
+    union {null, string} cardHolder = null;
+  }
+  
+  /**  Never broadcast Customer data */
+  @security("Confidential")
+  record Customer {
+    union {null, string} firstName = null;
+    union {null, string} lastName = null;
+    union {null, string} company = null;
+    union {null, string} address = null;
+    union {null, string} city = null;
+    union {null, string} stateProvince = null;
+    union {null, string} zipPostal = null;
+    union {null, string} country = null;
+    union {null, string} phone = null;
+    union {null, string} merchantAssignedCustomerId = null;
+    union {null, string} endCustomerIP = null;
+  }
+  
+  /**  Never broadcast ShipTo data */
+  @security("Confidential")
+  record ShipTo {
+    union {null, string} firstName = null;
+    union {null, string} lastName = null;
+    union {null, string} company = null;
+    union {null, string} address = null;
+    union {null, string} city = null;
+    union {null, string} stateProvince = null;
+    union {null, string} zipPostal = null;
+    union {null, string} country = null;
+  }
+  
+  /**  Data sent by merchant site to payment provider for redirects */
+  record RedirectExecuteInitiationData {
+    /**  URL of merchant site to redirect user to when payment can proceed */
+  	string returnSuccessUrl;
+  	
+  	/**  URL of merchant site to redirect user to when a problem with payment exists */
+  	string returnCancelUrl;
+  }
+  
+  /**  Data sent to initiate a credit card payment */
+  record ApiInitiationData {
+  	/**  The type of transaction being requested */
+    TransactionType transactionType;
+    
+    /**  Credit card information */
+    CreditCard creditCard;
+    
+    /**  Customer information */
+    Customer customer;
+    
+    /**  Shipping address information */
+    ShipTo shipTo;
+  }
+  
+
+  // Initiation result data should contain information to act on interaction type initiated (id is assigned in payment)
+  
+  /**  Should contain any information needed for front end redirect   */
+  record RedirectExecuteInitiationResultData {
+  	string redirectUrl;
+  }
+
+  /**  Place holder.  Used to indicate success */
+  record ApiInitiationResultData {
+  }
+
+  
+  //---- End Initiate ----//
+  
+  /**  Configuration properties for a specific payment method */
+  record MethodProperties {
+      /**  Payment method name */
+      string methodName;
+      
+      /**  Indicates if the payment method should be enabled or disabled */
+      boolean enabled;
+      
+      /**  Custom properties for the payment method */
+      union {null, map<GenericItem>} properties = null;
+  }
+  
+    
+  //---- Messages ----//
+  
+  
+  /** Message broadcast to solicit bids for payment */
+  @topic("/payment/solicitBids")
+  @version("0.8.0")
+  record SolicitBids {
+    /** transaction id unique for merchant such as shipping cart id. */
+    string clientProvidedUniqueId; 
+
+    /** The payment for which bids are being solicited. */
+    Payment payment;
+  }
+
+  /**  Response to solicitBids for a particular payment  */
+  @topic("/payment/bid")
+  @version("0.8.0")
+  record Bid {
+    /**  Transaction id unique for merchant such as shipping cart id.  Must correspond to one sent out in solicit bids */
+    string clientProvidedUniqueId;
+    
+    /**  The bids being sent */
+    Bids bids;
+  }
+  
+  @topic("/payment/solicitFailed")
+  @version("0.8.0")
+  record SolicitBidsFailed {
+    /**  Transaction id unique for merchant such as shipping cart id.  Must correspond to one sent out in solicit bids */
+    string clientProvidedUniqueId;
+    
+    /**  Error messages for the errors encountered.  Most important error should be at the front of the list. */
+  	array<Error> errors;
+  }
+  
+  @topic("/payment/initiate")
+  @version("0.8.0")
+  record InitiatePayment {
+    /**  Transaction id unique for merchant such as shipping cart id */
+  	string clientProvidedUniqueId; 
+  
+    /**  Comes from paymentMethod.methodName received in response to bid */
+  	string selectedMethodName; 
+  
+  	union {RedirectExecuteInitiationData, ApiInitiationData} initiationData;
+  
+  	Payment payment;
+  }
+  
+    
+  /**  Message sent when payment was successfully initiated but not yet executed */
+  @topic("/payment/initiated")
+  @version("0.8.0")
+  record PaymentInitiated {
+    /**  Transaction id unique for merchant such as shipping cart id */
+    string clientProvidedUniqueId;
+    
+    union {RedirectExecuteInitiationResultData, ApiInitiationResultData} initiationResultData;
+  }
+  
+  @topic("/payment/initiateFailed")
+  @version("0.8.0")
+  record InitiatePaymentFailed {
+    /**  Transaction id unique for merchant such as shipping cart id */
+    string clientProvidedUniqueId;
+    
+  	array<Error> errors;
+  }
+    
+  /**  Message sent to request payment to be executed */
+  @topic("/payment/process")
+  @version("0.8.0")
+  record ProcessPayment {
+    /**  Transaction id unique for merchant such as shipping cart id */
+  	string clientProvidedUniqueId; 
+  }
+
+  @topic("/payment/processed")
+  @version("0.8.0")
+  record PaymentProcessed {
+    /**  Transaction id unique for merchant such as shipping cart id */
+    string clientProvidedUniqueId;
+    
+    /**  Payment information with updated state */
+  	Payment payment;
+  }
+ 
+  @topic("/payment/processFailed")
+  @version("0.8.0")
+  record ProcessPaymentFailed {
+    /**  Transaction id unique for merchant such as shipping cart id */
+    string clientProvidedUniqueId;
+    
+  	array<Error> errors;
+  }
+
+  /**  Message sent to request a configuration change/update in a payment provider*/
+  @topic("/payment/configuration/change")
+  @version("0.8.0")
+  record ChangeConfiguration {
+      /**  Globally unique identifier used to correlate responses to this request. */
+      string guid;
+
+      /**  Custom properties for the payment provider */
+	  map<GenericItem> globalProperties;
+	  
+      /**  Properties for the various payment methods this providers supports */
+      union {null, array<MethodProperties>} methodProperties = null;
+  }
+
+  /**  Message broadcast whenever a configuration changes */
+  @topic("/payment/configuration/changed")
+  @version("0.8.0")
+  record ConfigurationChanged {
+    /**  Globally unique identifier used to correlate this response to the original request. */
+  	string guid;
+  	
+  	/**  Publishing the destination id to allow the Paywall to send bids to this payment adapter. */
+  	string destinationId;
+  	
+  	/**  true if any method supported by the adapter is enabled */
+  	boolean enabled;	
+  }
+  
+  
+  @topic("/payment/configuration/changeFailed")
+  @version("0.8.0")
+  record ChangeConfigurationFailed {
+    /**  Globally unique identifier used to correlate this response to the original request. */
+    string guid;
+    
+  	array<Error> errors;
+  }
+}

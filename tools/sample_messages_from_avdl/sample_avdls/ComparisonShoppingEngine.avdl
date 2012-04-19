@@ -1,0 +1,262 @@
+@namespace("com.x.cse.v0")
+
+/**
+	The comparison shopping engine (CSE) protocol defines the schema for all
+	the messages that are part of the CSE domain.
+*/
+protocol ComparisonShoppingEngine {
+	import idl "Error.avdl";
+	import idl "Offer.avdl";
+	import idl "CurrencyAmount.avdl";
+
+	enum ImagePurpose {
+		Hero,
+		Gallery,
+		Thumbnail
+	}
+	
+	enum AvailabilityType {
+		InStock,
+		AvailableForOrder,
+		Unknown
+	}
+	
+	enum ConditionType {
+		New,
+		Refurbished,
+		VeryGood,
+		Good,
+		Used
+	}
+	
+	enum ProductFeedType {
+		Full,
+		Incremental
+	}
+	
+	enum ImageBackgroundType {
+		HasBackground,
+		NoBackground,
+		Unknown
+	}
+	
+	record ProductAttribute {
+		string id;
+		string label;
+		string value;
+	}
+	
+	record ProductImage {
+		string imageUrl;
+		ImagePurpose imagePurpose;
+		ImageBackgroundType backgroundType;
+	}
+	
+	record TaxRate {
+		string country;
+		string region;
+		double rate;
+		boolean taxShipping;
+	}
+	
+	record Shipping {
+	 	string country;
+	 	string region;
+	 	string service;
+	 	com.x.ocl.CurrencyAmount price;
+	 }
+
+	
+	record VariationValue {
+		com.x.ocl.CurrencyAmount price;
+		string sku;
+		array<ProductImage> imageUrls;
+		string value;
+	}
+	
+	record Variation {
+		string id;
+		array<VariationValue> values;
+	}
+	
+	record CseAccount {
+		union{null, string} xId = null;   // ID provided by X.commerce
+		union{null, string} cseAcccountId;
+		union{null, long} authorizationExpiration = null;
+		
+		/* location where the offer will be placed for this account */
+		union{null, string} targetLocation;
+	}
+	
+	/*
+		Each cse adapter will require a different set of
+		credential keys with its own name/value. Please
+		check the cse adapter documentation for specific
+		requirements.
+	*/
+	record Credential {
+		map<string> properties;
+	}
+
+	@topic("/cse/authorization/init")
+	@version("2.0.0")
+	record InitAuthorization {
+		//Only used if cse web-auth flow supports it
+		union{null, string} returnURL = null;
+		union{null, string} cancelURL = null;
+		union{null, string} cseAccountId = null;
+
+		/*
+		   This guid is use to correlate between this message and AuthorizationPending.
+		   This can be any string that is unique to the client. It will not be used by
+		   the adapter for any purpose except returned as part of the AuthorizationPending.
+		 */
+		string guid;
+		
+		/* location where the offer will be placed for this account */
+		union{null, string} targetLocation;
+	}
+
+	@topic("/cse/authorization/pending")
+	@version("1.0.0")
+	record AuthorizationPending {
+		//This guid is use to correlate between this message and InitAuthorization
+		string guid;
+
+		string redirectURL;
+		string authId; //A unique identifier for the authorization
+
+		/*
+		 * Any extra credentials needed to proceed with the auth
+		 */
+		union{null, Credential} cred = null;
+	}
+
+    @topic("/cse/authorization/initFailed")
+    @version("1.0.0")
+    record InitAuthorizationFailed {
+        //Only used if cse web-auth flow supports it
+        union{null, string} cseAccountId = null;
+
+        array<com.x.ocl.Error> errors;
+    }
+
+	@topic("/cse/authorization/userCompleted")
+	@version("1.0.0")
+	record AuthorizationUserCompleted {
+		string authId;
+		//any extra credentials needed to complete the process
+		union{null, Credential} cred = null;
+	}
+
+	@topic("/cse/authorization/completed")
+	@version("1.0.0")
+	record AuthorizationCompleted {
+		string authId;
+		string xAccountId;
+		union{null, string} cseAccountId = null;
+		union{null, long} authorizationExpiration = null;
+	}
+
+    @topic("/cse/authorization/failed")
+    @version("1.0.0")
+    record AuthorizationFailed {
+        union{null, string} authId = null;
+        //any extra credentials needed to complete the process
+        union{null, Credential} cred = null;
+
+        array<com.x.ocl.Error> errors;
+    }
+	
+	@topic("/cse/account/delete")
+	@version("2.0.0")
+	record DeleteAccount {
+		string xAccountId;
+	}
+
+	@topic("/cse/account/deleted")
+	@version("2.0.0")
+	record AccountDeleted {
+		string xAccountId;
+	}
+
+	@topic("/cse/account/deleteFailed")
+	@version("2.0.0")
+	record DeleteAccountFailed {
+		union{null, string} xAccountId;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/cse/account/search")
+	@version("1.0.0")
+	record SearchAccount {
+	}
+
+	@topic("/cse/account/searchSucceeded")
+	@version("2.0.0")
+	record SearchAccountSucceeded {
+		array<CseAccount> accounts;
+	}
+
+	@topic("/cse/account/searchFailed")
+	@version("1.0.0")
+	record SearchAccountFailed {
+		array<com.x.ocl.Error> errors;
+	}
+	
+	@extends("com.x.ocl.Offer")
+	@version("2.0.0")
+	record CseOffer {
+   		string title;
+   		string description;
+   		string manufacturer;
+   		union{null, string} mpn;
+   		union{null, string} gtin;
+   		string brand;
+   		string category;
+   		union{null, string} xProductTypeId = null;  // Product type id as defined by the taxonomy manager.
+   		union{null, array<string>} productTypes;
+   		array<ProductImage> images;
+   		string link;
+   		com.x.ocl.CurrencyAmount originalPrice;
+   		AvailabilityType availability;
+   		union{null, TaxRate} taxRate;
+   		union{null, Shipping} shipping;
+   		union{null, double} shippingWeight;
+   		array<ProductAttribute> attributes;
+   		union{null, array<Variation>} variations;
+   		union{null, string} offerId;
+   		union{null, com.x.ocl.CurrencyAmount} cpc;
+	}
+	
+	@topic("/cse/offer/create")
+	@version("2.0.0")
+	record CreateOffer {
+		array<com.x.ocl.Offer> offers;
+		ProductFeedType feedType;
+		string xAccountId; 
+		string siteId;
+		
+		/* the name that identifies the collection of offers */
+		union{null, string} offerName;
+	}
+	
+	@topic("/cse/offer/created")
+	@version("1.0.0")
+	record OfferCreated {
+		array<com.x.ocl.Offer> offers;
+		string xAccountId; 
+		string siteId;
+	}
+
+	@topic("/cse/offer/createFailed")
+	@version("1.0.0")
+	record CreateOfferFailed {
+		array<com.x.ocl.Error> errors;
+		string xAccountId; 
+		string siteId;
+	}
+}
+
+
+

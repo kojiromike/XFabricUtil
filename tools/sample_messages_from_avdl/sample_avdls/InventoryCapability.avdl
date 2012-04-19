@@ -1,7 +1,6 @@
 @namespace("com.x.inventory.v1")
  
-protocol InventoryCapability 
-{
+protocol InventoryCapability {
 	import idl "Error.avdl";
 	import idl "Query.avdl";
 
@@ -14,8 +13,8 @@ protocol InventoryCapability
 	record StockItem 
 	{
 		string skuId;
-		int quantity;  // note: quantity is a high consistency field due to serialization issues.
-		union{null,Location} location;
+		int quantity;        // note: quantity is a high consistency field due to serialization issues.
+		string locationName; // reference to location based on unique name
 	}
 
 	record InventoryError
@@ -40,21 +39,21 @@ protocol InventoryCapability
 	/* Message definitions											   */
 	/*-------------------------------------------------------------------*/
 	@topic("/inventory/stockItem/set")
-	@version("1.0.0")
+	@version("2.0.0")
 	record SetStockItem
 	{
 		array<StockItem> stockItems;
 	}
  
 	@topic("/inventory/stockItem/setSucceeded")
-	@version("1.0.0")
+	@version("2.0.0")
 	record SetStockItemSucceeded
 	{
 		array<StockItem> stockItems;
 	}
  
 	@topic("/inventory/stockItem/setFailed")
-	@version("1.0.0")
+	@version("2.0.0")
 	record SetStockItemFailed
 	{
 		array<InventoryError> errors;
@@ -68,7 +67,7 @@ protocol InventoryCapability
 	}
  
 	@topic("/inventory/stockItem/getSucceeded")
-	@version("1.0.0")
+	@version("2.0.0")
 	record GetStockItemSucceeded
 	{
 		array<StockItem> stockItems;
@@ -82,16 +81,15 @@ protocol InventoryCapability
 		array<InventoryGetError> errors;
 	}
  
-	// TODO: Use Query pattern
 	@topic("/inventory/stockItem/search")
-	@version("1.0.0")
+	@version("1.0.1")
 	record SearchStockItem
 	{
 		com.x.ocl.Query query;
 	}
  
 	@topic("/inventory/stockItem/searchSucceeded")
-	@version("1.0.0")
+	@version("1.0.1")
 	record SearchStockItemSucceeded
 	{
 		com.x.ocl.Query query;
@@ -99,7 +97,7 @@ protocol InventoryCapability
 	}
  
 	@topic("/inventory/stockItem/searchFailed")
-	@version("1.0.0")
+	@version("1.0.1")
 	record SearchStockItemFailed
 	{
 		com.x.ocl.Query query;
@@ -109,21 +107,21 @@ protocol InventoryCapability
 	//Note: this update command will update all fields of the StockItem including the quantity field.
 	//Use the updateQuantity message to update that field if you wish to perform relative value updates.
 	@topic("/inventory/stockItem/update")
-	@version("1.0.0")
+	@version("2.0.0")
 	record UpdateStockItem
 	{
 		array<StockItem> stockItems;
 	}
  
 	@topic("/inventory/stockItem/updated")
-	@version("1.0.0")
+	@version("2.0.0")
 	record StockItemUpdated
 	{
 		array<StockItem> stockItems;
 	}
  
 	@topic("/inventory/stockItem/updateFailed")
-	@version("1.0.0")
+	@version("2.0.0")
 	record UpdateStockItemFailed
 	{
 		array<InventoryError> errors;
@@ -144,7 +142,7 @@ protocol InventoryCapability
 	}
 
 	@topic("/inventory/stockItem/quantityUpdated")
-	@version("1.0.0")
+	@version("2.0.0")
 	record QuantityUpdated
 	{
 		string skuId;
@@ -164,28 +162,28 @@ protocol InventoryCapability
 	}
  
 	@topic("/inventory/stockItem/delete")
-	@version("1.0.0")
+	@version("2.0.0")
 	record DeleteStockItem
 	{
 		array<StockItem> stockItems;
 	}
  
 	@topic("/inventory/stockItem/deleted")
-	@version("1.0.0")
+	@version("2.0.0")
 	record StockItemDeleted
 	{
 		array<StockItem> stockItems;
 	}
  
 	@topic("/inventory/stockItem/deleteFailed")
-	@version("1.0.0")
+	@version("2.0.0")
 	record DeleteStockItemFailed
 	{
 		array<InventoryError> errors;
 	}
 
 	@topic("/inventory/stockItem/outOfStock")
-	@version("1.0.0")
+	@version("2.0.0")
 	record OutOfStock
 	{
 		StockItem stockItem;
@@ -234,14 +232,14 @@ protocol InventoryCapability
 	}
 
 	@topic("/inventory/location/search")
-	@version("1.0.0")
+	@version("1.0.1")
 	record GetLocation
 	{
 		com.x.ocl.Query query; 
 	}   
 
 	@topic("/inventory/location/searchSucceeded")
-	@version("1.0.0")
+	@version("1.0.1")
 	record GetLocationSucceeded
 	{
 		com.x.ocl.Query query;
@@ -249,7 +247,7 @@ protocol InventoryCapability
 	}
 
 	@topic("/inventory/location/searchFailed")
-	@version("1.0.0")
+	@version("1.0.1")
 	record SearchLocationFailed
 	{
 		com.x.ocl.Query query;

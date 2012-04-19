@@ -1,0 +1,103 @@
+@namespace("com.x.ocl")
+protocol Xcommerce {
+
+	enum Primitive {
+		BOOLEAN,
+		STRING,
+		INTEGER,
+		LONG,
+		FLOAT,
+		DOUBLE,
+		BYTES
+	}
+	
+	enum Collection {
+		ARRAY,
+		MAP
+	}	
+
+	/** This is an Avro specific type that is not very common */
+	record FixedType {
+		/** A FixedType is a byte array of fixed size */
+		int fixedSize;
+	}
+
+	/** This is an Avro specific type that is not very common */
+	record UnionType {
+		/** NOTE: UnionType cannot have immediate embedded union */
+		array<union{string,Primitive,FixedType}> members;
+		
+		/** 
+		 * TODO: cannot have cyclical dependency to CollectionType
+		 *       i.e. no union{array<string>}
+		 */
+	}
+	
+	record CollectionType {
+		Collection type;
+		union{string,Primitive,CollectionType,UnionType,FixedType} member;
+	}
+
+	@abstract("true")
+	record NamedType {
+		//A named type is one that is referenced by name
+		string name;
+	}	
+	
+	@extends("com.x.ocl.NamedType")
+	record ComplexType {
+		NamedType _base;
+		
+		/** 
+		 * Key=member name, value=member's type
+		 * NOTE: for NamedType, use string to reference them 
+		 */
+		map<union{string,Primitive,CollectionType,UnionType,FixedType}> members;
+		map<boolean> required; //Use same key as members map
+	}
+	
+	@extends("com.x.ocl.NamedType")
+	record EnumType {
+		NamedType _base;
+		
+		/** Key=enum literal name, value=enum literal value */
+		map<string> values;
+	}
+	
+	record Message {
+		string fullName; //Fully qualified name of the message
+		string version; //TODO: verify if this is the appropriate location for versioning
+		
+		/** 
+		 * Key=member name, value=member's type
+		 * NOTE: for named types, use string to reference them 
+		 */
+		map<union{string,Primitive,CollectionType,UnionType,FixedType}> members;
+		map<boolean> required; //Use same key as members map
+	}
+	
+	/** A specialized message used for message acknowledgment. */
+	@abstract("true")
+	record AckMessage {
+		string correlationId;
+	}
+	
+	@extends("com.x.ocl.AckMessage")
+	record ReceiptAckMessage {
+		AckMessage _base;
+	}
+
+	@extends("com.x.ocl.AckMessage")
+	record ProcessingAckMessage {
+		AckMessage _base;
+	}
+
+	record Topic {
+		string name; 
+		/** 
+		 * The possible messages sent to this topic.
+		 * key = Fully qualified message name
+		 */
+		map<union{Message,ReceiptAckMessage,ProcessingAckMessage}> allowedMessages;
+	}
+}

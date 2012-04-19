@@ -1,0 +1,75 @@
+@namespace("com.x.ocl")
+protocol BusinessRequirements {
+	/** A package is a collection of business artifacts */ 
+	@abstract("true")
+	record Package {
+		string version;
+		string uniqueIdentifier;
+		union{null,string} status = null;
+
+		array<string> owners;
+		array<string> references;		
+	}
+	
+	record EntityStateTransition {
+		string name;
+		string nextStateName;
+	}
+	
+	record EntityState {
+		string name; //unique within entity
+		union{null,array<EntityStateTransition>} outTransition = null;
+	}
+
+	record BusinessEntity {
+		string name;
+		
+		string currentStateName;
+		map<EntityState> possibleStates; //key is EntityState.name
+	}
+	
+	/** A particular role of a collaboration */
+	record CollaborationRoleAssignment {
+		string collaborationName;
+		string collaborationRoleName;
+	}
+	
+	/** 
+	 * A real company/partner that will be assigned to participate
+	 * as a particular BusinessRole of a Collaboration.
+	 */
+	record BusinessPartner {
+		string name;
+		
+		array<CollaborationRoleAssignment> participation;
+	}
+
+	/** 
+	 * A group of collaborations that achieves similar business purpose but
+	 * the flow of transaction can be different among them. One BusinessPartner
+	 * should not use more than one variation of a collaboration.
+	 */
+	record BusinessProcess {
+		string name;
+		string description;
+
+		string objective;
+		string scope;
+		string opportunity;
+
+		//TODO: how do we model triggerEvent?
+		//TODO: how do we model endEvent?
+		
+		//Map of BusinessEntity.name to current EntityState.name
+		map<string> preConditions;
+		map<string> postConditions;
+	}
+
+	@extends("com.x.ocl.Package")
+	record BusinessArea {
+		Package _base;
+		
+		union{null,string} parentArea = null;
+		map<BusinessProcess> processes;
+	}
+}

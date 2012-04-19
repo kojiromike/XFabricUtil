@@ -1,0 +1,25 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	import idl "EmbeddedObject.avdl";
+	import idl "Address.avdl";
+	import idl "Phone.avdl";
+	import idl "Name.avdl";
+	import idl "Email.avdl";
+
+	enum ContactAddressType {
+		BILLING,
+		SHIPPING,
+		BILLING_AND_SHIPPING
+	}
+
+	record Contact {
+		com.x.ocl.Name fullName;	   
+	    union {null, array<com.x.ocl.Address>} addresses = null;
+		union {null, com.x.ocl.Phone} primaryPhone = null;
+	    union {null, array<com.x.ocl.Phone>} additionalPhones = null;
+		union {null, com.x.ocl.Email} emailAddress = null;   		
+		union {null, com.x.ocl.EmbeddedObject} extension = null;
+		union {null, com.x.ocl.ContactAddressType} addressType = null;
+	}
+}

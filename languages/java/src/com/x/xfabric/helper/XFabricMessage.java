@@ -22,7 +22,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.x.xfabric.helper;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,11 +33,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.avro.Schema;
-import org.apache.avro.file.DataFileStream;
-import org.apache.avro.generic.GenericDatumReader;
-import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.generic.IndexedRecord;
-import org.apache.avro.io.DatumReader;
+
 import com.x.xfabric.helper.avro.AvroContentType;
 import com.x.xfabric.helper.avro.AvroEncDecoder;
 
@@ -64,7 +60,19 @@ public class XFabricMessage {
 	/**
 	 * Name of the Publisher header sent by the fabric
 	 */
-	private static String PUBLISHER_HDR = "X-XC-PUBLISHER";
+	private static String PUBLISHER_HDR = "X-XC-PUBLISHER-ID";
+	/**
+	 * Name of the deprecated Publisher header sent by the fabric
+	 */
+	private static String PUBLISHER_DEP_HDR = "X-XC-PUBLISHER-DESTINATION-ID ";
+	/**
+	 * Name of the Publisher header sent by the fabric
+	 */
+	private static String PUBLISHER_PSEUDONYM_HDR = "X-XC-PUBLISHER-PSEUDONYM";
+	/**
+	 * Name of the deprecated Publisher header sent by the fabric
+	 */
+	private static String PUBLISHER_PSEUDONYM_DEP_HDR = "X-XC-PUBLISHER";
 	/**
 	 * Name of the Message GUID header sent by the fabric
 	 */
@@ -99,15 +107,22 @@ public class XFabricMessage {
 	 */
 	private String tenantId;
 	/**
-	 * Publisher ID
+	 * Destination id of the publisher that is used for routing messages to the
+	 * publisher. This value is set only for topics that are configured to
+	 * reveal the publisher's identity.
 	 */
 	private String publisher;
+	/**
+	 * Publisher pseudonym used for routing error messages back to the
+	 * publisher. This header is set for messages on all topics.
+	 */
+	private String publisherPseudonym;
 	/**
 	 * message guid
 	 */
 	private String messageGuid;
 	/**
-	 *  Correlation identifier to relate messages as a group
+	 * Correlation identifier to relate messages as a group
 	 */
 	private String correlationId;
 	/**
@@ -142,7 +157,7 @@ public class XFabricMessage {
 	 * @throws URISyntaxException
 	 */
 	public XFabricMessage(HttpServletRequest request) throws IOException {
-		this.bearerToken = request.getHeader("Authorization").trim();
+		this.bearerToken = request.getHeader("Authorization");
 		this.headers = new HashMap<String, String>();
 		this.topicName = request.getPathInfo();
 
@@ -164,10 +179,13 @@ public class XFabricMessage {
 		rawMessage = getMessageBody(request);
 		this.contentType = AvroContentType.getAvroContentType(this
 				.getHeader(CONTENTTYPE_HDR));
-
+		contentType = AvroContentType.AVRO_BINARY;
 		this.bearerToken = this.getHeader(AUTHORIZATION_HDR);
 		this.tenantId = this.getHeader(TENANTID_HDR);
-		this.publisher = this.getHeader(PUBLISHER_HDR);
+		this.publisher = (this.getHeader(PUBLISHER_HDR) != null) ? 
+				this.getHeader(PUBLISHER_HDR) : this.getHeader(PUBLISHER_DEP_HDR);
+		this.publisherPseudonym = (this.getHeader(PUBLISHER_PSEUDONYM_HDR) != null) ? 
+				this.getHeader(PUBLISHER_PSEUDONYM_HDR) : this.getHeader(PUBLISHER_PSEUDONYM_DEP_HDR);
 		this.messageGuid = this.getHeader(MESSAGEGUID_HDR);
 		this.schemaVersion = this.getHeader(SCHEMAVERSION_HDR);
 		this.schemaURI = this.getHeader(SCHEMAURI_HDR);
@@ -178,7 +196,11 @@ public class XFabricMessage {
 						.equals(this.topicName)
 				|| "/xfabric/tenant/updated".equals(this.topicName)
 				|| "/xfabric/topic/define/results".equals(this.topicName)
-				|| "/xfabric/topic/registration/results".equals(this.topicName)) {
+				|| "/xfabric/topic/registration/results".equals(this.topicName)
+				|| "/system/capability/endpoint/updateFailed".equals(this.topicName)
+				|| "/system/capability/endpoint/updated".equals(this.topicName)
+				|| "/system/tenant/relationship/created".equals(this.topicName)
+			) {
 			this.isFabricSystemMessage = true;
 		}
 
@@ -225,8 +247,8 @@ public class XFabricMessage {
 	}
 
 	/**
-	 * @param name 
-	 *            Http Header Name (case-insensitive) 
+	 * @param name
+	 *            Http Header Name (case-insensitive)
 	 * @return header value
 	 */
 	public String getHeader(String name) {
@@ -259,6 +281,13 @@ public class XFabricMessage {
 	}
 
 	/**
+	 * @return publisher pseudonym
+	 */
+	public String getPublisherPseudonym() {
+		return publisherPseudonym;
+	}
+
+	/**
 	 * @return message guid provided by the fabric
 	 */
 	public String getMessageGuid() {
@@ -278,12 +307,14 @@ public class XFabricMessage {
 	public String getSchemaVersion() {
 		return schemaVersion;
 	}
+
 	/**
 	 * @return the correlationId
 	 */
 	public String getCorrelationId() {
 		return correlationId;
 	}
+
 	/**
 	 * @return raw message in bytes
 	 */
@@ -354,14 +385,15 @@ public class XFabricMessage {
 	}
 
 	/**
-	 * @return message in Json String without conforming to any reader scheme (uses writer schema)
+	 * @return message in Json String without conforming to any reader scheme
+	 *         (uses writer schema)
 	 * @throws IOException
 	 */
 	public String getMessageAsJsonString() throws IOException {
 
 		if (this.contentType == AvroContentType.AVRO_BINARY) {
-			Schema writerSchema = SchemaCache.getSchema(topicName, schemaVersion,
-					new URL(schemaURI));
+			Schema writerSchema = SchemaCache.getSchema(topicName,
+					schemaVersion, new URL(schemaURI));
 			IndexedRecord record = AvroEncDecoder.decode(this.rawMessage,
 					writerSchema, writerSchema, AvroContentType.AVRO_BINARY);
 			return new String(AvroEncDecoder.encode(record,

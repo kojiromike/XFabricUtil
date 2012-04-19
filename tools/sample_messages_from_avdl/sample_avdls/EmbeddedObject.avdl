@@ -4,6 +4,7 @@ protocol Core {
 
 	/** This record is used to embed specific types inside another type. */
 	record EmbeddedObject {
+		string fullName; //Fully qualified name of object
 		string schemaVersion;
 		union{null, string} schemaUri = null;
 		bytes payload;

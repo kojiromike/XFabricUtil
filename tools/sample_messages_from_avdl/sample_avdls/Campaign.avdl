@@ -1,0 +1,31 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	import idl "EmbeddedObject.avdl";
+
+	enum CampaignStatus {
+		DRAFT,
+		SCHEDULED,
+		EXECUTING,
+		COMPLETED
+	}
+
+	record Campaign {
+		union {null,string} id = null;
+
+		/** The account this campaign belongs to */
+		string accountId;
+		
+		string name;
+		union{null,string} description = null;
+
+		/** Date Time Format: ISO 8601 */
+		union{null, string} startTime = null;
+		union{null, string} endTime = null;
+		
+		/** Provider specific types can be specified as strings */
+		union{CampaignStatus,string} status;
+
+		union{null,EmbeddedObject} extension = null;
+	}	
+}

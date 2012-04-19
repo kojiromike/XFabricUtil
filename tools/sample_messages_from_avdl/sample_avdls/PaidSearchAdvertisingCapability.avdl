@@ -1,0 +1,335 @@
+@namespace("com.x.paidsearchadvertising.v1")
+
+/**
+ * Message definitions for the paid search advertising
+ */
+protocol PaidSearchAdvertisingCapability {
+	import idl "Error.avdl";
+	import idl "Campaign.avdl";
+	import idl "Query.avdl";
+	import idl "CurrencyAmount.avdl";
+	import idl "Contact.avdl";
+	import idl "Report.avdl";
+	
+	/**
+	 * Advertiser Account
+	 */
+	record AdvertiserAccount
+	{
+		union{null, string} id = null;
+
+		/**
+		 * 3 character ISO 4217 code
+		 */
+		union{null, string} currencyCode = null;
+
+		com.x.ocl.Contact primaryContact;
+	}
+
+	/**
+	 * Status of a campaign that can be set by the user
+	 */
+	enum CampaignUserStatus
+	{
+		ACTIVE,
+		PAUSED,
+		DELETED
+	}
+
+	/**
+	 * Status of a campaign that is set by the provider
+	 */
+	enum CampaignProviderStatus
+	{
+		PENDING,
+		SERVING,
+		SUSPENDED,
+		ENDED,
+		DELETED
+	}
+
+	/**
+	 * List of offer ID provided to define offer specific ads
+	 */
+	record OfferListAdExtension
+	{
+		array<string> offerIds;
+
+		/**
+		 * List of attributes that identifies information that should be used
+		 * to create ads.
+		 * 
+		 */
+		array<string> offerAttributeIds;
+	}
+
+	/**
+	 * Information provided with the campaign that is needed to create the ads
+	 */
+	record AdExtension
+	{
+		string id;
+
+		/**
+		 * Additional AdExtensions needed can be introduced by adding to the
+		 * union here
+		 */
+		union {OfferListAdExtension} extension = null;
+	}
+
+	/**
+	 * Campaign Ad Extension
+	 */
+	record CampaignAdExtension
+	{
+		string campaignId;
+
+		/**
+		 * Additional context information included in the campain and which is
+		 * needed to create ads
+		 */
+		AdExtension adExtension;
+
+	}
+
+	@extends("com.x.ocl.Campaign")
+	record PSACampaign
+	{
+		/**
+		 * Budget for the campaign
+		 */
+		union {null, com.x.ocl.CurrencyAmount} campaignBudget = null;
+
+		/**
+		 * Status set by the user. This can be set in the update message
+		 */
+		union {null, CampaignUserStatus} userStatus = null;
+
+		/**
+		 * Status set by the provider. This is read only and cannot be set by the
+		 * user
+		 */
+		union {null, CampaignProviderStatus} providerStatus = null;
+	}
+
+	/**
+	 * Type of report. This determines the fields that can be used in the 
+	 * Selector
+	 */
+	enum PsaReportType
+	{
+		CAMPAIGN_PERFORMANCE_REPORT
+	}
+
+	/**
+	 * Create an Advertiser Account
+	 */
+	@topic("/paidSearchAdvertising/advertiserAccount/create") 
+	@version("2.0.2") 
+	record CreateAdvertiserAccount
+	{
+		AdvertiserAccount advertiserAccount;
+	}
+
+	/**
+	 * Successful creation of an Advertiser Account
+	 */
+	@topic("/paidSearchAdvertising/advertiserAccount/created") 
+	@version("2.0.2") 
+	record AdvertiserAccountCreated
+	{
+		AdvertiserAccount advertiserAccount;
+	}
+
+	/**
+	 * Advertiser Account creation failed
+	 */
+	@topic("/paidSearchAdvertising/advertiserAccount/createFailed") 
+	@version("2.0.2") 
+	record CreateAdvertiserAccountFailed
+	{
+		AdvertiserAccount advertiserAccount;
+		array<com.x.ocl.Error> errors;
+	}
+
+	/**
+	 * Create a campaign
+	 */
+	@topic("/paidSearchAdvertising/campaign/create") 
+	@version("1.0.0") 
+	record CreateCampaign
+	{
+		com.x.ocl.Campaign campaign;
+	}
+
+	/**
+	 * Successful creation of a campaign
+	 */
+	@topic("/paidSearchAdvertising/campaign/created") 
+	@version("1.0.0") 
+	record CampaignCreated
+	{
+		com.x.ocl.Campaign campaign;
+	}
+
+	/**
+	 * Campaign creation failed
+	 */
+	@topic("/paidSearchAdvertising/campaign/createFailed") 
+	@version("1.0.0") 
+	record CreateCampaignFailed
+	{
+		com.x.ocl.Campaign campaign;
+		array<com.x.ocl.Error> errors;
+	}
+
+	/**
+	 * Retrieve a campaign.
+	 */
+	@topic("/paidSearchAdvertising/campaign/search") 
+	@version("1.0.1") 
+	record SearchCampaign
+	{
+		union {null, com.x.ocl.Query} query = null;
+	}
+
+	/**
+	 * Successful retrieval of a campaign
+	 */
+	@topic("/paidSearchAdvertising/campaign/searchSucceeded") 
+	@version("1.0.1") 
+	record SearchCampaignSucceeded
+	{
+		array<com.x.ocl.Campaign> campaigns;
+		union {null, com.x.ocl.Query} query = null;
+	}
+
+	/**
+	 * Campaign retrieval failed
+	 */
+	@topic("/paidSearchAdvertising/campaign/searchFailed") 
+	@version("1.0.1") 
+	record SearchCampaignFailed
+	{
+		union {null, com.x.ocl.Query} query = null;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/paidSearchAdvertising/campaign/update") 
+	@version("1.0.0") 
+	record UpdateCampaign
+	{
+		com.x.ocl.Campaign campaign;
+	}
+
+	@topic("/paidSearchAdvertising/campaign/updated") 
+	@version("1.0.0") 
+	record CampaignUpdated
+	{
+		com.x.ocl.Campaign campaign;
+	}
+
+	@topic("/paidSearchAdvertising/campaign/updateFailed") 
+	@version("1.0.0") 
+	record UpdateCampaignFailed
+	{
+		com.x.ocl.Campaign campaign;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/paidSearchAdvertising/campaign/delete") 
+	@version("1.0.0") 
+	record DeleteCampaign
+	{
+		com.x.ocl.Campaign campaign;
+	}
+
+	@topic("/paidSearchAdvertising/campaign/deleted") 
+	@version("1.0.0") 
+	record CampaignDeleted
+	{
+		com.x.ocl.Campaign campaign;
+	}
+
+	@topic("/paidSearchAdvertising/campaign/deleteFailed") 
+	@version("1.0.0") 
+	record DeleteCampaignFailed
+	{
+		com.x.ocl.Campaign campaign;
+		array<com.x.ocl.Error> errors;
+	}
+
+	// Add Campaign Ad Extension messages
+
+	@topic("/paidSearchAdvertising/campaignAdExtension/add") 
+	@version("1.0.0") 
+	record AddCampaignAdExtension
+	{
+		CampaignAdExtension campaignAdExtension;
+	}
+
+	@topic("/paidSearchAdvertising/campaignAdExtension/added") 
+	@version("1.0.0") 
+	record CampaignAdExtensionAdded
+	{
+		CampaignAdExtension campaignAdExtension;
+	}
+
+	@topic("/paidSearchAdvertising/campaignAdExtension/addFailed") 
+	@version("1.0.0") 
+	record AddCampaignAdExtensionFailed
+	{
+		CampaignAdExtension campaignAdExtension;
+		array<com.x.ocl.Error> errors;
+	}
+
+	// Delete Campaign Ad Extension messages
+
+	@topic("/paidSearchAdvertising/campaignAdExtension/delete") 
+	@version("1.0.0") 
+	record DeleteCampaignAdExtension
+	{
+		CampaignAdExtension campaignAdExtension;
+	}
+
+	@topic("/paidSearchAdvertising/campaignAdExtension/deleted") 
+	@version("1.0.0") 
+	record CampaignAdExtensionDeleted
+	{
+		CampaignAdExtension campaignAdExtension;
+	}
+
+	@topic("/paidSearchAdvertising/campaignAdExtension/deleteFailed") 
+	@version("1.0.0") 
+	record DeleteCampaignAdExtensionFailed
+	{
+		CampaignAdExtension campaignAdExtension;
+		array<com.x.ocl.Error> errors;
+	}
+
+	@topic("/paidSearchAdvertising/report/get") 
+	@version("2.0.0") 
+	record GetReport
+	{
+		PsaReportType reportType;
+		com.x.ocl.ReportDefinition reportDefinition;
+	}
+
+	@topic("/paidSearchAdvertising/report/getSucceeded") 
+	@version("2.0.0") 
+	record GetReportSucceeded
+	{
+		PsaReportType reportType;
+		com.x.ocl.Report report;
+	}
+
+	@topic("/paidSearchAdvertising/report/getFailed") 
+	@version("2.0.0") 
+	record GetReportFailed
+	{
+		PsaReportType reportType;
+		com.x.ocl.ReportDefinition reportDefinition;
+		array<com.x.ocl.Error> errors;
+	}
+
+}

@@ -1,0 +1,10 @@
+@namespace("com.x.ocl")
+
+protocol Common {
+	import idl "EmbeddedObject.avdl";
+    
+	record Email{
+		string emailAddress;   		
+		union {null, com.x.ocl.EmbeddedObject} extension = null;
+	}
+}

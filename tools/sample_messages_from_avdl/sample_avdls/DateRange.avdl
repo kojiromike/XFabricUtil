@@ -1,0 +1,10 @@
+@namespace("com.x.ocl")
+
+protocol Core {
+
+	record DateRange {
+		/** Date Time Format: ISO 8601 */
+		string startDate;
+		string endDate;
+	}
+}		
