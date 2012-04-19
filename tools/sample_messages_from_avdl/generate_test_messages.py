@@ -34,16 +34,16 @@ class RecursiveSchemaError(Exception):
 def generate_json_test_message(sch, parent_name=''):
 	if hasattr(sch, 'name') and sch.name == parent_name:
 		raise RecursiveSchemaError(parent_name)
-	if sch.type in primitive_type_map:
+	elif sch.type in primitive_type_map:
 		return primitive_type_map[sch.type]
 	elif ('enum' == sch.type):
 		return sch.symbols[0]
 	elif ('array' == sch.type):
 		return [generate_json_test_message(sch.items, parent_name)]
 	elif ('map' == sch.type):
-		raise NotImplementedError('Cannot interpret map schema yet.')
+		return {'string': generate_json_test_message(sch.values, parent_name)}
 	elif ('union' == sch.type):
-		return generate_json_test_message(sch.schemas[-1])
+		return generate_json_test_message(sch.schemas[0])
 	elif ('fixed' == sch.type):
 		return 'n' * sch.size
 	elif ('record' == sch.type):
@@ -68,9 +68,12 @@ def process(a_file, output_dir='out'):
 		if the_type.name in name_topic_map:
 			topic = name_topic_map[the_type.name]
 			try:
+				if 0 == len(getattr(the_type, 'fields', [])):
+					print "%s has no subschema to iterate over" % topic
+					continue
 				msg = generate_json_test_message(the_type)
 				if msg:
-					print "Successfully generated a test message for %s." % topic
+					print "Generated a test message for %s." % topic
 					target = join(output_dir, topic.strip('/'))
 					try:
 						makedirs(target)
@@ -79,8 +82,9 @@ def process(a_file, output_dir='out'):
 					filename = join(target, 'index.json')
 					open(filename, 'w').write(dumps(msg))
 				else:
-					raise NotImplementedError
-			except Exception, e:
+					import pdb; pdb.set_trace()
+
+			except RecursiveSchemaError, e:
 				print "Could not generate a test message for %s. (%s)" % (topic, e.message)
 
 def main(argv):
@@ -91,7 +95,7 @@ def main(argv):
 			elif isdir(arg):
 				main(glob(arg + '/*.avpr'))
 	else:
-		raise Exception("Please list an avpr file or directory of files with topics.")
+		print "Please list an avpr file or directory of files with topics."
 
 if '__main__' == __name__:
 	from sys import argv
